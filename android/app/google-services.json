@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "942236330457",
+    "project_id": "yallacheep",
+    "storage_bucket": "yallacheep.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942236330457:android:1af2a9f1244b02aa0a11c8",
+        "android_client_info": {
+          "package_name": "com.cheep.yalla.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942236330457-gep4f756v20a28gk8ecebhel3auh1l8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrwNn4suIVR8CBzwr9fLGFK-aUkfgJdU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942236330457-gep4f756v20a28gk8ecebhel3auh1l8e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "942236330457-pofc4v1026gdnqt7289r60st9cmi4c1b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mighty.exploreplaces"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
