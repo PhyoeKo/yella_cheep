@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDrwNn4suIVR8CBzwr9fLGFK-aUkfgJdU0',
-    appId: '1:942236330457:android:1af2a9f1244b02aa0a11c8',
-    messagingSenderId: '942236330457',
-    projectId: 'yallacheep',
-    storageBucket: 'yallacheep.appspot.com',
+    apiKey: 'AIzaSyBfGpNiGrYuPlYzcD2tD7Zk_HSpfGUvAck',
+    appId: '1:562522585272:android:55c60deafd634050e71c4d',
+    messagingSenderId: '562522585272',
+    projectId: 'yalla-live-dev',
+    storageBucket: 'yalla-live-dev.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDtCmHAnv9e8H8gBY_l72kZ3WV5VqQ-rCU',
-    appId: '1:942236330457:ios:6ebb4fca6ddd9ceb0a11c8',
-    messagingSenderId: '942236330457',
-    projectId: 'yallacheep',
-    storageBucket: 'yallacheep.appspot.com',
-    iosClientId: '942236330457-pofc4v1026gdnqt7289r60st9cmi4c1b.apps.googleusercontent.com',
+    apiKey: 'AIzaSyD0Uom8Q1yQrBsMbSMULNfTZp_nsTy98TM',
+    appId: '1:562522585272:ios:17c67e89ae0a517de71c4d',
+    messagingSenderId: '562522585272',
+    projectId: 'yalla-live-dev',
+    storageBucket: 'yalla-live-dev.appspot.com',
+    iosClientId: '562522585272-4l023dl8m2560r08ouk7jkc24qm0m0hr.apps.googleusercontent.com',
     iosBundleId: 'com.mighty.exploreplaces',
   );
 }

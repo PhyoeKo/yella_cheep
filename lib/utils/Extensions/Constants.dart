@@ -36,7 +36,7 @@ ShapeBorder? defaultAppButtonShapeBorder;
 double defaultAppButtonRadius = 10.0;
 double defaultAppButtonElevation = 4.0;
 
-const defaultLanguage = "en";
+const defaultLanguage = "zh";
 
 var errorMessage = 'Please try again';
 var errorSomethingWentWrong = 'Something Went Wrong';
@@ -65,7 +65,7 @@ const whatsappURL = 'https://wa.me/';
 const SELECTED_LANGUAGE_CODE = 'selected_language_code';
 const THEME_MODE_INDEX = 'theme_mode_index';
 const isDarkModeOnPref = 'isDarkModeOnPref';
-const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_LANGUAGE = 'zh';
 
 const spacingControlHalf = 2;
 const spacingControl = 4;

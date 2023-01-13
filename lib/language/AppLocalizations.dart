@@ -14,6 +14,7 @@ import 'LanguageHi.dart';
 import 'LanguageId.dart';
 import 'LanguageNl.dart';
 import 'LanguageVi.dart';
+import 'LanguageCn.dart';
 
 class AppLocalizations extends LocalizationsDelegate<BaseLanguage> {
   const AppLocalizations();
@@ -27,31 +28,34 @@ class AppLocalizations extends LocalizationsDelegate<BaseLanguage> {
         return LanguageHi();
       case 'ar':
         return LanguageAr();
-      case 'es' :
+      case 'es':
         return LanguageEs();
-      case 'af' :
+      case 'af':
         return LanguageAf();
-      case 'fr' :
+      case 'fr':
         return LanguageFr();
-      case 'de' :
+      case 'de':
         return LanguageDe();
-      case 'id' :
+      case 'id':
         return LanguageId();
-      case 'pt' :
+      case 'pt':
         return LanguagePt();
-      case 'tr' :
+      case 'tr':
         return LanguageTr();
-      case 'vi' :
+      case 'vi':
         return LanguageVi();
-      case 'nl' :
+      case 'nl':
         return LanguageNl();
+      case 'zh':
+        return LanguageCn();
       default:
-        return LanguageEn();
+        return LanguageCn();
     }
   }
 
   @override
-  bool isSupported(Locale locale) => LanguageDataModel.languages().contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      LanguageDataModel.languages().contains(locale.languageCode);
 
   @override
   bool shouldReload(LocalizationsDelegate<BaseLanguage> old) => false;

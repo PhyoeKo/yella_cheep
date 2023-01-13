@@ -1,4 +1,4 @@
-const appName = "Explore Places";
+const appName = "Explore Promotions";
 
 /// one signal Key
 const mOneSignalAppId = 'ADD_YOUR_ONE_SIGNAL_APP_ID';

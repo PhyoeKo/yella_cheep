@@ -21,14 +21,14 @@ import '../utils/Extensions/text_styles.dart';
 import 'ForgotPasswordScreen.dart';
 import 'RegisterScreen.dart';
 
-class LoginScreen extends StatefulWidget {
+class EmailLogin extends StatefulWidget {
   static String tag = '/LoginScreen';
 
   @override
-  LoginScreenState createState() => LoginScreenState();
+  EmailLoginState createState() => EmailLoginState();
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class EmailLoginState extends State<EmailLogin> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
@@ -253,7 +253,7 @@ class LoginScreenState extends State<LoginScreen> {
           Text(language.doNotHaveAnAccount, style: primaryTextStyle(color: Colors.white)),
           6.width,
           Text(language.signUp, style: boldTextStyle(color: Colors.white)).onTap(() {
-            RegisterScreen().launch(context);
+            RegisterScreen(phoneNumber: "",).launch(context);
           }),
         ],
       ).paddingAll(16),

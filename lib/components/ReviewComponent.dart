@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:explore_places/screens/PhoneAuth.dart';
 import '../main.dart';
 import '../models/UserModel.dart';
 import '../screens/LogInScreen.dart';

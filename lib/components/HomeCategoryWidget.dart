@@ -31,8 +31,8 @@ class HomeCategoryWidget extends StatefulWidget {
 class HomeCategoryWidgetState extends State<HomeCategoryWidget> {
   CarouselController controller = CarouselController();
   String? selectedCatId = "";
-  int categoryIndex = 1;
-  int placeIndex = 1;
+  int categoryIndex = 0;
+  int placeIndex = 0;
 
   @override
   void initState() {

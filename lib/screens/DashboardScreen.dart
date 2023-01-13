@@ -1,4 +1,5 @@
 import 'package:explore_places/screens/CategoryScreen.dart';
+import 'package:explore_places/screens/PhoneAuth.dart';
 
 import '../main.dart';
 import '../screens/LogInScreen.dart';

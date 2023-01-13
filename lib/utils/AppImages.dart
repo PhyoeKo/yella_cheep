@@ -1,6 +1,6 @@
 const ic_appLogo = "assets/app_logo.jpg";
 const ic_appLogo_transparent = 'assets/app_logo_transparent.png';
-const login_logo_image = 'assets/login_logo_image.png';
+const login_logo_image = ic_appLogo_transparent;
 const ic_about_us = "assets/icon/ic_about_us.png";
 const ic_help_support = "assets/icon/ic_help_support.png";
 const ic_language = "assets/icon/ic_language.png";

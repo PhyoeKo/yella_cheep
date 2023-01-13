@@ -54,7 +54,7 @@ Future<UserModel> signInWithEmail(String email, String password) async {
 
       User user = userCredential.user!;
 
-      return await userService.userByEmail(user.email).then((value) async {
+      return await userService.userByPhone(user.phoneNumber).then((value) async {
         userModel = value;
 
         await setValue(USER_PASSWORD, password);
@@ -184,7 +184,7 @@ Future<void> loginFromFirebaseUser(User currentUser, String loginType, {String? 
   if (await userService.isUserExist(currentUser.email, loginType)) {
     //
     ///Return user data
-    await userService.userByEmail(currentUser.email).then((user) async {
+    await userService.userByPhone(currentUser.phoneNumber).then((user) async {
       userModel = user;
 
       //await updateUserData(userModel);

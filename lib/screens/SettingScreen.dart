@@ -1,3 +1,5 @@
+import 'package:explore_places/screens/PhoneAuth.dart';
+
 import '../screens/AboutUsScreen.dart';
 import '../services/AuthServices.dart';
 import '../utils/AppConstant.dart';

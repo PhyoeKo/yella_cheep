@@ -54,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+   // print("This is categoryPlaces ${dashboardResponse!.categoryPlaces }");
     return dashboardResponse != null
         ? ListView(
             padding: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
