@@ -6,6 +6,7 @@ import 'package:explore_places/utils/AppColor.dart';
 import 'package:explore_places/utils/AppImages.dart';
 import 'package:explore_places/utils/Extensions/AppButton.dart';
 import 'package:explore_places/utils/Extensions/AppTextField.dart';
+import 'package:explore_places/utils/Extensions/Commons.dart';
 import 'package:explore_places/utils/Extensions/Constants.dart';
 import 'package:explore_places/utils/Extensions/context_extensions.dart';
 import 'package:explore_places/utils/Extensions/decorations.dart';
@@ -202,6 +203,7 @@ class _PhoneAuthPageState extends State<LoginScreen> {
             onTap: wait
                 ? null
                 : () async {
+              hideKeyboard(context);
                     setState(() {
                       start = 30;
                       wait = true;
