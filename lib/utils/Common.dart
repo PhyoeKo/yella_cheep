@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:explore_places/components/dialog_loading_view.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../components/AdmobAdComponent.dart';
 import '../utils/Extensions/Widget_extensions.dart';
 import '../utils/Extensions/int_extensions.dart';
@@ -152,7 +155,7 @@ Widget cachedImage(String? url, {double? height, double? width, BoxFit? fit, Ali
 }
 
 Widget placeHolderWidget({double? height, double? width, BoxFit? fit, AlignmentGeometry? alignment, double? radius}) {
-  return Image.asset('assets/placeholder.jpg', height: height, width: width, fit: fit ?? BoxFit.cover, alignment: alignment ?? Alignment.center).cornerRadiusWithClipRRect(radius ?? defaultRadius);
+  return Image.asset('assets/app_place_holer.png', height: height, width: width, fit: fit ?? BoxFit.cover, alignment: alignment ?? Alignment.center).cornerRadiusWithClipRRect(radius ?? defaultRadius);
 }
 
 Widget favouriteItemWidget({required String placeId, Color? color}) {
@@ -292,6 +295,90 @@ void showRewardedAds({Function()? onAdCompleted}) {
   // }
 }
 
+showLoadingDialog({String title = "Loading",required BuildContext context}) => showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (dialogContext) => LoadingViewDialog(
+      title: title,
+    ));
+
+
+showWarningDialog({
+  required String? title,
+  required String? content,
+  required BuildContext context,
+  bool cancellable = false,
+  bool showNegativeButton = true,
+  String okButtonText = "Yes",
+}) {
+  return showDialog(
+      context: context,
+      barrierDismissible: cancellable,
+      builder: (dialogContext) {
+        return Center(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    color: primaryColor,
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      title!,
+                      textAlign: TextAlign.center,
+
+                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
+                      // textColor: Colors.white,
+                      // textSize: TEXT_REGULAR_2X,
+                      // fontWeight: FontWeight.w500,
+                      // textAlign: TextAlign.center,
+                      // maxLine: 1,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                    ),
+                    child: Center(
+                      child: Text(
+                        content!,
+                        // fontWeight: FontWeight.w500,
+                        // textSize: TEXT_REGULAR,
+                        // textAlign: TextAlign.center,
+                        // textOverflow: TextOverflow.ellipsis,
+                        // lineHeight: 1.5,
+                        // maxLine: 10,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  TextButton(
+                    onPressed: () =>  mLaunchUrl("https://yalla.cheap"),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(okButtonText),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      });
+}
 Future<bool> handleLocationPermission() async {
   bool serviceEnabled;
   LocationPermission permission;

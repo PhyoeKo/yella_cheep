@@ -11,8 +11,8 @@ class PlaceModel {
   String? categoryId;
   String? stateId;
   String? address;
-  double? latitude;
-  double? longitude;
+  dynamic latitude;
+  dynamic longitude;
   int? favourites;
   num? rating;
   String? description;

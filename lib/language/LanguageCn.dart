@@ -260,7 +260,7 @@ class LanguageCn extends BaseLanguage {
   String get placeName => '商家名称';
 
   @override
-  String get state => '状态';
+  String get state => '城市地区';
 
   @override
   String get placeAddress => '商家地址';
@@ -290,7 +290,7 @@ class LanguageCn extends BaseLanguage {
   String get selectPrimaryImage => '请选择主图';
 
   @override
-  String get states => '状态';
+  String get states => '城市地区';
 
   @override
   String get pickPlace => '挑选商家';
@@ -381,4 +381,22 @@ class LanguageCn extends BaseLanguage {
 
   @override
   String get search => '搜寻';
+
+  @override
+  String get forceUpdate => "立即更新";
+
+  @override
+  String get forceUpdateContent =>  "发现新版本，请先更新软件。";
+
+  @override
+  String get forceUpdateTitle => "软件更新";
+
+  @override
+  String get resend => "重新发送";
+
+  @override
+  String get send =>  "发送";
+
+  @override
+  String get enterOTP => "请输入6位数验证码";
 }

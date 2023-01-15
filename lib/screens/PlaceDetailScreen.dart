@@ -21,7 +21,8 @@ class PlaceDetailScreen extends StatefulWidget {
   final String? placeId;
   final bool isRequestPlace;
 
-  PlaceDetailScreen({this.placeData, this.placeId, this.isRequestPlace = false});
+  PlaceDetailScreen(
+      {this.placeData, this.placeId, this.isRequestPlace = false});
 
   @override
   PlaceDetailScreenState createState() => PlaceDetailScreenState();
@@ -38,20 +39,22 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
   }
 
   void init() async {
- //   FacebookAudienceNetwork.init();
+    //   FacebookAudienceNetwork.init();
     loadInterstitialAds();
     loadRewardedAds(onAdComplete: () {
       appStore.addFavourite(appStore.selectedPlaceId);
       setState(() {});
     });
-    setStatusBarColorWidget(Colors.transparent, statusBarIconBrightness: Brightness.dark);
+    setStatusBarColorWidget(Colors.transparent,
+        statusBarIconBrightness: Brightness.dark);
     if (widget.placeData != null) {
       placeModel = widget.placeData;
       setState(() {});
     } else {
       await placeService.documentByIdFuture(widget.placeId!).then((event) {
         if (event.data() != null) {
-          placeModel = PlaceModel.fromJson(event.data() as Map<String, dynamic>);
+          placeModel =
+              PlaceModel.fromJson(event.data() as Map<String, dynamic>);
           setState(() {});
         }
       }).catchError((e) {
@@ -80,7 +83,8 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
               body: NestedScrollView(
                 floatHeaderSlivers: true,
                 physics: NeverScrollableScrollPhysics(),
-                headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                headerSliverBuilder:
+                    (BuildContext context, bool innerBoxIsScrolled) {
                   return [
                     SliverAppBar(
                       pinned: true,
@@ -99,12 +103,15 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                      gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
-                                    Colors.black.withOpacity(0.1),
-                                    Colors.black.withOpacity(0.1),
-                                    Colors.black.withOpacity(0.3),
-                                    Colors.black.withOpacity(0.9),
-                                  ])),
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                        Colors.black.withOpacity(0.1),
+                                        Colors.black.withOpacity(0.1),
+                                        Colors.black.withOpacity(0.3),
+                                        Colors.black.withOpacity(0.9),
+                                      ])),
                                 ),
                               ],
                             ),
@@ -116,29 +123,38 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ratingWidget((placeModel!.rating ?? 0).toDouble()).visible(!widget.isRequestPlace),
+                                  ratingWidget(
+                                          (placeModel!.rating ?? 0).toDouble())
+                                      .visible(!widget.isRequestPlace),
                                   12.height,
                                   Text(
                                     placeModel!.name.toString().toUpperCase(),
-                                    style: boldTextStyle(color: whiteColor, size: 20),
+                                    style: boldTextStyle(
+                                        color: whiteColor, size: 20),
                                     maxLines: 3,
                                   ),
                                   12.height,
                                   Row(
                                     children: [
-                                      Icon(Icons.location_on_outlined, color: whiteColor, size: 20),
+                                      Icon(Icons.location_on_outlined,
+                                          color: whiteColor, size: 20),
                                       4.width,
-                                      Text(placeModel!.address.validate(), style: primaryTextStyle(color: whiteColor)).expand(),
+                                      Text(placeModel!.address.validate(),
+                                              style: primaryTextStyle(
+                                                  color: whiteColor))
+                                          .expand(),
                                     ],
                                   ),
                                   if (appStore.currentPosition != null)
                                     Row(
                                       children: [
-                                        ImageIcon(AssetImage(ic_distance), color: whiteColor, size: 20),
+                                        ImageIcon(AssetImage(ic_distance),
+                                            color: whiteColor, size: 20),
                                         4.width,
                                         Text(
                                           '${calculateDistanceKm(appStore.currentPosition!.latitude, appStore.currentPosition!.longitude, placeModel!.latitude, placeModel!.longitude).toStringAsFixed(2)} ${language.km}',
-                                          style: secondaryTextStyle(color: whiteColor),
+                                          style: secondaryTextStyle(
+                                              color: whiteColor),
                                         ),
                                       ],
                                     ).paddingTop(8),
@@ -148,19 +164,25 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
                           ],
                         ),
                       ),
-                      leading: Icon(Icons.arrow_back, color: innerBoxIsScrolled ? null : Colors.white).onTap(() {
+                      leading: Icon(Icons.arrow_back,
+                              color: innerBoxIsScrolled ? null : Colors.white)
+                          .onTap(() {
                         finish(context);
                       }),
                       actions: [
                         GestureDetector(
                             onTap: () {
-                              appStore.setSelectedPlaceId(placeModel!.id.validate());
-                              appStore.addRemoveFavouriteData(context, placeModel!.id.validate());
+                              appStore.setSelectedPlaceId(
+                                  placeModel!.id.validate());
+                              appStore.addRemoveFavouriteData(
+                                  context, placeModel!.id.validate());
                               setState(() {});
                             },
                             child: favouriteItemWidget(
                               placeId: placeModel!.id!,
-                              color: innerBoxIsScrolled ? Colors.black : Colors.white,
+                              color: innerBoxIsScrolled
+                                  ? Colors.black
+                                  : Colors.white,
                             ).paddingRight(16).visible(!widget.isRequestPlace)),
                       ],
                     ),
@@ -173,7 +195,8 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       tabs: [
                         Tab(text: language.history),
                         Tab(text: language.gallery),
-                        Tab(text: language.review).visible(!widget.isRequestPlace),
+                        Tab(text: language.review)
+                            .visible(!widget.isRequestPlace),
                       ],
                       isScrollable: true,
                       indicatorSize: TabBarIndicatorSize.label,
@@ -199,7 +222,11 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
                 backgroundColor: primaryColor,
                 child: Icon(Icons.location_pin, color: Colors.white),
                 onPressed: () {
-                  MapsLauncher.launchCoordinates(placeModel!.latitude.validate(), placeModel!.longitude.validate());
+                  print(
+                      " ${placeModel!.latitude} and ${placeModel!.longitude}");
+                  MapsLauncher.launchCoordinates(
+                      placeModel!.latitude,
+                      placeModel!.longitude);
                 },
               ),
             ),

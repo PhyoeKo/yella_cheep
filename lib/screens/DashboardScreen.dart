@@ -95,7 +95,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       appBar: (_currentIndex != FAVOURITE_INDEX || appStore.isLoggedIn)
           ? AppBar(
               title: Text(getTitle()),
-              leading:  Padding(padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8), child: Image.asset(ic_appLogo_transparent, height: 10)),
+            //  leading:  Padding(padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8), child: Image.asset(ic_appLogo_transparent, height: 10)),
               centerTitle: true,
               actions: [
                 _currentIndex == HOME_INDEX

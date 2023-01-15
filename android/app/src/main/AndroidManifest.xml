@@ -6,9 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
    <application
-        android:label="Yalla Cheep"
+        android:label="天天打折"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/app_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -40,6 +40,6 @@
 <!--           android:value="ADMOB_APP_ID"/>-->
 
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyC0wq9aIdMz4UCTCXkNhdUesuXTDYk2lsY"/>
+           android:value="AIzaSyA4DvkfErmNCKqzyL0daw5WsmwXP0MO0x0"/>
     </application>
 </manifest>

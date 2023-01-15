@@ -78,8 +78,11 @@ class AuthClass {
           await _auth.signInWithCredential(credential);
 
       if (userCredential.additionalUserInfo!.isNewUser) {
+        showSnackBar(context, "Please register first");
         RegisterScreen(
           phoneNumber: userCredential.user?.phoneNumber ?? "",
+          credential: credential,
+
         ).launch(context);
       } else {
         UserModel userModel = UserModel();
@@ -116,7 +119,7 @@ class AuthClass {
         // }
       }
 
-      showSnackBar(context, "logged In");
+
     } catch (e) {
       showSnackBar(context, e.toString());
     }

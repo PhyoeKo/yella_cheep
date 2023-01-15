@@ -27,13 +27,16 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   init() async {
-    setStatusBarColorWidget(appStore.isDarkMode ? scaffoldColorDark : Colors.white, statusBarIconBrightness: Brightness.dark);
-    await 5.seconds.delay;
-    if (getBoolAsync(IS_FIRST_TIME, defaultValue: true)) {
-      WalkThroughScreen().launch(context, isNewTask: true);
-    } else {
-      DashboardScreen().launch(context, isNewTask: true);
-    }
+    setStatusBarColorWidget(
+        appStore.isDarkMode ? scaffoldColorDark : Colors.white,
+        statusBarIconBrightness: Brightness.dark);
+    await 2.seconds.delay;
+    DashboardScreen().launch(context, isNewTask: true);
+    // if (getBoolAsync(IS_FIRST_TIME, defaultValue: true)) {
+    //   WalkThroughScreen().launch(context, isNewTask: true);
+    // } else {
+    //   DashboardScreen().launch(context, isNewTask: true);
+    // }
   }
 
   @override
@@ -43,17 +46,11 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: boxDecorationRoundedWithShadowWidget(16),
-            child: Image.asset(ic_appLogo_transparent, fit: BoxFit.cover, height: 100, width: 100),
-          ).center(),
-          Align(alignment: Alignment.bottomCenter, child: Text(appName, style: boldTextStyle(size: 24)).paddingOnly(bottom: 30)),
-        ],
-      ),
+    return Image.asset(
+      splash_screen_image,
+      fit: BoxFit.fitHeight,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
     );
   }
 }

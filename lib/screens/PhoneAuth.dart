@@ -4,6 +4,7 @@ import 'package:explore_places/main.dart';
 import 'package:explore_places/services/PhoneAuthService.dart';
 import 'package:explore_places/utils/AppColor.dart';
 import 'package:explore_places/utils/AppImages.dart';
+import 'package:explore_places/utils/Common.dart';
 import 'package:explore_places/utils/Extensions/AppButton.dart';
 import 'package:explore_places/utils/Extensions/AppTextField.dart';
 import 'package:explore_places/utils/Extensions/Commons.dart';
@@ -12,6 +13,7 @@ import 'package:explore_places/utils/Extensions/context_extensions.dart';
 import 'package:explore_places/utils/Extensions/decorations.dart';
 import 'package:explore_places/utils/Extensions/int_extensions.dart';
 import 'package:explore_places/utils/Extensions/text_styles.dart';
+import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
@@ -27,14 +29,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _PhoneAuthPageState extends State<LoginScreen> {
-  int start = 30;
+  int start = 60;
   bool wait = false;
-  String buttonName = "Send";
-  TextEditingController phoneController = TextEditingController();
+  String buttonName = language.send;
+  final TextEditingController phoneController = TextEditingController();
   AuthClass authClass = AuthClass();
   String verificationIdFinal = "";
   String smsCode = "";
-
+  String countryCode = "+971";
+  final countryPicker = const FlCountryCodePicker();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +79,7 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                       ),
                     ),
                     Text(
-                      "Enter 6 digit OTP",
+                      language.enterOTP,
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     Expanded(
@@ -114,7 +117,7 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                 ],
               )),
               SizedBox(
-                height: 150,
+                height: 100,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -125,8 +128,9 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                       borderRadius: radius(defaultRadius)),
                   color: Colors.yellowAccent,
                   onTap: () {
+                    showLoadingDialog(context: context);
                     authClass.signInwithPhoneNumber(
-                        verificationIdFinal, smsCode, context);
+                        verificationIdFinal, smsCode, context).then((value) => Navigator.pop(context));
                   },
                   width: context.width(),
                 ),
@@ -188,30 +192,50 @@ class _PhoneAuthPageState extends State<LoginScreen> {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: "Enter your phone Number",
-          hintStyle: TextStyle(color: Colors.black54, fontSize: 17),
+          hintText: "Enter phone number",
+          hintStyle: TextStyle(color: Colors.black54, fontSize: 14),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 19, horizontal: 8),
           prefixIcon: Padding(
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 15),
-            child: Text(
-              "(+971)",
-              style: TextStyle(color: Colors.black54, fontSize: 17),
+            child: InkWell(
+              onTap: () async {
+                final code = await countryPicker.showPicker(context: context);
+                if (code != null) {
+                  print(code);
+                  setState(() {
+                    countryCode = code.dialCode;
+                  });
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 6,horizontal: 4),
+                decoration: BoxDecoration(
+                  color: primaryColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+                child: Text(
+                  "($countryCode)",
+                  style: TextStyle(
+                      color: Colors.blueAccent,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
             ),
           ),
           suffixIcon: InkWell(
             onTap: wait
                 ? null
                 : () async {
-              hideKeyboard(context);
+                    hideKeyboard(context);
                     setState(() {
-                      start = 30;
+                      start = 60;
                       wait = true;
-                      buttonName = "Resend";
+                      buttonName = language.resend;
                     });
-
                     await authClass.verifyPhoneNumber(
-                        "+971${phoneController.text}", context, setData);
+                        "$countryCode${phoneController.text}", context, setData).then((value) => print("OTP SEND"));
                     //  print("Phone Number is +95 ${phoneController.text}");
                   },
             child: Padding(

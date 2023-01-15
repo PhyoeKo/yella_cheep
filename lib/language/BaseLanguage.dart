@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class BaseLanguage {
-  static BaseLanguage? of(BuildContext context) => Localizations.of<BaseLanguage>(context, BaseLanguage);
+  static BaseLanguage? of(BuildContext context) =>
+      Localizations.of<BaseLanguage>(context, BaseLanguage);
 
   String get appName;
 
@@ -244,10 +245,28 @@ abstract class BaseLanguage {
   String get add;
 
   String get reviews;
+
   String get km;
+
   String get placeFinder;
+
   String get selectYrPreference;
+
   String get selectCategory;
+
   String get distanceKm;
+
   String get search;
+
+  String get forceUpdateTitle;
+
+  String get forceUpdateContent;
+
+  String get forceUpdate;
+
+  String get send;
+
+  String get resend;
+
+  String get enterOTP;
 }

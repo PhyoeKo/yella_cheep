@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../screens/DashboardScreen.dart';
 import '../utils/Extensions/Widget_extensions.dart';
 import '../utils/Extensions/context_extensions.dart';
@@ -18,8 +20,9 @@ import '../utils/Extensions/text_styles.dart';
 
 class RegisterScreen extends StatefulWidget {
   final String phoneNumber;
+  final AuthCredential? credential;
 
-  const RegisterScreen({super.key, required this.phoneNumber});
+  const RegisterScreen({super.key, required this.phoneNumber, this.credential});
 
   @override
   RegisterScreenState createState() => RegisterScreenState();
@@ -46,6 +49,7 @@ class RegisterScreenState extends State<RegisterScreen> {
 
   void init() async {
     contactController.text = widget.phoneNumber;
+   // emailController.text = "Optional";
     passwordController.text = "123456";
     setState(() {});
   }

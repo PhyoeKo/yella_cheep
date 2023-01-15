@@ -20,6 +20,7 @@ const no_data = 'assets/no_data.png';
 const loader = 'assets/loader.json';                                                              
 
 const waterfall_image = "assets/waterfall.jpg";
+const splash_screen_image = "assets/splash_screen.jpg";
 const lake_image = "assets/lake.jpg";
 const river_rafting_image = "assets/riverRafting.jpg";
 

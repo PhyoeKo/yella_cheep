@@ -39,8 +39,10 @@ dependencies:
   google_sign_in: ^5.4.2
   the_apple_sign_in: ^1.1.1
 
+
   #ICON
   flutter_vector_icons: ^2.0.0
+  fl_country_code_picker: ^0.0.4
 
   # LAUNCH URL
   url_launcher: ^6.1.6
@@ -50,6 +52,7 @@ dependencies:
 
   # BASE
   fluttertoast: ^8.1.1
+  loading_indicator: ^3.1.0
 
   # GOOGLE MAP
   maps_launcher: ^2.0.1
@@ -93,7 +96,7 @@ dev_dependencies:
   #flutter packages pub run build_runner build --delete-conflicting-outputs
 
 flutter_icons:
-  image_path: "assets/app_logo.png"
+  image_path: "assets/app_icon.jpg"
   android: true
   ios: true
 

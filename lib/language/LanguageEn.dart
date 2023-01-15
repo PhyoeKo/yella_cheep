@@ -381,4 +381,21 @@ class LanguageEn extends BaseLanguage {
 
   @override
   String get search => 'Search';
+  @override
+  String get forceUpdate => "Update Now";
+
+  @override
+  String get forceUpdateContent =>  "Your current version is out of date, please update the app to continue.";
+
+  @override
+  String get forceUpdateTitle => "Force Update";
+
+  @override
+  String get resend => "Resend";
+
+  @override
+  String get send =>  "Send";
+
+  @override
+  String get enterOTP => "Enter 6 digit OTP";
 }
