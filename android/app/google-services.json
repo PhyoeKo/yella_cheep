@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996675886329",
+    "project_id": "yallacheap",
+    "storage_bucket": "yallacheap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996675886329:android:3c2f69fc51af9ffd59d628",
+        "android_client_info": {
+          "package_name": "cheap.yalla.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996675886329-er1dcelmmsnrr4icsb6fmfm1cu6vi4h1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp0wGAsY_cGNzT27c5IttOQOtQ-Zd8KeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996675886329-er1dcelmmsnrr4icsb6fmfm1cu6vi4h1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
