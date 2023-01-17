@@ -45,12 +45,12 @@ Future<void> signInWithGoogle() async {
   }
 }
 
-Future<UserModel> signInWithEmail(String email, String password) async {
+Future<UserModel?> signInWithEmail(String email, String password) async {
   if (await userService.isUserExist(email, LoginTypeApp)) {
     UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
 
     if (userCredential.user != null) {
-      UserModel userModel = UserModel();
+      UserModel? userModel = UserModel();
 
       User user = userCredential.user!;
 
@@ -62,7 +62,8 @@ Future<UserModel> signInWithEmail(String email, String password) async {
         //
         // await updateUserData(userModel);
         //
-        await setUserDetailPreference(userModel);
+        if(userModel!=null)
+        await setUserDetailPreference(userModel!);
 
         return userModel;
       }).catchError((e) {
@@ -179,7 +180,7 @@ Future<void> loginWithOTP(BuildContext context, String phoneNumber) async {
 }
 
 Future<void> loginFromFirebaseUser(User currentUser, String loginType, {String? fullName}) async {
-  UserModel userModel = UserModel();
+  UserModel? userModel = UserModel();
 
   if (await userService.isUserExist(currentUser.email, loginType)) {
     //
@@ -213,7 +214,8 @@ Future<void> loginFromFirebaseUser(User currentUser, String loginType, {String? 
   }
 
   await setValue(LOGIN_TYPE, loginType);
-  setUserDetailPreference(userModel);
+  if(userModel!=null)
+  setUserDetailPreference(userModel!);
 }
 
 /// Sign-In with Apple.

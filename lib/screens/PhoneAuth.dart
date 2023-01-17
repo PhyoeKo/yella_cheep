@@ -130,7 +130,7 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                   onTap: () {
                     showLoadingDialog(context: context);
                     authClass.signInwithPhoneNumber(
-                        verificationIdFinal, smsCode, context).then((value) => Navigator.pop(context));
+                        verificationIdFinal, smsCode, context).then((value) => print("ppp"));
                   },
                   width: context.width(),
                 ),
@@ -235,7 +235,7 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                       buttonName = language.resend;
                     });
                     await authClass.verifyPhoneNumber(
-                        "$countryCode${phoneController.text}", context, setData).then((value) => print("OTP SEND"));
+                        "$countryCode${phoneController.text}", context, setData);
                     //  print("Phone Number is +95 ${phoneController.text}");
                   },
             child: Padding(

@@ -78,6 +78,7 @@ class AuthClass {
           await _auth.signInWithCredential(credential);
 
       if (userCredential.additionalUserInfo!.isNewUser) {
+
         showSnackBar(context, "Please register first");
         RegisterScreen(
           phoneNumber: userCredential.user?.phoneNumber ?? "",
@@ -85,7 +86,7 @@ class AuthClass {
 
         ).launch(context);
       } else {
-        UserModel userModel = UserModel();
+        UserModel? userModel = UserModel();
 
         User user = userCredential.user!;
         userModel.contactNo = userCredential.user?.phoneNumber;
@@ -97,7 +98,8 @@ class AuthClass {
           //
           // await updateUserData(userModel);
           //
-          await setUserDetailPreference(userModel);
+          if(userModel!=null)
+          await setUserDetailPreference(userModel!);
 
         }).catchError((e) {
           throw e;

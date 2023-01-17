@@ -22,12 +22,12 @@ class UserService extends BaseService{
     return res.docs.length == 1;
   }
 
-  Future<UserModel> userByPhone(String? phone) async {
+  Future<UserModel?> userByPhone(String? phone) async {
     return await ref!.where(UserKeys.contactNo, isEqualTo: phone).limit(1).get().then((value) {
       if (value.docs.isNotEmpty) {
         return UserModel.fromJson(value.docs.first.data() as Map<String, dynamic>);
       } else {
-        throw language.noUserFound;
+       return null;
       }
     });
   }
