@@ -9,12 +9,14 @@ import 'package:explore_places/utils/Extensions/AppButton.dart';
 import 'package:explore_places/utils/Extensions/AppTextField.dart';
 import 'package:explore_places/utils/Extensions/Commons.dart';
 import 'package:explore_places/utils/Extensions/Constants.dart';
+import 'package:explore_places/utils/Extensions/Widget_extensions.dart';
 import 'package:explore_places/utils/Extensions/context_extensions.dart';
 import 'package:explore_places/utils/Extensions/decorations.dart';
 import 'package:explore_places/utils/Extensions/int_extensions.dart';
 import 'package:explore_places/utils/Extensions/text_styles.dart';
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
@@ -38,6 +40,7 @@ class _PhoneAuthPageState extends State<LoginScreen> {
   String smsCode = "";
   String countryCode = "+971";
   final countryPicker = const FlCountryCodePicker();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,94 +53,104 @@ class _PhoneAuthPageState extends State<LoginScreen> {
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              16.height,
-              Image.asset(login_logo_image, width: 100, height: 100),
-              16.height,
-              Text(language.signInText,
-                  style: primaryTextStyle(color: Colors.white, size: 18),
-                  textAlign: TextAlign.center),
-              30.height,
-              textField(),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width - 30,
-                child: Row(
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                16.height,
+                Image.asset(login_logo_image, width: 100, height: 100),
+                16.height,
+                Text(language.signInText,
+                    style: primaryTextStyle(color: Colors.white, size: 18),
+                    textAlign: TextAlign.center),
+                30.height,
+                textField(),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width - 30,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 1,
+                          color: Colors.grey,
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                        ),
+                      ),
+                      Text(
+                        language.enterOTP,
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 1,
+                          color: Colors.grey,
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                otpField(),
+                SizedBox(
+                  height: 40,
+                ),
+                RichText(
+                    text: TextSpan(
                   children: [
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: Colors.grey,
-                        margin: EdgeInsets.symmetric(horizontal: 12),
-                      ),
+                    TextSpan(
+                      text: "Send OTP again in ",
+                      style:
+                          TextStyle(fontSize: 16, color: Colors.yellowAccent),
                     ),
-                    Text(
-                      language.enterOTP,
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    TextSpan(
+                      text: "00:$start",
+                      style: TextStyle(fontSize: 16, color: Colors.pinkAccent),
                     ),
-                    Expanded(
-                      child: Container(
-                        height: 1,
-                        color: Colors.grey,
-                        margin: EdgeInsets.symmetric(horizontal: 12),
-                      ),
+                    TextSpan(
+                      text: " sec ",
+                      style:
+                          TextStyle(fontSize: 16, color: Colors.yellowAccent),
                     ),
                   ],
+                )),
+                SizedBox(
+                  height: 100,
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              otpField(),
-              SizedBox(
-                height: 40,
-              ),
-              RichText(
-                  text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Send OTP again in ",
-                    style: TextStyle(fontSize: 16, color: Colors.yellowAccent),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AppButtonWidget(
+                    text: language.signIn,
+                    textStyle: boldTextStyle(color: primaryColor),
+                    shapeBorder: RoundedRectangleBorder(
+                        borderRadius: radius(defaultRadius)),
+                    color: Colors.yellowAccent,
+                    onTap: () {
+                      appStore.setLoading(true);
+                      // showLoadingDialog(context: context);
+                      authClass
+                          .signInwithPhoneNumber(
+                              verificationIdFinal, smsCode, context)
+                          .then((value) {
+                        appStore.setLoading(false);
+                        finish(context, true);
+                      });
+                    },
+                    width: context.width(),
                   ),
-                  TextSpan(
-                    text: "00:$start",
-                    style: TextStyle(fontSize: 16, color: Colors.pinkAccent),
-                  ),
-                  TextSpan(
-                    text: " sec ",
-                    style: TextStyle(fontSize: 16, color: Colors.yellowAccent),
-                  ),
-                ],
-              )),
-              SizedBox(
-                height: 100,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AppButtonWidget(
-                  text: language.signIn,
-                  textStyle: boldTextStyle(color: primaryColor),
-                  shapeBorder: RoundedRectangleBorder(
-                      borderRadius: radius(defaultRadius)),
-                  color: Colors.yellowAccent,
-                  onTap: () {
-                    showLoadingDialog(context: context);
-                    authClass.signInwithPhoneNumber(
-                        verificationIdFinal, smsCode, context).then((value) => print("ppp"));
-                  },
-                  width: context.width(),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+          Observer(
+              builder: (context) => loaderWidget().visible(appStore.isLoading)),
+        ],
       ),
     );
   }
@@ -209,7 +222,7 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                 }
               },
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 6,horizontal: 4),
+                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
                 decoration: BoxDecoration(
                   color: primaryColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(2),
@@ -235,7 +248,9 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                       buttonName = language.resend;
                     });
                     await authClass.verifyPhoneNumber(
-                        "$countryCode${phoneController.text}", context, setData);
+                        "$countryCode${phoneController.text}",
+                        context,
+                        setData);
                     //  print("Phone Number is +95 ${phoneController.text}");
                   },
             child: Padding(
