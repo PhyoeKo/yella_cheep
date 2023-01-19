@@ -40,6 +40,8 @@
 <!--           android:value="ADMOB_APP_ID"/>-->
 
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyA4DvkfErmNCKqzyL0daw5WsmwXP0MO0x0"/>
+           android:value="AIzaSyAp7y53vPSlzf0xQVsLffogkzPDk9Tx-dw"/>
     </application>
 </manifest>
+
+
