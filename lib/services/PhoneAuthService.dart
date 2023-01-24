@@ -78,19 +78,17 @@ class AuthClass {
           await _auth.signInWithCredential(credential);
 
       if (userCredential.additionalUserInfo!.isNewUser) {
-
         showSnackBar(context, "Please register first");
         RegisterScreen(
           phoneNumber: userCredential.user?.phoneNumber ?? "",
           credential: credential,
-
         ).launch(context);
       } else {
-        UserModel? userModel = UserModel();
+        UserModel userModel = UserModel();
 
         User user = userCredential.user!;
         userModel.contactNo = userCredential.user?.phoneNumber;
-        await userService.userByPhone(user.phoneNumber).then((value) async {
+        await userService.userByPhone(user.phoneNumber,userCredential: userCredential,context:  context, credential: credential).then((value) async {
           userModel = value;
 
           await setValue(USER_PASSWORD, "");
@@ -98,9 +96,7 @@ class AuthClass {
           //
           // await updateUserData(userModel);
           //
-          if(userModel!=null)
-          await setUserDetailPreference(userModel!);
-
+          await setUserDetailPreference(userModel);
         }).catchError((e) {
           throw e;
         });
@@ -120,8 +116,6 @@ class AuthClass {
         //       context, "/homescreen", (route) => false);
         // }
       }
-
-
     } catch (e) {
       showSnackBar(context, e.toString());
     }

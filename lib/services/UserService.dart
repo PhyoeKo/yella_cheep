@@ -1,4 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:explore_places/screens/RegisterScreen.dart';
+import 'package:explore_places/utils/Extensions/Widget_extensions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../main.dart';
 import '../models/UserModel.dart';
 import '../utils/AppConstant.dart';
@@ -22,12 +27,18 @@ class UserService extends BaseService{
     return res.docs.length == 1;
   }
 
-  Future<UserModel?> userByPhone(String? phone) async {
+  Future<UserModel> userByPhone(String? phone,{BuildContext? context,UserCredential? userCredential,AuthCredential? credential}) async {
     return await ref!.where(UserKeys.contactNo, isEqualTo: phone).limit(1).get().then((value) {
       if (value.docs.isNotEmpty) {
         return UserModel.fromJson(value.docs.first.data() as Map<String, dynamic>);
       } else {
-       return null;
+        Fluttertoast.showToast(msg: "Please register first");
+        //showSnackBar(context, "Please register first");
+        RegisterScreen(
+          phoneNumber: userCredential?.user?.phoneNumber ?? "",
+          credential: credential,
+        ).launch(context!);
+        throw "";
       }
     });
   }

@@ -133,13 +133,13 @@ class _PhoneAuthPageState extends State<LoginScreen> {
                     color: Colors.yellowAccent,
                     onTap: () {
                       appStore.setLoading(true);
-                      // showLoadingDialog(context: context);
                       authClass
                           .signInwithPhoneNumber(
                               verificationIdFinal, smsCode, context)
                           .then((value) {
                         appStore.setLoading(false);
-                        finish(context, true);
+                        Navigator.pop(context);
+                       // finish(context, true);
                       });
                     },
                     width: context.width(),
