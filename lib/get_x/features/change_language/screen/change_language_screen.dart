@@ -1,13 +1,14 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/translation/app_translation.dart';
+import 'package:explore_places/get_x/core/base/base_view.dart';
+import 'package:explore_places/get_x/features/change_language/controller/change_language_controller.dart';
+import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
+import 'package:explore_places/get_x/widget/secondary_button_widget.dart';
+import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
-import 'package:yella_merchant/constant/translation/app_translation.dart';
-import 'package:yella_merchant/core/base/base_view.dart';
-import 'package:yella_merchant/features/change_language/controller/change_language_controller.dart';
-import 'package:yella_merchant/widget/default_app_bar_widget.dart';
-import 'package:yella_merchant/widget/secondary_button_widget.dart';
-import 'package:yella_merchant/widget/text_view_widget.dart';
+
 
 class ChangeLanguageScreen extends BaseView<ChangeLanguageController> {
   ChangeLanguageScreen({Key? key}) : super(key: key);

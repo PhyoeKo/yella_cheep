@@ -3,6 +3,8 @@ import 'package:explore_places/get_x/data_sources/network/authentication/auth_re
 import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/sample_feature/sample_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/sample_feature/sample_repository_impl.dart';
+import 'package:explore_places/get_x/data_sources/network/shop/shop_repository.dart';
+import 'package:explore_places/get_x/data_sources/network/shop/shop_repository_impl.dart';
 import 'package:get/get.dart';
 
 import '../../data_sources/network/orders/order_repository_impl.dart';

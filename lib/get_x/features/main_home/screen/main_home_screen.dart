@@ -1,9 +1,10 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/core/base/base_view.dart';
+import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
-import 'package:yella_merchant/core/base/base_view.dart';
-import 'package:yella_merchant/features/main_home/controller/main_home_controller.dart';
+
 
 class MainHomeScreen extends BaseView<MainHomeController> {
   MainHomeScreen({Key? key}) : super(key: key);

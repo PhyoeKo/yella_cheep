@@ -1,5 +1,5 @@
+import 'package:explore_places/get_x/data_models/pagination/pagination_ob.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:yella_merchant/data_models/pagination/pagination_ob.dart';
 
 class BaseApiResponse<T> {
   T? _objectResult;

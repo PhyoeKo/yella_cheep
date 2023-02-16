@@ -1,18 +1,18 @@
 import 'dart:io';
 
+import 'package:explore_places/get_x/constant/enum/enum_image_type.dart';
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
+import 'package:explore_places/get_x/core/base/base_controller.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
+import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
+import 'package:explore_places/get_x/data_models/request_ob/custom_image_phaser_ob.dart';
+import 'package:explore_places/get_x/data_models/request_ob/profile_update_request_ob.dart';
+import 'package:explore_places/get_x/data_models/responses/merchant_profile_response.dart';
+import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
+import 'package:explore_places/get_x/data_sources/network/profile/profile_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/constant/enum/enum_image_type.dart';
-import 'package:yella_merchant/constant/routing/app_route.dart';
-import 'package:yella_merchant/core/base/base_controller.dart';
-import 'package:yella_merchant/core/utils/app_utils.dart';
-import 'package:yella_merchant/data_models/base_response/base_api_response.dart';
-import 'package:yella_merchant/data_models/request_ob/custom_image_phaser_ob.dart';
-import 'package:yella_merchant/data_models/request_ob/profile_update_request_ob.dart';
 
-import 'package:yella_merchant/data_models/responses/merchant_profile_response.dart';
-import 'package:yella_merchant/data_models/responses/shop_profile_response.dart';
-import 'package:yella_merchant/data_sources/network/profile/profile_repository.dart';
 
 class ProfileController extends BaseController {
   final ProfileRepository _repository =

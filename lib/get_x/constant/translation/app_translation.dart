@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'languages/ch.dart';
 import 'languages/en.dart';
-import 'languages/my.dart';
+
 
 const translationNameKey = "name";
 const translationLocaleKey = "locale";
@@ -10,7 +10,6 @@ const translationLocaleKey = "locale";
 abstract class AppTranslation {
   static Map<String, Map<String, String>> translationsKeys = {
     "en_US": enLanguage,
-    "my_MM": myLanguage,
     "ch_CH": chLanguage
   };
 

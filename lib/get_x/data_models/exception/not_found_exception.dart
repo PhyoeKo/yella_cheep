@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:yella_merchant/data_models/exception/api_exception.dart';
+import 'package:explore_places/get_x/data_models/exception/api_exception.dart';
+
 
 
 class NotFoundException extends ApiException {

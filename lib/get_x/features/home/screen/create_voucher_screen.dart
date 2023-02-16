@@ -1,18 +1,16 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/core/base/base_view.dart';
+import 'package:explore_places/get_x/features/home/controller/create_voucher_controller.dart';
+import 'package:explore_places/get_x/widget/cached_network_image_widget.dart';
+import 'package:explore_places/get_x/widget/custom_chip_widget.dart';
+import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
+import 'package:explore_places/get_x/widget/secondary_button_widget.dart';
+import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
-import 'package:yella_merchant/constant/routing/app_route.dart';
-import 'package:yella_merchant/core/base/base_view.dart';
-import 'package:yella_merchant/features/home/controller/create_voucher_controller.dart';
-import 'package:yella_merchant/features/home/controller/scan_qr_controller.dart';
-import 'package:yella_merchant/widget/cached_network_image_widget.dart';
-import 'package:yella_merchant/widget/custom_chip_widget.dart';
-import 'package:yella_merchant/widget/default_app_bar_widget.dart';
-import 'package:yella_merchant/widget/secondary_button_widget.dart';
-import 'package:yella_merchant/widget/text_view_widget.dart';
+
 
 class CreateVoucherScreen extends BaseView<CreateVoucherController> {
   CreateVoucherScreen({Key? key}) : super(key: key);

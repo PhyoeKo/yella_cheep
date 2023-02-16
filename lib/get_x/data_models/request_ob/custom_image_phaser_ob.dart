@@ -1,5 +1,6 @@
 
-import 'package:yella_merchant/constant/enum/enum_image_type.dart';
+
+import 'package:explore_places/get_x/constant/enum/enum_image_type.dart';
 
 /// image : true
 /// type : "gold"

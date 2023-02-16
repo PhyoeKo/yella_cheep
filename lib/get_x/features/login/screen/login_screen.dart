@@ -1,12 +1,13 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_images.dart';
+import 'package:explore_places/get_x/core/base/base_view.dart';
+import 'package:explore_places/get_x/features/login/controller/login_controller.dart';
+import 'package:explore_places/get_x/widget/primary_button_widget.dart';
+import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
-import 'package:yella_merchant/constant/resources/app_images.dart';
-import 'package:yella_merchant/core/base/base_view.dart';
-import 'package:yella_merchant/features/login/controller/login_controller.dart';
-import 'package:yella_merchant/widget/primary_button_widget.dart';
-import 'package:yella_merchant/widget/text_view_widget.dart';
+
 
 class LoginScreen extends BaseView<LoginController> {
   LoginScreen({super.key});

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:explore_places/get_x/data_models/responses/login_response.dart';
+import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:yella_merchant/data_models/responses/login_response.dart';
-import 'package:yella_merchant/data_models/responses/shop_profile_response.dart';
 
 class CacheManager {
   final GetStorage _prefStorage = GetStorage('PrefStorage');

@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:yella_merchant/core/base/base_remote_source.dart';
-import 'package:yella_merchant/core/services/dio_provider.dart';
-import 'package:yella_merchant/data_models/base_response/base_api_response.dart';
-import 'package:yella_merchant/data_models/pagination/pagination_ob.dart';
-import 'package:yella_merchant/data_models/responses/order_history_response.dart';
-import 'package:yella_merchant/data_sources/network/orders/order_repository.dart';
+import 'package:explore_places/get_x/core/base/base_remote_source.dart';
+import 'package:explore_places/get_x/core/services/dio_provider.dart';
+import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
+import 'package:explore_places/get_x/data_models/pagination/pagination_ob.dart';
+import 'package:explore_places/get_x/data_models/responses/order_history_response.dart';
+import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
+
 
 class OrderRepositoryImpl extends BaseRemoteSource implements OrderRepository {
   var endpoint = DioProvider.baseUrl;

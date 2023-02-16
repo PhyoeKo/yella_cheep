@@ -1,5 +1,5 @@
+import 'package:explore_places/get_x/features/change_language/controller/change_language_controller.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/features/change_language/controller/change_language_controller.dart';
 
 class ChangeLanguageBinding extends Bindings {
   @override

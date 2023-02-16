@@ -2,6 +2,8 @@
 
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/binding/initial_binding.dart';
+import 'package:explore_places/get_x/features/change_language/binding/change_language_binding.dart';
+import 'package:explore_places/get_x/features/change_language/screen/change_language_screen.dart';
 import 'package:explore_places/get_x/features/change_theme/screen/change_theme_screen.dart';
 import 'package:explore_places/get_x/features/home/binding/home_binding.dart';
 import 'package:explore_places/get_x/features/home/screen/create_voucher_screen.dart';
@@ -12,11 +14,8 @@ import 'package:explore_places/get_x/features/main_home/binding/main_home_bindin
 import 'package:explore_places/get_x/features/main_home/screen/main_home_screen.dart';
 import 'package:explore_places/get_x/features/order_history/binding/order_history_binding.dart';
 import 'package:explore_places/get_x/features/profile/binding/profile_binding.dart';
-import 'package:explore_places/get_x/features/profile/screen/profile_detail_screen.dart';
-import 'package:explore_places/get_x/features/profile/screen/profile_edit_screen.dart';
-
-import '../../features/change_theme/binding/change_theme_binding.dart';
-import '../../features/profile/screen/change_password_screen.dart';
+import 'package:get/get.dart';
+;
 
 class AppPages {
   AppPages._();
@@ -54,24 +53,6 @@ class AppPages {
         ProfileBinding()
       ],
     ),
-    GetPage(
-      name: Routes.changeTheme,
-      page: () => ChangeThemeScreen(),
-      bindings: [
-        ChangeThemeBindings(),
-      ],
-    ),
-    GetPage(
-        name: Routes.profileDetail,
-        page: () => ProfileDetailScreen(),
-        binding: ProfileBinding()),
-    GetPage(
-        name: Routes.changePassword,
-        page: () => ChangePasswordScreen(),
-        binding: ProfileBinding()),
-    GetPage(
-        name: Routes.profileEdit,
-        page: () => ProfileEditScreen(),
-        binding: ProfileBinding()),
+
   ];
 }

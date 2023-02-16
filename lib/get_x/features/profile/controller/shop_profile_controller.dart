@@ -1,4 +1,6 @@
-import 'package:yella_merchant/core/base/base_controller.dart';
+
+
+import 'package:explore_places/get_x/core/base/base_controller.dart';
 
 class ShopProfileController extends BaseController{
 

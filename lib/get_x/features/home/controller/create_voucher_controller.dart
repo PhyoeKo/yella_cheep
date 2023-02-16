@@ -1,13 +1,13 @@
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
+import 'package:explore_places/get_x/core/binding/view_controller_binding.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
+import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
+import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
+import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
+import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:yella_merchant/constant/routing/app_route.dart';
-import 'package:yella_merchant/core/binding/view_controller_binding.dart';
-import 'package:yella_merchant/core/utils/app_utils.dart';
-import 'package:yella_merchant/data_models/base_response/base_api_response.dart';
-import 'package:yella_merchant/data_models/exception/base_exception.dart';
-import 'package:yella_merchant/data_models/responses/shop_profile_response.dart';
-import 'package:yella_merchant/data_sources/network/orders/order_repository.dart';
+
 
 import '../../../core/base/base_controller.dart';
 

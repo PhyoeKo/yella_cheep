@@ -1,5 +1,6 @@
+import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/features/main_home/controller/main_home_controller.dart';
+
 class MainHomeBinding extends Bindings {
   @override
   void dependencies() {

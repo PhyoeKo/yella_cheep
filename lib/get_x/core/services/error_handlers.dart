@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
+import 'package:explore_places/get_x/data_models/exception/api_exception.dart';
+import 'package:explore_places/get_x/data_models/exception/app_exception.dart';
+import 'package:explore_places/get_x/data_models/exception/not_found_exception.dart';
+import 'package:explore_places/get_x/data_models/exception/service_unavailable_exception.dart';
+import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/core/utils/app_utils.dart';
-import 'package:yella_merchant/data_models/exception/api_exception.dart';
-import 'package:yella_merchant/data_models/exception/app_exception.dart';
-import 'package:yella_merchant/data_models/exception/not_found_exception.dart';
-import 'package:yella_merchant/data_models/exception/service_unavailable_exception.dart';
-import 'package:yella_merchant/data_sources/local/cache_manager.dart';
+
 
 
 Exception handleError(String error) {
