@@ -4,7 +4,7 @@ import '../utils/Extensions/context_extensions.dart';
 import '../utils/Extensions/int_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../utils/AppColor.dart';
 import '../utils/AppConstant.dart';
 import '../utils/Common.dart';

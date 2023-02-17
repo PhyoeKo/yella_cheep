@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:explore_places/utils/Extensions/shared_pref.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../main.dart';
+import '../main_temp.dart';
 import '../screens/ViewAllScreen.dart';
 import '../utils/Common.dart';
 import '../utils/Extensions/string_extensions.dart';

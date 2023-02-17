@@ -17,7 +17,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../components/LanguageDialog.dart';
 import '../components/ThemeDialog.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../utils/AppColor.dart';
 import '../utils/Common.dart';
 import '../utils/Extensions/Commons.dart';

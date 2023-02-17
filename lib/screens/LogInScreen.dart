@@ -8,7 +8,7 @@ import '../utils/Extensions/decorations.dart';
 import '../utils/Extensions/int_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../services/AuthServices.dart';
 import '../utils/AppConstant.dart';
 import '../utils/Common.dart';

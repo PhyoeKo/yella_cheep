@@ -1,7 +1,7 @@
 import 'package:explore_places/screens/CategoryScreen.dart';
 import 'package:explore_places/screens/PhoneAuth.dart';
 
-import '../main.dart';
+import '../main_temp.dart';
 import '../screens/LogInScreen.dart';
 import '../screens/PlaceDetailScreen.dart';
 import '../utils/AppConstant.dart';

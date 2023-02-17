@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../main.dart';
+import '../main_temp.dart';
 import '../utils/AppColor.dart';
 import '../utils/AppConstant.dart';
 import '../utils/Common.dart';

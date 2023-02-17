@@ -1,4 +1,4 @@
-import '../main.dart';
+import '../main_temp.dart';
 import '../utils/Extensions/Commons.dart';
 import '../utils/Extensions/shared_pref.dart';
 import '../utils/AppColor.dart';

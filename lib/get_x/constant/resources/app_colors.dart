@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   static const Color primaryColor = Color(0xFF6AC6BB);
-  static const Color secondaryColor = Color(0xFF5777F9);
+  static const Color secondaryColor = Color(0xFFFFFFFF);
   static const Color pageBackground = Color(0xFFFAFBFE);
   static const Color lightBlueColor2 = Color(0xffe8ecff);
   static const Color whiteColor = Color(0xffffffff);
@@ -22,7 +22,7 @@ abstract class AppColors {
   static const Color lightGreyColor = Color(0xFFC4C4C4);
   static const Color errorColor = Color(0xFFAB0B0B);
   static const Color colorDark = Color(0xFF323232);
-
+  static const Color secondaryTextColor = Color.fromRGBO(142, 156, 184, 1.0);
   // Dark theme colors
   static const Color canvasColor = Color(0xFFFAFAFA);
   static const Color canvasColorDark = Color(0xFF212121);
@@ -48,7 +48,6 @@ abstract class AppColors {
   static Color barrierColor = const Color(0xFF000000).withOpacity(0.5);
   static const Color blackColor =  Color(0xff29353D);
   static const Color spaceWhiteColor =  Color(0xffF4F4F4);
-  static const Color secondaryTextColor =  Color(0xFF737373);
   static const Color textColor = Color(0xFF5F5F5F);
   static const Color shadeGrayColor = Color(0xFF959090);
   static const Color darkBlueColor = Color(0xFF013E52);

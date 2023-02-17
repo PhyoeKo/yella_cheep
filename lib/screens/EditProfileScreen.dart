@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../main.dart';
+import '../main_temp.dart';
 import '../services/FileStorageService.dart';
 import '../utils/AppColor.dart';
 import '../utils/Common.dart';

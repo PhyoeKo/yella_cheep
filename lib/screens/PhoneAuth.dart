@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:explore_places/main.dart';
+import 'package:explore_places/main_temp.dart';
 import 'package:explore_places/services/PhoneAuthService.dart';
 import 'package:explore_places/utils/AppColor.dart';
 import 'package:explore_places/utils/AppImages.dart';

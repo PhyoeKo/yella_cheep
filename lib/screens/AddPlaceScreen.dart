@@ -10,7 +10,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:image_picker/image_picker.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/CategoryModel.dart';
 import '../models/PlaceModel.dart';
 import '../models/StateModel.dart';

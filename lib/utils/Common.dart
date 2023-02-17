@@ -14,7 +14,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import '../components/FacebookAdComponent.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/LanguageDataModel.dart';
 import 'AppColor.dart';
 import 'AppConstant.dart';

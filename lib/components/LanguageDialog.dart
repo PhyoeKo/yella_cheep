@@ -4,7 +4,7 @@ import '../utils/Extensions/Widget_extensions.dart';
 import '../utils/Extensions/context_extensions.dart';
 import '../utils/Extensions/int_extensions.dart';
 import '../utils/Extensions/string_extensions.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/LanguageDataModel.dart';
 import '../utils/AppColor.dart';
 import '../utils/Extensions/Commons.dart';

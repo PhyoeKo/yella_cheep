@@ -6,7 +6,7 @@ import '../Extensions/int_extensions.dart';
 import '../Extensions/string_extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../main.dart';
+import '../../main_temp.dart';
 
 
 /// Returns SharedPref Instance

@@ -8,7 +8,7 @@ import '../utils/Extensions/decorations.dart';
 import '../utils/Extensions/int_extensions.dart';
 import '../utils/Extensions/shared_pref.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../utils/AppColor.dart';
 import '../utils/DataProvider.dart';
 import '../utils/Extensions/Constants.dart';

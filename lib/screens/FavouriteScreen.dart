@@ -1,7 +1,7 @@
 import '../utils/Extensions/string_extensions.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/PlaceModel.dart';
 import '../utils/Common.dart';
 import '../utils/Extensions/Widget_extensions.dart';

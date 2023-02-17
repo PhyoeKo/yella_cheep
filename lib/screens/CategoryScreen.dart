@@ -7,7 +7,7 @@ import '../utils/Extensions/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/CategoryModel.dart';
 import 'ViewAllScreen.dart';
 

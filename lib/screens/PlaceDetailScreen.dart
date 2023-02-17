@@ -11,7 +11,7 @@ import 'package:maps_launcher/maps_launcher.dart';
 import '../components/GalleryComponent.dart';
 import '../components/HistoryComponent.dart';
 import '../components/ReviewComponent.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../utils/AppColor.dart';
 import '../utils/Extensions/Colors.dart';
 import '../utils/Extensions/text_styles.dart';

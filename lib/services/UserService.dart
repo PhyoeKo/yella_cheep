@@ -4,7 +4,7 @@ import 'package:explore_places/utils/Extensions/Widget_extensions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/UserModel.dart';
 import '../utils/AppConstant.dart';
 import '../utils/ModelKeys.dart';

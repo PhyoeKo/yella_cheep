@@ -1,4 +1,4 @@
-import 'package:explore_places/main.dart';
+import 'package:explore_places/main_temp.dart';
 import 'package:explore_places/models/UserModel.dart';
 import 'package:explore_places/screens/RegisterScreen.dart';
 import 'package:explore_places/services/AuthServices.dart';

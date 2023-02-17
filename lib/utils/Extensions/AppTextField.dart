@@ -5,7 +5,7 @@ import '../Extensions/Widget_extensions.dart';
 import '../Extensions/string_extensions.dart';
 import '../Extensions/int_extensions.dart';
 import '../Extensions/text_styles.dart';
-import '../../main.dart';
+import '../../main_temp.dart';
 import 'Constants.dart';
 import 'decorations.dart';
 

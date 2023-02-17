@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../utils/Common.dart';
 import '../utils/Extensions/shared_pref.dart';
 import 'package:geolocator/geolocator.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/DashboardResponse.dart';
 import '../models/PlaceModel.dart';
 import '../utils/AppConstant.dart';

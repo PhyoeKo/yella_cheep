@@ -9,7 +9,7 @@ import '../Extensions/text_styles.dart';
 import '../Extensions/string_extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../main.dart';
+import '../../main_temp.dart';
 import 'Colors.dart';
 import 'Constants.dart';
 import 'decorations.dart';

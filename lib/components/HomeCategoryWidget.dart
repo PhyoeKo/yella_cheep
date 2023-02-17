@@ -7,7 +7,7 @@ import '../utils/Extensions/context_extensions.dart';
 import '../utils/Extensions/int_extensions.dart';
 import '../utils/Extensions/string_extensions.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/DashboardResponse.dart';
 import '../screens/CategoryScreen.dart';
 import '../screens/PlaceDetailScreen.dart';

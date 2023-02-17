@@ -3,7 +3,7 @@ import 'package:explore_places/utils/Extensions/Widget_extensions.dart';
 import 'package:explore_places/utils/Extensions/int_extensions.dart';
 import 'package:explore_places/utils/Extensions/string_extensions.dart';
 
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/PlaceModel.dart';
 import 'package:flutter/material.dart';
 

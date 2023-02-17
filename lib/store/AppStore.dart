@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import '../language/AppLocalizations.dart';
 import '../language/BaseLanguage.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/LanguageDataModel.dart';
 import '../screens/LogInScreen.dart';
 import '../utils/AppConstant.dart';

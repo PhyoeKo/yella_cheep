@@ -6,7 +6,7 @@ import 'package:explore_places/utils/Extensions/string_extensions.dart';
 import 'package:explore_places/utils/Extensions/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../models/CategoryModel.dart';
 import '../utils/AppColor.dart';
 import '../utils/Common.dart';

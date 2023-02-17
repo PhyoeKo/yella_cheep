@@ -9,7 +9,7 @@ import '../utils/Extensions/int_extensions.dart';
 import '../utils/Extensions/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import '../main.dart';
+import '../main_temp.dart';
 import '../utils/AppConstant.dart';
 import '../utils/AppImages.dart';
 import '../utils/Extensions/text_styles.dart';
