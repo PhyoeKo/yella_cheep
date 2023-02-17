@@ -1,15 +1,16 @@
+
+
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/binding/view_controller_binding.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
-import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
 import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../../../core/base/base_controller.dart';
+import '../../../data_models/base_response/base_api_response.dart';
 
 class CreateVoucherController extends BaseController {
   String? qrCode;
@@ -49,17 +50,7 @@ class CreateVoucherController extends BaseController {
        onStart: null,
        onSuccess: (response){
          if(response!=null){
-           BaseApiResponse<String?>  baseApiResponse = response;
-           if(baseApiResponse.statusCode!){
-             AppUtils.showToast("You have successfully create an invoice");
-             Get.offAllNamed(
-               Routes.mainHomeScreen,
-             );
-           }else{
-             Get.back();
-             AppUtils.showToast(baseApiResponse.message??"something went wrong");
 
-           }
          }
        },
        onError: (BaseException exception){},

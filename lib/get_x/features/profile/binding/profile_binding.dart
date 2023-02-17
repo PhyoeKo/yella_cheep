@@ -1,7 +1,7 @@
+import 'package:explore_places/get_x/data_sources/network/profile/profile_repository.dart';
+import 'package:explore_places/get_x/data_sources/network/profile/profile_repository_impl.dart';
+import 'package:explore_places/get_x/features/profile/controller/profile_controller.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/data_sources/network/profile/profile_repository.dart';
-import 'package:yella_merchant/data_sources/network/profile/profile_repository_impl.dart';
-import 'package:yella_merchant/features/profile/controller/profile_controller.dart';
 
 class ProfileBinding extends Bindings{
   @override

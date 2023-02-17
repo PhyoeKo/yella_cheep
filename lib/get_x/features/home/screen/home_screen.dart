@@ -5,11 +5,9 @@ import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/utils/number_format_utils.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_data_ob.dart';
 import 'package:explore_places/get_x/features/home/controller/home_controller.dart';
-import 'package:explore_places/get_x/widget/bar_chart_widget.dart';
 import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
 import 'package:explore_places/get_x/widget/order_item_widget.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
-import 'package:explore_places/get_x/widget/today_sale_item_widget.dart';
 import 'package:explore_places/get_x/widget/view_handling/smart_refresher_parent_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -62,65 +60,11 @@ class HomeScreen extends BaseView<HomeController> {
                       child: Row(
                         children: [
                           SizedBox(width: AppDimens.MARGIN_MEDIUM_2),
-                          Flexible(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TodaySaleItemWidget(
-                                    title: "Today Sale",
-                                    amount: NumberFormatUtils
-                                        .convertThousandSeparatorFormat(1000.0),
-                                    unit: "MMK",
-                                    verticalDividerColor:
-                                        AppColors.saleVerticalDividerColor),
-                                const TodaySaleItemWidget(
-                                  title: "Today Order",
-                                  amount: "1000",
-                                  unit: "Item",
-                                  verticalDividerColor:
-                                      AppColors.orderVerticalDividerColor,
-                                )
-                              ],
-                            ),
-                          ),
+
                           const SizedBox(
                             width: AppDimens.MARGIN_10,
                           ),
-                          Flexible(
-                            flex: 3,
-                            child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                  vertical: AppDimens.MARGIN_MEDIUM_2,
-                                ),
-                                padding: const EdgeInsets.only(
-                                    top: AppDimens.DROPDOWN_HEIGHT),
-                                //16.67815856361205,95.93014029115143
-                                decoration: BoxDecoration(
-                                  color: AppColors.lightColor,
-                                  borderRadius: BorderRadius.circular(
-                                    AppDimens.MARGIN_SMALL,
-                                  ),
-                                ),
-                                child: barChartWidget(WeakData(dayList: [
-                                  "Sat",
-                                  "Sun",
-                                  "Mon",
-                                  "Tue",
-                                  "Wed",
-                                  "Thu",
-                                  "Fri"
-                                ], countList: [
-                                  10,
-                                  2,
-                                  4,
-                                  9,
-                                  6,
-                                  9,
-                                  4
-                                ]))),
-                          ),
-                          SizedBox(width: AppDimens.MARGIN_MEDIUM_2),
+
                         ],
                       ),
                     ),

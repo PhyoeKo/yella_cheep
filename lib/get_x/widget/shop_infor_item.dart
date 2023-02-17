@@ -1,9 +1,9 @@
 
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/widget/text_view_widget.dart';
+import 'package:explore_places/get_x/widget/title_with_leading_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
-import 'package:yella_merchant/widget/text_view_widget.dart';
-import 'package:yella_merchant/widget/title_with_leading_widget.dart';
 
 class ShopInfoItem extends StatelessWidget {
   final String title;

@@ -1,6 +1,6 @@
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
 
 import '../constant/resources/app_colors.dart';
 

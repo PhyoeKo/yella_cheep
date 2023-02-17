@@ -1,7 +1,8 @@
+import 'package:explore_places/get_x/features/home/controller/create_voucher_controller.dart';
+import 'package:explore_places/get_x/features/home/controller/scan_qr_controller.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/features/home/controller/create_voucher_controller.dart';
-import 'package:yella_merchant/features/home/controller/home_controller.dart';
-import 'package:yella_merchant/features/home/controller/scan_qr_controller.dart';
+
+import '../controller/home_controller.dart';
 
 class HomeBinding extends Bindings{
   @override

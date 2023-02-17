@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:yella_merchant/core/utils/app_utils.dart';
 
 class ImagePickerHelper {
   static final ImagePicker _picker = ImagePicker();

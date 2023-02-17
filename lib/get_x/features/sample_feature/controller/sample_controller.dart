@@ -1,15 +1,16 @@
+import 'package:explore_places/get_x/constant/enum/view_state.dart';
+import 'package:explore_places/get_x/core/base/base_controller.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
+import 'package:explore_places/get_x/core/utils/pagination_utils.dart';
+import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
+import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
+import 'package:explore_places/get_x/data_models/responses/dummy_list_response.dart';
+import 'package:explore_places/get_x/data_sources/network/sample_feature/sample_repository.dart';
+import 'package:explore_places/get_x/data_sources/network/sample_feature/sample_repository_impl.dart';
+import 'package:explore_places/get_x/features/sample_feature/mapper/sample_mapper.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:yella_merchant/constant/enum/view_state.dart';
-import 'package:yella_merchant/core/base/base_controller.dart';
-import 'package:yella_merchant/core/utils/app_utils.dart';
-import 'package:yella_merchant/core/utils/pagination_utils.dart';
-import 'package:yella_merchant/data_models/base_response/base_api_response.dart';
-import 'package:yella_merchant/data_models/exception/base_exception.dart';
-import 'package:yella_merchant/data_models/responses/dummy_list_response.dart';
-import 'package:yella_merchant/data_sources/network/sample_feature/sample_repository.dart';
-import 'package:yella_merchant/data_sources/network/sample_feature/sample_repository_impl.dart';
-import 'package:yella_merchant/features/sample_feature/mapper/sample_mapper.dart';
+
 
 class SampleController extends BaseController {
   late final SampleRepository _repository = SampleRepositoryImpl();

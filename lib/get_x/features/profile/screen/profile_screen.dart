@@ -1,17 +1,18 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
+import 'package:explore_places/get_x/core/base/base_view.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
+import 'package:explore_places/get_x/core/utils/dialog_utils.dart';
+import 'package:explore_places/get_x/features/profile/controller/profile_controller.dart';
+import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
+import 'package:explore_places/get_x/widget/show_image_widget.dart';
+import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/preferred_size.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
-import 'package:yella_merchant/constant/routing/app_route.dart';
-import 'package:yella_merchant/core/base/base_view.dart';
-import 'package:yella_merchant/core/utils/app_utils.dart';
-import 'package:yella_merchant/core/utils/dialog_utils.dart';
-import 'package:yella_merchant/features/profile/controller/profile_controller.dart';
-import 'package:yella_merchant/widget/default_app_bar_widget.dart';
-import 'package:yella_merchant/widget/show_image_widget.dart';
-import 'package:yella_merchant/widget/text_view_widget.dart';
+
 
 class ProfileScreen extends BaseView<ProfileController> {
   ProfileScreen({super.key});

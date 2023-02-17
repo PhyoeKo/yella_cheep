@@ -1,5 +1,5 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
 
 class PartialLoadingWidget extends StatelessWidget {
   const PartialLoadingWidget({Key? key}) : super(key: key);

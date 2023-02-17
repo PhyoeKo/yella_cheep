@@ -1,13 +1,14 @@
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
+import 'package:explore_places/get_x/core/base/base_view.dart';
+import 'package:explore_places/get_x/features/login/screen/login_screen.dart';
+import 'package:explore_places/get_x/features/sample_feature/controller/sample_controller.dart';
+import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
+import 'package:explore_places/get_x/widget/text_view_widget.dart';
+import 'package:explore_places/get_x/widget/view_handling/smart_refresher_parent_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
-import 'package:yella_merchant/constant/routing/app_route.dart';
-import 'package:yella_merchant/core/base/base_view.dart';
-import 'package:yella_merchant/features/login/screen/login_screen.dart';
-import 'package:yella_merchant/features/sample_feature/controller/sample_controller.dart';
-import 'package:yella_merchant/widget/default_app_bar_widget.dart';
-import 'package:yella_merchant/widget/text_view_widget.dart';
-import 'package:yella_merchant/widget/view_handling/smart_refresher_parent_view.dart';
+
 
 import '../../../constant/resources/app_string.dart';
 

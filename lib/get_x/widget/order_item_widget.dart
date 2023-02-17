@@ -1,9 +1,10 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/core/utils/date_utils.dart';
+import 'package:explore_places/get_x/core/utils/dialog_utils.dart';
+import 'package:explore_places/get_x/data_models/responses/order_history_response.dart';
+import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/core/utils/date_utils.dart';
-import 'package:yella_merchant/core/utils/dialog_utils.dart';
-import 'package:yella_merchant/data_models/responses/order_history_response.dart';
-import 'package:yella_merchant/widget/text_view_widget.dart';
+
 
 class OrderItemWidget extends StatelessWidget {
   final OrderHistoryResponse orderData;

@@ -1,8 +1,8 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
 
 class SmartRefresherParentView extends StatefulWidget {
   final Widget child;

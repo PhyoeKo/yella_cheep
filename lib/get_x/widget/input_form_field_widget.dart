@@ -1,8 +1,8 @@
 
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yella_merchant/constant/resources/app_colors.dart';
-import 'package:yella_merchant/constant/resources/app_dimens.dart';
 
 class InputFormFieldWidget extends StatelessWidget {
   final TextEditingController textEditingController;
