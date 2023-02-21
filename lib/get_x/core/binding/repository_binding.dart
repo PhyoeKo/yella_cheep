@@ -1,5 +1,7 @@
 import 'package:explore_places/get_x/data_sources/network/authentication/auth_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/authentication/auth_repository_impl.dart';
+import 'package:explore_places/get_x/data_sources/network/home/home_repository.dart';
+import 'package:explore_places/get_x/data_sources/network/home/home_repository_impl.dart';
 import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/sample_feature/sample_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/sample_feature/sample_repository_impl.dart';
@@ -16,6 +18,9 @@ class RepositoryBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<SampleRepository>(
       () => SampleRepositoryImpl(),
+    );
+    Get.lazyPut<HomeRepository>(
+      () => HomeRepositoryImpl(), tag: (HomeRepository).toString(),
     );
     Get.lazyPut<AuthRepository>(
       () => AuthRepositoryImpl(),

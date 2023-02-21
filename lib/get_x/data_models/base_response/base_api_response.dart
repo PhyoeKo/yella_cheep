@@ -77,7 +77,7 @@ class BaseApiResponse<T> {
       {Function(Map<String, dynamic>)? createList}) {
     var data = <T>[];
     json['data'].forEach((v) {
-      data.add(createList!(v));
+      data.add(createList! (v));
     });
 
     return BaseApiResponse<T>(

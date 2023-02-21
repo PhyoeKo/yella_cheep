@@ -14,6 +14,7 @@ class MainHomeController extends BaseController {
     HomeScreen(),
     OrderHistoryScreen(),
     ProfileScreen(),
+    ProfileScreen(),
   ];
 
   @override

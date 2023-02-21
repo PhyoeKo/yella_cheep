@@ -44,17 +44,17 @@ class LoginController extends BaseController {
     animationController.animateTo(0.4);
     update();
       //print("Firebase Token is ${getString(CacheManagerKey.firebaseToken)}");
-      var requestOb = LoginRequestOb(
-        phone: userNameController.text,
-        password: passwordController.text,
-      );
-      final repoService = _repository.loginUser(requestOb);
-      AppUtils.showLoaderDialog();
-      callAPIService(repoService, onSuccess: onSuccessLogin,
-          onError: (exception) {
-        AppUtils.showToast("Something went wrong,try again");
-        Get.back();
-      });
+      // var requestOb = LoginRequestOb(
+      //   phone: phNoController.text,
+      //   password: "",
+      // );
+      // final repoService = _repository.loginUser(requestOb);
+      // AppUtils.showLoaderDialog();
+      // callAPIService(repoService, onSuccess: onSuccessLogin,
+      //     onError: (exception) {
+      //   AppUtils.showToast("Something went wrong,try again");
+      //   Get.back();
+      // });
     // try {
     //   var otpRequest = SentOtpRequest(type: "register", phone: phNo);
     //   BaseModel<SentOtpResponse> response =

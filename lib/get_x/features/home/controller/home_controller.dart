@@ -7,67 +7,83 @@ import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/core/utils/date_utils.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
+import 'package:explore_places/get_x/data_models/responses/banner_response.dart';
 import 'package:explore_places/get_x/data_models/responses/order_history_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
+import 'package:explore_places/get_x/data_models/view_object/setup_vo.dart';
 import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
+import 'package:explore_places/get_x/data_sources/network/home/home_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/shop/shop_repository.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
 class HomeController extends BaseController {
-  final RxList<OrderHistoryResponse> _orderList = RxList.empty();
+  late HomeRepository _repository;
 
-  List<OrderHistoryResponse> get orderList => _orderList.obs.value;
-  final OrderRepository _orderRepository = findInject(OrderRepository);
-  final ShopRepository _shopRepository = findInject(ShopRepository);
+  HomeController(HomeRepository repository) {
+    _repository = repository;
+  }
 
+  final RxList<BannerResponse> _bannerList = RxList.empty();
+
+  List<BannerResponse> get bannerList => _bannerList.obs.value;
+
+  final RxList<SetUpVo> _categoryList = RxList.empty();
+
+  List<SetUpVo> get categoryList => _categoryList.obs.value;
+
+  RxDouble currentLat = 0.0.obs;
+  RxDouble currentLong = 0.0.obs;
   @override
-  void onInit() {
-    getOrderList();
-    fetchShopProfile();
+  void onInit()  {
+    getBannerList();
+    getCategoryList();
+    getCurrentPosition().then((value) => null);
     super.onInit();
   }
 
-  void fetchShopProfile() async {
-    final _repoService = _shopRepository.getShopProfile();
+  Future<void> getCurrentPosition() async {
+    final hasPermission = await AppUtils.handleLocationPermission();
+    if (!hasPermission) {
+      // appStore.currentPosition = null;
+      return;
+    }
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((Position position) {
+      currentLat.value = position.latitude;
+      currentLong.value = position.longitude;
+      logger.i("Current location is ${position.latitude} and ${position.longitude}");
+    }).catchError((e) {
+      logger.i('${e.toString()}');
+      //  appStore.currentPosition = null;
+    });
+  }
+  void getCategoryList() async {
+    final _repoService = _repository.getCategoryList();
     await callAPIService(
       _repoService,
       onStart: null,
-      onSuccess: _handleShopProfileResponseSuccess,
-      onError: _handleCShopProfileResponseError,
+      onSuccess: _handleCategoryListResponseSuccess,
+      onError: (BaseException exception) {},
     );
   }
 
-  void _handleCShopProfileResponseError(BaseException exception) {
-    AppUtils.showToast(exception.message);
-    return;
-  }
-
-  void _handleShopProfileResponseSuccess(response) async {
+  void _handleCategoryListResponseSuccess(response) async {
+    resetRefreshController(_bannerList);
     if (response != null) {
-      BaseApiResponse<ShopProfileResponse> shopProfileData = response;
-      ShopProfileResponse shopProfileResponse = shopProfileData.objectResult;
-      print("this is sho ${shopProfileResponse.name}");
-      setData(CacheManagerKey.shopProfileData, jsonEncode(shopProfileResponse));
-
+      BaseApiResponse<SetUpVo> _responseData = response;
+      List<SetUpVo> data = _responseData.listResult;
+      _categoryList.addAll(data.toList());
     }
   }
 
-  void getOrderList({
+  void getBannerList({
     RefreshController? refreshController,
   }) async {
     setRefreshController(refreshController);
-    final _repoService = _orderRepository.getOrderList(
-      shopId: getShopId()!,
-      orderStatus: "",
-      categoryId: 0,
-      fromDate: DateUtil.convertDateFormat(
-          DateUtil.getCurrentDate().toString(), YEAR_MONTH_DAY),
-      toDate: DateUtil.convertDateFormat(
-          DateUtil.getCurrentDate().toString(), YEAR_MONTH_DAY),
-    );
+    final _repoService = _repository.getBannerData();
     await callAPIService(
       _repoService,
       onStart: null,
@@ -77,9 +93,9 @@ class HomeController extends BaseController {
   }
 
   void _handleCancelOrderListResponseError(BaseException exception) {
-    resetRefreshController(_orderList);
+    resetRefreshController(_bannerList);
 
-    if (_orderList.isEmpty) {
+    if (_bannerList.isEmpty) {
       updatePageState(
         ViewState.FAILED,
         onClickTryAgain: () => resetAndGetCancelOrderList(),
@@ -91,26 +107,17 @@ class HomeController extends BaseController {
   }
 
   void _handleCancelOrderListResponseSuccess(response) async {
-    resetRefreshController(_orderList);
+    resetRefreshController(_bannerList);
     if (response != null) {
-      BaseApiResponse<OrderHistoryResponse> _orderData = response;
-      List<OrderHistoryResponse> data = _orderData.listResult;
-      _orderList.addAll(data.toList());
-      if (data.isEmpty) {
-        // Future.delayed(
-        //   const Duration(seconds: 1),
-        //   () => updatePageState(ViewState.EMPTY_LIST,
-        //       onClickTryAgain: () => {
-        //             resetAndGetCancelOrderList(),
-        //           }),
-        // );
-      }
+      BaseApiResponse<BannerResponse> _responseData = response;
+      List<BannerResponse> data = _responseData.listResult;
+      _bannerList.addAll(data.toList());
     }
   }
 
   Future<void> resetAndGetCancelOrderList(
       {RefreshController? refreshController}) async {
-    _orderList.clear();
-    getOrderList(refreshController: refreshController);
+    // _bannerList.clear();
+    // getBannerList(refreshController: refreshController);
   }
 }

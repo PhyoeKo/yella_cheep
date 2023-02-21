@@ -46,6 +46,7 @@ class AppPages {
       name: Routes.mainHomeScreen,
       page: () => MainHomeScreen(),
       bindings: [
+
         MainHomeBinding(),
         HomeBinding(),
         OrderHistoryBinding(),
