@@ -15,7 +15,8 @@ class ShopDataResponse {
       this.latitude, 
       this.longitude, 
       this.status, 
-      this.image1, 
+      this.image1,
+    this.distance,
       this.gallery, 
       this.rating, 
       this.reviewCount,});
@@ -26,6 +27,7 @@ class ShopDataResponse {
     state = json['state'];
     name = json['name'];
     phone = json['phone'];
+    distance = json['distance'];
     email = json['email'];
     website = json['website'];
     attractions = json['attractions'];
@@ -54,6 +56,7 @@ class ShopDataResponse {
   String? latitude;
   String? longitude;
   num? status;
+  double? distance;
   String? image1;
   List<String>? gallery;
   num? rating;

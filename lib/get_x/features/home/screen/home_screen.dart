@@ -25,15 +25,6 @@ class HomeScreen extends BaseView<HomeController> {
     return const DefaultAppBar(title: "Home");
   }
 
-  @override
-  Widget? floatingActionButton() {
-    return FloatingActionButton(
-      onPressed: () => Get.toNamed(
-        Routes.scanQRScreen,
-      ),
-      child: Icon(Icons.document_scanner_sharp),
-    );
-  }
 
   @override
   Widget body(BuildContext context) {
@@ -53,7 +44,6 @@ class HomeScreen extends BaseView<HomeController> {
                         child: CarouselSlider(
                           options: CarouselOptions(
                             autoPlay: true,
-                            enlargeCenterPage: true,
                             height: MediaQuery.of(context).size.height * 0.2,
                             enlargeStrategy: CenterPageEnlargeStrategy.scale,
                           ),
@@ -141,9 +131,56 @@ class HomeScreen extends BaseView<HomeController> {
                     textColor: AppColors.primaryColor,
                   ),
                 ),
-              )
+              ),
+              SliverToBoxAdapter(
+                child: controller.nearByShopList.isNotEmpty
+                    ? Container(
+                  margin: const EdgeInsets.symmetric(
+                      vertical: AppDimens.MARGIN_MEDIUM),
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      enlargeStrategy: CenterPageEnlargeStrategy.scale,
+                    ),
+                    items: controller.nearByShopList
+                        .map(
+                          (shopItem) => GestureDetector(
+                        onTap: () => {
+
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: AppDimens.MARGIN_SMALL),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                AppDimens.MARGIN_MEDIUM),
+                            child: SizedBox(
+                              width:
+                              MediaQuery.of(context).size.width,
+                              child: CachedNetworkImageWidget(
+                                imageUrl: ( "/storage/shop/91676351357.jpeg"),
+                                boxFit: BoxFit.cover,
+                                width: MediaQuery.of(context)
+                                    .size
+                                    .width *
+                                    0.4,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                        .toList(),
+                  ),
+                )
+                    : const SizedBox(),
+              ),
+
             ],
           ),
         ));
   }
 }
+

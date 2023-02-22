@@ -4,6 +4,7 @@ import 'package:explore_places/get_x/core/services/dio_provider.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/responses/banner_response.dart';
 import 'package:explore_places/get_x/data_models/responses/dummy_list_response.dart';
+import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
 import 'package:explore_places/get_x/data_models/view_object/setup_vo.dart';
 import 'package:explore_places/get_x/data_sources/network/home/home_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/sample_feature/sample_repository.dart';
@@ -44,6 +45,24 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
   BaseApiResponse<SetUpVo> _parseCategoryListResponse(Response response) {
     return BaseApiResponse<SetUpVo>.fromListJson(
         response.data,createList: (data) => SetUpVo.fromJson(data)
+    );
+  }
+
+  @override
+  Future<BaseApiResponse<ShopDataResponse>> getNearByShopList(double lat, double long, double distance) {
+    var dioCall = dioClient.get("$endpoint/api/near-by?latitude=$lat&longitude=$long&distance=$distance&category_id=&state_id");
+    try {
+      return callApiWithErrorParser(dioCall).then(
+            (response) => _parseNearByListResponse(response),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  BaseApiResponse<ShopDataResponse> _parseNearByListResponse(Response response) {
+    return BaseApiResponse<ShopDataResponse>.fromListJson(
+        response.data,createList: (data) => ShopDataResponse.fromJson(data)
     );
   }
 }
