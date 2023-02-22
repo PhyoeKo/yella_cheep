@@ -13,7 +13,7 @@ class CustomChipWidget extends StatelessWidget {
   const CustomChipWidget(
       {Key? key,
       required this.text,
-      this.backgroundColor = AppColors.primaryColor,
+      this.backgroundColor = AppColors.appBarColor,
       this.textColor = AppColors.whiteColor,
       this.isBold = false})
       : super(key: key);
@@ -22,7 +22,7 @@ class CustomChipWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-          vertical: AppDimens.MARGIN_EXTRA_SMALL,
+          vertical: AppDimens.MARGIN_SMALL,
           horizontal: AppDimens.MARGIN_SMALL + AppDimens.MARGIN_EXTRA_SMALL),
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
