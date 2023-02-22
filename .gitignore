@@ -1,6 +1,7 @@
 # Project exclude paths
 /.dart_tool/
 /build/
+/android/.gradle/
 /android/.idea/
 pubspec.lock
 /android/gradle.properties

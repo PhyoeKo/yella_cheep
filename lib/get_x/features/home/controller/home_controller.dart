@@ -46,7 +46,7 @@ class HomeController extends BaseController {
   void onInit() {
     getBannerList();
     getCategoryList();
-    getCurrentPosition().then((value) => null);
+    getCurrentPosition();
     super.onInit();
   }
 
@@ -69,19 +69,21 @@ class HomeController extends BaseController {
     });
   }
 
-  void getNearByShop() async {
-    final _repoService =
-        _repository.getNearByShopList(16.8093073, 96.148944, 100);
+  void getNearByShop({RefreshController? refreshController}) async {
+    setRefreshController(refreshController);
+    final _repoService = _repository.getNearByShopList(
+        16.823355172423504, 96.15423770061818, 200);
     await callAPIService(
       _repoService,
-      onStart: null,
+      onStart: showPartialLoading,
       onSuccess: _handleNearByShopListResponseSuccess,
-      onError: (BaseException exception) {},
+      onError: (BaseException exception) {}
+      ,
     );
   }
 
   void _handleNearByShopListResponseSuccess(response) async {
-    resetRefreshController(_bannerList);
+    resetRefreshController(_nearByShopList);
     if (response != null) {
       BaseApiResponse<ShopDataResponse> _responseData = response;
       List<ShopDataResponse> data = _responseData.listResult;
@@ -148,5 +150,11 @@ class HomeController extends BaseController {
       {RefreshController? refreshController}) async {
     // _bannerList.clear();
     // getBannerList(refreshController: refreshController);
+  }
+
+  Future<void> resetNearNearByShopList(
+      {RefreshController? refreshController}) async {
+    _nearByShopList.clear();
+    getNearByShop(refreshController: refreshController);
   }
 }

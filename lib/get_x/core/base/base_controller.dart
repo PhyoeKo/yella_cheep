@@ -19,7 +19,10 @@ import '../../data_models/exception/not_found_exception.dart';
 
 abstract class BaseController extends GetxController
     with CacheManager, GetSingleTickerProviderStateMixin {
-  final logoutController = false.obs;
+  //Reload the page
+  RefreshController _refreshController = RefreshController();
+
+  RefreshController get refreshController => _refreshController;
 
   final Logger logger = Logger(
     printer: PrettyPrinter(
@@ -37,27 +40,26 @@ abstract class BaseController extends GetxController
     ),
   );
 
-  //Reload the page
-  RefreshController _refreshController = RefreshController();
-
-
   //Controls page state
   final Rx<PageStateHandler> _pageSateController =
-      PageStateHandler(ViewState.DEFAULT, () => {}).obs;
+      PageStateHandler(ViewState.DEFAULT).obs;
 
   PageStateHandler get pageState => _pageSateController.value;
 
-  updatePageState(ViewState state, {Function? onClickTryAgain}) =>
-      _pageSateController(PageStateHandler(state, onClickTryAgain));
+  updatePageState(ViewState state,
+      {Function? onClickTryAgain,
+        String? message,
+        Widget? shimmerEffect}) =>
+      _pageSateController(PageStateHandler(state,
+          onClickTryAgain: onClickTryAgain,
+          message: message,
+          shimmerEffect: shimmerEffect));
 
-  resetPageState() =>
-      _pageSateController(PageStateHandler(ViewState.DEFAULT, () => {}));
+  showPartialLoading({Widget? shimmerEffect}) =>
+      updatePageState(ViewState.LOADING,
+          onClickTryAgain: () => {}, shimmerEffect: shimmerEffect);
 
-  showLoading() =>
-      updatePageState(ViewState.LOADING, onClickTryAgain: () => {});
-
-  showEmptyData() =>
-      updatePageState(ViewState.EMPTY_LIST, onClickTryAgain: () => {});
+  showFullScreenLoading() => updatePageState(ViewState.FULL_SCREEN_LOADING);
 
   dynamic callAPIService<T>(
       Future<T> future, {
@@ -73,49 +75,49 @@ abstract class BaseController extends GetxController
       updatePageState(ViewState.SUCCESS);
       return response;
     } on ServiceUnavailableException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } on UnauthorizedException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } on TimeoutException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } on NetworkException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } on JsonFormatException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } on NotFoundException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } on ApiException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } on AppException catch (exception) {
-      showErrorMessage_(exception, onError);
+      _showErrorMessage(exception, onError);
     } catch (error, s) {
-      showErrorMessage_(AppException(message: "$error"), onError);
+      _showErrorMessage(AppException(message: "$error"), onError);
       debugPrint("Controller>>>>>> error $s");
     }
   }
 
-  showErrorMessage_(var exception, onError) {
+  _showErrorMessage(BaseException exception, onError) {
     _errorMessageController(exception.message);
-    onError(exception);
+    onError!(exception);
   }
 
-  final _messageController = ''.obs;
+  final RxString _messageController = ''.obs;
+
+  final RxString _errorMessageController = ''.obs;
+
+  final RxString _successMessageController = ''.obs;
 
   String get message => _messageController.value;
+
+  String get errorMessage => _errorMessageController.value;
+
+  String get successMessage => _messageController.value;
 
   showMessage(String msg) => _messageController(msg);
 
   showErrorMessage(String msg) => _errorMessageController(msg);
 
   showSuccessMessage(String msg) => _successMessageController(msg);
-
-  final RxString _errorMessageController = ''.obs;
-
-  String get errorMessage => _errorMessageController.value;
-
-  final RxString _successMessageController = ''.obs;
-
-  String get successMessage => _messageController.value;
 
   void setRefreshController(RefreshController? refreshController) {
     _refreshController = refreshController ?? _refreshController;
@@ -136,10 +138,20 @@ abstract class BaseController extends GetxController
     super.onInit();
   }
 
+  // void initSocket() {
+  //   if (getToken() != null) {
+  //     socket = getSocketInstance();
+  //   }
+  // }
+  //
+  // getSocketInstance() {
+  //   return SocketService.instance.initSocket();
+  // }
+
   @override
   void onClose() {
     _messageController.close();
-    //_refreshController.close();
+    _refreshController.dispose();
     _pageSateController.close();
     super.onClose();
   }
@@ -148,9 +160,13 @@ abstract class BaseController extends GetxController
 class PageStateHandler {
   final ViewState viewState;
   final Function? onClickTryAgain;
+  final String? message;
+  final Widget? shimmerEffect;
 
   PageStateHandler(
-      this.viewState,
-      this.onClickTryAgain,
-      );
+      this.viewState, {
+        this.onClickTryAgain,
+        this.message,
+        this.shimmerEffect,
+      });
 }

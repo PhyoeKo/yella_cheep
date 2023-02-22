@@ -9,5 +9,7 @@ class Routes{
   static const profileDetail = '/profile-detail-screen';
   static const changePassword = '/change-password-screen';
   static const profileEdit = '/profile-edit-screen';
+  static const shopList = '/shop-list-screen';
+  static const shopDetail = '/shop-detail-screen';
 
 }

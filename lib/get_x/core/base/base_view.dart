@@ -2,6 +2,8 @@ import 'package:explore_places/get_x/constant/enum/view_state.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/core/base/base_controller.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
+import 'package:explore_places/get_x/widget/view_handling/full_loading_widget.dart';
+import 'package:explore_places/get_x/widget/view_handling/partial_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -12,22 +14,6 @@ import '../../widget/view_handling/error_handling_widget.dart';
 abstract class BaseView<Controller extends BaseController>
     extends GetView<Controller> {
   final GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
-
-  final Logger logger = Logger(
-    printer: PrettyPrinter(
-        methodCount: 8,
-        // number of method calls to be displayed
-        errorMethodCount: 12,
-        // number of method calls if stacktrace is provided
-        lineLength: 120,
-        // width of the output
-        colors: true,
-        // Colorful log messages
-        printEmojis: true,
-        // Print an emoji for each log message
-        printTime: false // Should each log print contain a timestamp
-    ),
-  );
 
   BaseView({Key? key}) : super(key: key);
 
@@ -57,17 +43,6 @@ abstract class BaseView<Controller extends BaseController>
     );
   }
 
-  Widget showErrorSnackBar(String message) {
-    final snackBar = SnackBar(content: Text(message));
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(snackBar);
-    });
-
-    return Container();
-  }
-
-
-
   Color pageBackgroundColor() {
     return AppColors.pageBackground;
   }
@@ -92,35 +67,43 @@ abstract class BaseView<Controller extends BaseController>
     return null;
   }
 
-  Widget showLoading() {
-    return const Loading();
+  Widget _showPartialLoading(Widget? shimmerEffect) {
+    return PartialLoadingWidget(
+    );
+  }
+
+  Widget _showFullScreenLoading() {
+    return const FullLoadingWidget();
   }
 
   Widget getErrorHandlingView(PageStateHandler pageState) {
-    print("PageState ${controller.pageState.viewState}");
     switch (pageState.viewState) {
-      case ViewState.EMPTY_LIST:
-        return ErrorHandlingWidget(
-          message: "No Data Found",
-          onClickTryAgain: pageState.onClickTryAgain,
+      case ViewState.EMPTYLIST:
+        return  TextViewWidget(
+          "${pageState.message}",
+          textSize: 18,
+          textColor: AppColors.appBarColor,
         );
+      case ViewState.FAILED:
+        return TextViewWidget(controller.errorMessage);
       case ViewState.DEFAULT:
         return const SizedBox();
-      case ViewState.LOADING:
-        return showLoading();
       case ViewState.SUCCESS:
         return const SizedBox();
-      case ViewState.FAILED:
-        return ErrorHandlingWidget(
-          message: controller.errorMessage,
-          onClickTryAgain: pageState.onClickTryAgain,
-        );
+      case ViewState.LOADING:
+        return _showPartialLoading(pageState.shimmerEffect);
+      case ViewState.FULL_SCREEN_LOADING:
+        return _showFullScreenLoading();
       case ViewState.UPDATED:
         return const SizedBox();
       case ViewState.CREATED:
         return const SizedBox();
       case ViewState.NO_INTERNET:
-        return const TextViewWidget("No Internet");
+        return const TextViewWidget(
+          "No Internet",
+          textSize: 18,
+          textColor: AppColors.gradientEndColor,
+        );
       case ViewState.MESSAGE:
         return const SizedBox();
       case ViewState.UNAUTHORIZED:

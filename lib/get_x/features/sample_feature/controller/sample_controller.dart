@@ -54,7 +54,7 @@ class SampleController extends BaseController {
       if (data.dummyList!.isEmpty) {
         Future.delayed(
           const Duration(seconds: 1),
-          () => updatePageState(ViewState.EMPTY_LIST),
+          () => updatePageState(ViewState.EMPTYLIST),
         );
       }
       samplePagination.setCurrentPage(

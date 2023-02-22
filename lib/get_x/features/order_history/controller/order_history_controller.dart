@@ -45,7 +45,7 @@ class OrderHistoryController extends BaseController {
       );
       await callAPIService(
         repoService,
-        onStart: _orderList.isEmpty ? () => showLoading() : null,
+        onStart: _orderList.isEmpty ? () => showFullScreenLoading() : null,
         onSuccess: _handlePendingOrderListResponseSuccess,
         onError: _handlePendingOrderListResponseError,
       );
@@ -76,7 +76,7 @@ class OrderHistoryController extends BaseController {
       if (data.isEmpty) {
         Future.delayed(
           const Duration(seconds: 1),
-          () => updatePageState(ViewState.EMPTY_LIST,
+          () => updatePageState(ViewState.EMPTYLIST,
               onClickTryAgain: () => {
                     resetAndGetPendingOrderList(),
                   }),

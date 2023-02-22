@@ -1,6 +1,7 @@
 enum ViewState {
   DEFAULT,
   LOADING,
+  FULL_SCREEN_LOADING,
   SUCCESS,
   FAILED,
   UPDATED,
@@ -8,6 +9,6 @@ enum ViewState {
   NO_INTERNET,
   MESSAGE,
   UNAUTHORIZED,
-  EMPTY_LIST,
+  EMPTYLIST,
   INITIAL
 }
