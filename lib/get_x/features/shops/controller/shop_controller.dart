@@ -9,15 +9,16 @@ class ShopController extends BaseController {
   final HomeController homeController =
       HomeController(findInject(HomeRepository));
 
-
   @override
   void onInit() {
     super.onInit();
-    ShopType shopType = Get.arguments;
-    if(shopType == ShopType.nearBy){
-      homeController.resetNearNearByShopList();
+
+    if (Get.arguments != null) {
+      ShopType shopType = Get.arguments;
+
+      if (shopType == ShopType.nearBy) {
+        homeController.resetNearNearByShopList();
+      } else {}
     }
-
-
   }
 }

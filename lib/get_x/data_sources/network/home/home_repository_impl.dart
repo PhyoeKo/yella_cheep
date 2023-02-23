@@ -50,7 +50,7 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
 
   @override
   Future<BaseApiResponse<ShopDataResponse>> getNearByShopList(double lat, double long, double distance) {
-    var dioCall = dioClient.get("$endpoint/api/near-by?latitude=$lat&longitude=$long&distance=$distance&category_id=1&state_id");
+    var dioCall = dioClient.get("$endpoint/api/near-by?latitude=$lat&longitude=$long&distance=$distance&category_id=&state_id");
     try {
       return callApiWithErrorParser(dioCall).then(
             (response) => _parseNearByListResponse(response),
@@ -64,6 +64,18 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
     return BaseApiResponse<ShopDataResponse>.fromListJson(
         response.data,createList: (data) => ShopDataResponse.fromJson(data)
     );
+  }
+
+  @override
+  Future<BaseApiResponse<SetUpVo>> getStateList() {
+    var dioCall = dioClient.get("$endpoint/api/state-list");
+    try {
+      return callApiWithErrorParser(dioCall).then(
+            (response) => _parseCategoryListResponse(response),
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 }
 

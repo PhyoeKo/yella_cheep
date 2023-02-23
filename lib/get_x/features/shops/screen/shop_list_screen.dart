@@ -33,7 +33,10 @@ class ShopListScreen extends BaseView<ShopController> {
                     (BuildContext context, int index) {
                   return SizedBox(
                       height: MediaQuery.of(context).size.height * 0.4,
-                      child: ShopItemWidget(shopItem: controller.homeController.nearByShopList[index]));
+                      child: Padding(
+                        padding: const EdgeInsets.only(top:8.0),
+                        child: ShopItemWidget(shopItem: controller.homeController.nearByShopList[index]),
+                      ));
                 },
                 childCount: controller.homeController.nearByShopList.length,
               ),

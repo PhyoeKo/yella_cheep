@@ -39,6 +39,10 @@ class HomeController extends BaseController {
 
   List<ShopDataResponse> get nearByShopList => _nearByShopList.obs.value;
 
+  final RxList<SetUpVo> _stateList = RxList.empty();
+
+  List<SetUpVo> get stateList => _stateList.obs.value;
+
   RxDouble currentLat = 0.0.obs;
   RxDouble currentLong = 0.0.obs;
 
@@ -47,6 +51,7 @@ class HomeController extends BaseController {
     getBannerList();
     getCategoryList();
     getCurrentPosition();
+    getStateList();
     super.onInit();
   }
 
@@ -77,8 +82,7 @@ class HomeController extends BaseController {
       _repoService,
       onStart: showPartialLoading,
       onSuccess: _handleNearByShopListResponseSuccess,
-      onError: (BaseException exception) {}
-      ,
+      onError: (BaseException exception) {},
     );
   }
 
@@ -99,6 +103,26 @@ class HomeController extends BaseController {
       onSuccess: _handleCategoryListResponseSuccess,
       onError: (BaseException exception) {},
     );
+  }
+
+  void getStateList() async {
+    final _repoService = _repository.getStateList();
+    await callAPIService(
+      _repoService,
+      onStart: null,
+      onSuccess: _handleStateListResponseSuccess,
+      onError: (BaseException exception) {},
+    );
+  }
+
+  void _handleStateListResponseSuccess(response) async {
+    if (response != null) {
+      BaseApiResponse<SetUpVo> _responseData = response;
+      List<SetUpVo> data = _responseData.listResult;
+      _stateList.addAll(data.toList());
+      logger.i('State list length ${_stateList.length}');
+
+    }
   }
 
   void _handleCategoryListResponseSuccess(response) async {

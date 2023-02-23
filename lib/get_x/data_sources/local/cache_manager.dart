@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:explore_places/get_x/data_models/responses/login_response.dart';
+import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -28,8 +28,8 @@ class CacheManager {
   int? getShopId() {
     Map<String, dynamic> loginUserData =
         jsonDecode(getString(CacheManagerKey.loginResponseData) ?? "");
-    var user = LoginResponse.fromJson(loginUserData);
-    return user.shopId;
+    var user = ProfileResponse.fromJson(loginUserData);
+    return 1;
   }
 
   ShopProfileResponse? getShopProfile() {

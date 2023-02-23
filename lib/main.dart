@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
       theme:  AppThemes.lightTheme,
       darkTheme:  AppThemes.darkTheme,
       themeMode: ThemeMode.system,
-      initialRoute: !isLogin?  Routes.mainHomeScreen: Routes.login,
+      initialRoute: isLogin?  Routes.mainHomeScreen: Routes.login,
       initialBinding: InitialBinding(),
     );
   }

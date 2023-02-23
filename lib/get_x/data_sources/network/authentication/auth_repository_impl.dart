@@ -4,16 +4,16 @@ import 'package:explore_places/get_x/core/services/dio_provider.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/request_ob/firebase_token_request_ob.dart';
 import 'package:explore_places/get_x/data_models/request_ob/login_request_ob.dart';
-import 'package:explore_places/get_x/data_models/responses/login_response.dart';
+import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
 
 
 import 'auth_repository.dart';
 
 class AuthRepositoryImpl extends BaseRemoteSource implements AuthRepository {
   @override
-  Future<BaseApiResponse<LoginResponse>> loginUser(
+  Future<BaseApiResponse<ProfileResponse>> loginUser(
       LoginRequestOb loginRequestOb) {
-    var endpoint = "${DioProvider.baseUrl}/api/merchant-login";
+    var endpoint = "${DioProvider.baseUrl}/api/user-login";
 
     var dioCall = dioClient.post(endpoint, data: loginRequestOb.toJson());
     try {
@@ -24,9 +24,9 @@ class AuthRepositoryImpl extends BaseRemoteSource implements AuthRepository {
     }
   }
 
-  BaseApiResponse<LoginResponse> _parseLoginResponse(Response response) {
-    return BaseApiResponse<LoginResponse>.fromObjectJson(response.data,
-        createObject: (data) => LoginResponse.fromJson(data));
+  BaseApiResponse<ProfileResponse> _parseLoginResponse(Response response) {
+    return BaseApiResponse<ProfileResponse>.fromObjectJson(response.data,
+        createObject: (data) => ProfileResponse.fromJson(data));
   }
 
   //UpdateFirebaseToken

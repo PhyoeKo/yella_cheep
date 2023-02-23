@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:explore_places/get_x/data_models/responses/login_response.dart';
+import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
 import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -58,7 +58,7 @@ class DioProvider with CacheManager {
             "";
     if (prefData.isNotEmpty) {
       Map<String, dynamic> loginUserData = jsonDecode(prefData);
-      var user = LoginResponse.fromJson(loginUserData);
+      var user = ProfileResponse.fromJson(loginUserData);
       authToken = user.token;
     }
     _instance?.options.headers = {

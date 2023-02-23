@@ -25,6 +25,7 @@ class ShopDataResponse {
     id = json['id'];
     category = json['category'];
     state = json['state'];
+    isFavourite = json['isFavourite']??false;
     name = json['name'];
     phone = json['phone'];
     distance = json['distance'] != null
@@ -58,6 +59,7 @@ class ShopDataResponse {
   String? discount;
   String? latitude;
   String? longitude;
+  bool? isFavourite;
   num? status;
   double? distance;
   String? image1;
@@ -70,6 +72,7 @@ class ShopDataResponse {
     String? category,
     String? state,
     String? name,
+    bool? isFavourite,
     String? phone,
     String? email,
     String? website,

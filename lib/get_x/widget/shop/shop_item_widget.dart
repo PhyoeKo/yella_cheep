@@ -17,7 +17,8 @@ class ShopItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.shopDetail,arguments: ShopType.detail),
+      onTap: () => Get.toNamed(Routes.shopDetail,
+          arguments:  shopItem),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppDimens.MARGIN_SMALL),
         child: Stack(
