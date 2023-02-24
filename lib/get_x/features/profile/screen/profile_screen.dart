@@ -6,20 +6,26 @@ import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/core/utils/dialog_utils.dart';
 import 'package:explore_places/get_x/features/profile/controller/profile_controller.dart';
 import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
+import 'package:explore_places/get_x/widget/dialog/dialog_qr_view.dart';
 import 'package:explore_places/get_x/widget/show_image_widget.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
+import 'package:explore_places/get_x/widget/widget_rounded_icon.dart';
+import 'package:explore_places/utils/AppImages.dart';
+import 'package:explore_places/utils/Extensions/SettingItemWidget.dart';
+import 'package:explore_places/utils/Extensions/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/preferred_size.dart';
 import 'package:get/get.dart';
-
 
 class ProfileScreen extends BaseView<ProfileController> {
   ProfileScreen({super.key});
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return DefaultAppBar(title: "Profile");
+    return DefaultAppBar(
+      title: "Profile",
+    );
   }
 
   @override
@@ -27,156 +33,123 @@ class ProfileScreen extends BaseView<ProfileController> {
     return Column(
       children: [
         SizedBox(
-          child: Stack(
-            children: [
-              Container(
-                constraints: BoxConstraints(
-                    minHeight: Get.height * 0.15,
-                    minWidth: double.infinity,
-                    maxHeight: 400),
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [
-                          Color(0xFF38686A),
-                          Color(0xFF38686A),
-                        ],
-                        begin: FractionalOffset(0.0, 0.0),
-                        end: FractionalOffset(1.0, 0.0),
-                        stops: [0.0, 1.0],
-                        tileMode: TileMode.decal),
-                    borderRadius: BorderRadius.only(
-                        bottomRight:
-                            Radius.circular(AppDimens.MARGIN_CARD_MEDIUM_2),
-                        bottomLeft:
-                            Radius.circular(AppDimens.MARGIN_CARD_MEDIUM_2))),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimens.MARGIN_MEDIUM_2,
-                    vertical: AppDimens.MARGIN_MEDIUM_2),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ShowRoundedImageWidget(
-                      imagePath: controller.shopProfileResponse?.image1! ?? "",
-                      width: 80,
-                      height: 80,
-                    ),
-                    const SizedBox(
-                      width: AppDimens.MARGIN_MEDIUM,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+          child: Obx(() => Stack(
+                children: [
+                  Container(
+                    constraints: BoxConstraints(
+                        minHeight: Get.height * 0.15,
+                        minWidth: double.infinity,
+                        maxHeight: 400),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [
+                              Color(0xFF38686A),
+                              Color(0xFF38686A),
+                            ],
+                            begin: FractionalOffset(0.0, 0.0),
+                            end: FractionalOffset(1.0, 0.0),
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.decal),
+                        borderRadius: BorderRadius.only(
+                            bottomRight:
+                                Radius.circular(AppDimens.MARGIN_CARD_MEDIUM_2),
+                            bottomLeft: Radius.circular(
+                                AppDimens.MARGIN_CARD_MEDIUM_2))),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppDimens.MARGIN_MEDIUM_2,
+                        vertical: AppDimens.MARGIN_MEDIUM_2),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        TextViewWidget(
-                          controller.shopProfileResponse?.name ?? "",
-                          textSize: AppDimens.TEXT_REGULAR_2X,
-                          fontWeight: FontWeight.w700,
-                          textColor: AppColors.whiteColor,
+                        ShowRoundedImageWidget(
+                          imagePath: controller.profileOb.value.image ?? "",
+                          width: 80,
+                          height: 80,
                         ),
                         const SizedBox(
-                          height: AppDimens.MARGIN_EXTRA_SMALL,
+                          width: AppDimens.MARGIN_MEDIUM,
                         ),
-                        SizedBox(
-                          width: Get.width * 0.7,
-                          child: TextViewWidget(
-                              controller.shopProfileResponse?.description ?? "",
-                              fontWeight: FontWeight.normal,
-                              textColor: AppColors.whiteColor),
-                        ),
-                        const SizedBox(
-                          height: AppDimens.MARGIN_SMALL,
-                        ),
-                        // DecoratedBox(
-                        //     decoration: const BoxDecoration(
-                        //         color: AppColors.whiteColor,
-                        //         borderRadius: BorderRadius.all(
-                        //             Radius.circular(AppDimens
-                        //                 .MARGIN_MEDIUM_2))),
-                        //     child: Padding(
-                        //       padding: const EdgeInsets.symmetric(
-                        //           horizontal: 8.0, vertical: 2),
-                        //       child: Wrap(
-                        //         children: [
-                        //           Icon(
-                        //             Icons.location_on_rounded,
-                        //             size: 18,
-                        //             color: AppColors.shadeGrayColor,
-                        //           ),
-                        //           SizedBox(
-                        //             width: AppDimens.MARGIN_SMALL,
-                        //           ),
-                        //           TextViewWidget(
-                        //             controller.shopProfileResponse?.attractions??
-                        //                 "",
-                        //             textSize:
-                        //             AppDimens.TEXT_HEADING_1X,
-                        //             textOverflow: TextOverflow.ellipsis,
-                        //             textColor:
-                        //             AppColors.primaryColor,
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     )),
-                        // const SizedBox(
-                        //   height: AppDimens.MARGIN_SMALL,
-                        // ),
-                        /*       DecoratedBox(
-                          decoration: const BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(AppDimens
-                                      .MARGIN_MEDIUM_2))),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 2),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.lock_clock,
-                                  size: 18,
-                                  color: AppColors.shadeGrayColor,
-                                ),
-                                SizedBox(
-                                  width: AppDimens.MARGIN_SMALL,
-                                ),
-                                TextViewWidget(
-                                  "${controller.merchantProfileOb.value.openHour ?? ""} to ${controller.merchantProfileOb.value.closeHour ?? ""}",
-                                  textSize:
-                                  AppDimens.TEXT_HEADING_1X,
-                                  textColor:
-                                  AppColors.primaryColor,
-                                ),
-                              ],
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextViewWidget(
+                              controller.profileOb.value.name ?? "",
+                              textSize: AppDimens.TEXT_REGULAR_2X,
+                              fontWeight: FontWeight.w700,
+                              textColor: AppColors.whiteColor,
                             ),
-                          ))*/
+                            const SizedBox(
+                              height: AppDimens.MARGIN_EXTRA_SMALL,
+                            ),
+                            SizedBox(
+                              child: TextViewWidget(
+                                  controller.profileOb.value.phone ?? "",
+                                  fontWeight: FontWeight.normal,
+                                  textColor: AppColors.whiteColor),
+                            ),
+                            const SizedBox(
+                              height: AppDimens.MARGIN_SMALL,
+                            ),
+                          ],
+                        ),
+                        RoundedIconWidget(
+                            icon: Icon(
+                              Icons.edit,
+                              color: AppColors.whiteColor,
+                            ),
+                            onClickIcon: () => Get.toNamed(Routes.profileEdit)),
+                        Spacer(),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            RoundedIconWidget(
+                                icon: Icon(
+                                  Icons.qr_code,
+                                  color: AppColors.appBarColor,
+                                ),
+                                backgroundColor: AppColors.whiteColor,
+                                onClickIcon: () => showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return QrViewDialog(
+                                          title:
+                                              controller.profileOb.value.uuid,
+                                        );
+                                      },
+                                    )),
+                            TextViewWidget(
+                              "Scan me",
+                              textColor: AppColors.whiteColor,
+                            )
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+                    ),
+                  ),
+                ],
+              )),
         ),
         const SizedBox(
-          height: AppDimens.MARGIN_SMALL,
+          height: AppDimens.MARGIN_CARD_MEDIUM_2,
         ),
         profileMenuItemWidget(
-            title: "Account Information",
+            title: "Invoice History",
             color: AppColors.appBarColor,
             icon: const Icon(
-              Icons.person,
+              Icons.inventory_outlined,
               color: AppColors.whiteColor,
             ),
-            onClick: () => Get.toNamed(Routes.profileDetail)),
+            onClick: () => Get.toNamed(Routes.orderHistory)),
         const SizedBox(
           height: AppDimens.MARGIN_MEDIUM,
         ),
         profileMenuItemWidget(
-            title: "Change Password",
+            title: "App Language",
             color: AppColors.appBarColor,
             icon: const Icon(
-              Icons.lock,
+              Icons.language,
               color: AppColors.whiteColor,
             ),
             onClick: () => Get.toNamed(Routes.changePassword)),
@@ -188,6 +161,17 @@ class ProfileScreen extends BaseView<ProfileController> {
             color: AppColors.appBarColor,
             icon: const Icon(
               Icons.headset_mic_rounded,
+              color: AppColors.whiteColor,
+            ),
+            onClick: () => AppUtils.showToast("call 09444977435")),
+        const SizedBox(
+          height: AppDimens.MARGIN_MEDIUM,
+        ),
+        profileMenuItemWidget(
+            title: "About us",
+            color: AppColors.appBarColor,
+            icon: const Icon(
+              Icons.info_sharp,
               color: AppColors.whiteColor,
             ),
             onClick: () => AppUtils.showToast("call 09444977435")),

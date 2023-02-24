@@ -54,9 +54,9 @@ class MainHomeScreen extends BaseView<MainHomeController> {
             label: "Favourite",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            activeIcon: Icon(Icons.settings),
-            label: "Setting",
+            icon: Icon(Icons.menu),
+            activeIcon: Icon(Icons.menu),
+            label: "More",
           ),
         ],
       ),

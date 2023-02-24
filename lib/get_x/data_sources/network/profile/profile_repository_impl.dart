@@ -3,7 +3,7 @@ import 'package:explore_places/get_x/core/base/base_remote_source.dart';
 import 'package:explore_places/get_x/core/services/dio_provider.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/request_ob/profile_update_request_ob.dart';
-import 'package:explore_places/get_x/data_models/responses/merchant_profile_response.dart';
+import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
 import 'package:explore_places/get_x/data_sources/network/profile/profile_repository.dart';
 
 
@@ -13,8 +13,8 @@ class ProfileRepositoryImpl extends BaseRemoteSource
   var endpoint = DioProvider.baseUrl;
 
   @override
-  Future<BaseApiResponse<MerchantProfileResponse>> getMerchantProfile() {
-    var dioCall = dioClient.get("$endpoint/api/merchant-profile");
+  Future<BaseApiResponse<ProfileResponse>> getProfile() {
+    var dioCall = dioClient.get("$endpoint/api/user-profile");
     try {
       return callApiWithErrorParser(dioCall).then(
         (response) => _parseMerchantProfileResponse(response),
@@ -24,18 +24,18 @@ class ProfileRepositoryImpl extends BaseRemoteSource
     }
   }
 
-  BaseApiResponse<MerchantProfileResponse> _parseMerchantProfileResponse(
+  BaseApiResponse<ProfileResponse> _parseMerchantProfileResponse(
       Response response) {
-    return BaseApiResponse<MerchantProfileResponse>.fromObjectJson(response.data,
-        createObject: (data) => MerchantProfileResponse.fromJson(data));
+    return BaseApiResponse<ProfileResponse>.fromObjectJson(response.data,
+        createObject: (data) => ProfileResponse.fromJson(data));
   }
 
   @override
-  Future<BaseApiResponse<MerchantProfileResponse?>> updateProfile(
+  Future<BaseApiResponse<ProfileResponse?>> updateProfile(
       ProfileUpdateRequestOb profileUpdateRequestOb) {
     try {
       return callApiWithErrorParser(dioClient.post(
-              "$endpoint/api/merchant-profile-update",
+              "$endpoint/api/user-update",
               data: profileUpdateRequestOb.toJson()))
           .then((response) => _parseMerchantProfileResponse(response));
     } catch (e) {

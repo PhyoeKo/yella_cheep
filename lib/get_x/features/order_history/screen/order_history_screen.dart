@@ -34,13 +34,13 @@ class OrderHistoryScreen extends BaseView<OrderHistoryController> {
               refreshController: _refreshController),
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  color: AppColors.canvasColor,
-                  child: TextViewWidget("Filter Box"),
-                ),
-              ),
+              // SliverToBoxAdapter(
+              //   child: Container(
+              //     padding: const EdgeInsets.all(8),
+              //     color: AppColors.canvasColor,
+              //     child: TextViewWidget("Filter Box"),
+              //   ),
+              // ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {

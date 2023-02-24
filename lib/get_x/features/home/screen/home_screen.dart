@@ -18,6 +18,7 @@ import 'package:explore_places/get_x/widget/widget_category_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends BaseView<HomeController> {
   HomeScreen({super.key});
@@ -56,17 +57,7 @@ class HomeScreen extends BaseView<HomeController> {
                                 (bannerItem) => GestureDetector(
                                   onTap: () => {
                                     if (bannerItem.bannerDetail!.isNotEmpty)
-                                      {
-                                        // Navigator.pushNamed(context,
-                                        //     BannerDetailScreen.routeName,
-                                        //     arguments: {
-                                        //       "type": bannerItem.type,
-                                        //       "bannerDetail":
-                                        //       bannerItem.detail,
-                                        //       "subscribeStatus":
-                                        //       bannerItem.subscribeStatus
-                                        //     }),
-                                      }
+                                      {}
                                     else
                                       {
                                         AppUtils.showPreviewImageDialog(
@@ -98,7 +89,20 @@ class HomeScreen extends BaseView<HomeController> {
                               .toList(),
                         ),
                       )
-                    : const SizedBox(),
+                    : Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        enabled: true,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12))),
+                          margin: const EdgeInsets.all(AppDimens.MARGIN_MEDIUM),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.2,
+                        ),
+                      ),
               ),
               controller.categoryList.isNotEmpty
                   ? SliverToBoxAdapter(
@@ -111,9 +115,9 @@ class HomeScreen extends BaseView<HomeController> {
                                       vertical: AppDimens.MARGIN_MEDIUM),
                                   child: GestureDetector(
                                     onTap: () {
-                                      // homePageProvider
-                                      //     .setSelectedCategoryList(
-                                      //     category.id??0);
+                                      AppUtils.selectedID = category.id;
+                                      Get.toNamed(Routes.shopList,
+                                        arguments: ShopType.categoryBy,);
                                     },
                                     child: CategoryImageWidget(
                                       image: category.image ?? "",
@@ -124,30 +128,70 @@ class HomeScreen extends BaseView<HomeController> {
                             .toList(),
                       ),
                     )
-                  : const SliverPadding(padding: EdgeInsets.zero),
+                  : SliverToBoxAdapter(
+                      child: Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        enabled: true,
+                        child: Wrap(
+                          alignment: WrapAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: AppColors.whiteColor,
+                                  borderRadius: BorderRadius.circular(
+                                      AppDimens.MARGIN_MEDIUM),
+                                  border: Border.all(
+                                      color: AppColors.disabledButtonBgColor,
+                                      width: 0.5)),
+                            ),
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: AppColors.whiteColor,
+                                  borderRadius: BorderRadius.circular(
+                                      AppDimens.MARGIN_MEDIUM),
+                                  border: Border.all(
+                                      color: AppColors.disabledButtonBgColor,
+                                      width: 0.5)),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(children: [
-                    TextViewWidget(
-                      "Near by places",
-                      fontWeight: FontWeight.bold,
-                      textSize: 16,
-                      textColor: AppColors.primaryColor,
-                    ),
-                    Spacer(),
-                    InkWell(
-                      onTap: ()=> Get.toNamed(Routes.shopList,arguments: ShopType.nearBy),
-                      child: TextViewWidget(
-                        "See all",
+                  child: Row(
+                    children: [
+                      TextViewWidget(
+                        controller.shopController.nearByShopList.isNotEmpty
+                            ? "Near by places"
+                            : "",
                         fontWeight: FontWeight.bold,
+                        textSize: 16,
+                        textColor: AppColors.primaryColor,
                       ),
-                    )
-                  ],),
+                      Spacer(),
+                      InkWell(
+                        onTap: () => Get.toNamed(Routes.shopList,
+                            arguments: ShopType.nearBy),
+                        child: TextViewWidget(
+                          controller.shopController.nearByShopList.isNotEmpty
+                              ? "See all"
+                              : "",
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SliverToBoxAdapter(
-                child: controller.nearByShopList.isNotEmpty
+                child: controller.shopController.nearByShopList.isNotEmpty
                     ? Container(
                         margin: const EdgeInsets.symmetric(
                             vertical: AppDimens.MARGIN_MEDIUM),
@@ -158,14 +202,29 @@ class HomeScreen extends BaseView<HomeController> {
                             height: MediaQuery.of(context).size.height * 0.4,
                             enlargeStrategy: CenterPageEnlargeStrategy.scale,
                           ),
-                          items: controller.nearByShopList
+                          items: controller.shopController.nearByShopList
                               .map(
-                                (shopItem) => ShopItemWidget(shopItem: shopItem),
+                                (shopItem) =>
+                                    ShopItemWidget(shopItem: shopItem),
                               )
                               .toList(),
                         ),
                       )
-                    : const SizedBox(),
+                    : Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        enabled: true,
+                        child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                vertical: AppDimens.MARGIN_MEDIUM,horizontal: AppDimens.MARGIN_MEDIUM),
+                            height: Get.height * 0.4,
+                            width: Get.width * 0.8,
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(
+                                  AppDimens.MARGIN_MEDIUM),
+                            )),
+                      ),
               ),
             ],
           ),

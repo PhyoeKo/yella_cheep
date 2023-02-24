@@ -6,7 +6,6 @@ import 'package:explore_places/get_x/data_models/pagination/pagination_ob.dart';
 import 'package:explore_places/get_x/data_models/responses/order_history_response.dart';
 import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 
-
 class OrderRepositoryImpl extends BaseRemoteSource implements OrderRepository {
   var endpoint = DioProvider.baseUrl;
 
@@ -14,14 +13,9 @@ class OrderRepositoryImpl extends BaseRemoteSource implements OrderRepository {
   @override
   Future<BaseApiResponse<OrderHistoryResponse>> getOrderList({
     int? offset = 10,
-    required int shopId,
-    required String? orderStatus,
-    int? categoryId,
-    String? fromDate,
-    String? toDate,
   }) {
-    var dioCall = dioClient.get(
-        "$endpoint/api/order-history?offset=$offset&shopId=$shopId&status=${1}&categoryId=0&fromDate=${fromDate ?? ""}&toDate=${toDate ?? ""}");
+    var dioCall =
+        dioClient.get("$endpoint/api/user-order-history?offset=$offset");
     try {
       return callApiWithErrorParser(dioCall).then(
         (response) => _parseOrderListResponse(response),

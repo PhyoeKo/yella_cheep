@@ -10,6 +10,5 @@ abstract class HomeRepository {
 
   Future<BaseApiResponse<SetUpVo>> getStateList();
 
-  Future<BaseApiResponse<ShopDataResponse>> getNearByShopList(
-      double lat, double long, double distance);
+
 }

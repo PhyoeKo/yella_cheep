@@ -7,7 +7,7 @@ import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/request_ob/custom_image_phaser_ob.dart';
 import 'package:explore_places/get_x/data_models/request_ob/profile_update_request_ob.dart';
-import 'package:explore_places/get_x/data_models/responses/merchant_profile_response.dart';
+import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
 import 'package:explore_places/get_x/data_sources/network/profile/profile_repository.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +18,8 @@ class ProfileController extends BaseController {
   final ProfileRepository _repository =
       Get.find(tag: (ProfileRepository).toString());
 
-  ShopProfileResponse? shopProfileResponse;
 
-  var merchantProfileOb = MerchantProfileResponse().obs;
+  var profileOb = ProfileResponse().obs;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   Rx<CustomImagePhaserOb?> profileImage = CustomImagePhaserOb().obs;
@@ -34,12 +33,12 @@ class ProfileController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    fetchMerchantProfile();
-    shopProfileResponse = getShopProfile();
+    fetchProfile();
+    //shopProfileResponse = getShopProfile();
   }
 
-  void fetchMerchantProfile() async {
-    final repoService = _repository.getMerchantProfile();
+  void fetchProfile() async {
+    final repoService = _repository.getProfile();
 
     await callAPIService(
       repoService,
@@ -50,11 +49,11 @@ class ProfileController extends BaseController {
 
   void _handleResponseSuccess(response) async {
     if (response != null) {
-      BaseApiResponse<MerchantProfileResponse?> _merchantProfileData = response;
-      MerchantProfileResponse data = _merchantProfileData.objectResult;
-      merchantProfileOb.value = data;
-      nameController.text = merchantProfileOb.value.name!;
-      image.value = merchantProfileOb.value.image!;
+      BaseApiResponse<ProfileResponse?> _merchantProfileData = response;
+      ProfileResponse data = _merchantProfileData.objectResult;
+      profileOb.value = data;
+      nameController.text = profileOb.value.name??"";
+      image.value = profileOb.value.image??"";
     }
   }
 
@@ -93,12 +92,12 @@ class ProfileController extends BaseController {
     profileUpdateRequestOb.type =
     profileUpdateRequestOb.image != "" ? "image" : "data";
     logger.i("Update Profile Req Ob ${profileUpdateRequestOb.toJson()}");
-    late Future<BaseApiResponse<MerchantProfileResponse?>> repoService;
+    late Future<BaseApiResponse<ProfileResponse?>> repoService;
     AppUtils.showLoaderDialog(title: "Updating");
     repoService = _repository.updateProfile(profileUpdateRequestOb);
     callAPIService(repoService, onSuccess: (dynamic response) {
       if (response != null) {
-        fetchMerchantProfile();
+        fetchProfile();
         AppUtils.showToast("Success");
         Future.delayed(const Duration(milliseconds: 500), () {
           Get.back();
@@ -141,7 +140,7 @@ class ProfileController extends BaseController {
     profileUpdateRequestOb.oldPassword = oldPasswordController.value.text;
     profileUpdateRequestOb.password = newPasswordController.value.text;
     profileUpdateRequestOb.type = "password";
-    late Future<BaseApiResponse<MerchantProfileResponse?>> repoService;
+    late Future<BaseApiResponse<ProfileResponse?>> repoService;
     AppUtils.showLoaderDialog(title: "Changing");
     repoService = _repository.updateProfile(profileUpdateRequestOb);
     callAPIService(repoService, onSuccess: (dynamic response) {

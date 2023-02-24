@@ -74,7 +74,7 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                                     ),
                                     child: ShowRoundedImageWidget(
                                       imagePath:
-                                      controller.merchantProfileOb.value.image!,
+                                      controller.profileOb.value.image!,
                                       width: 80,
                                       height: 80,
                                     ),
@@ -259,7 +259,7 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                                 commonValidation: Validator.commonValidation,
                                 isReadOnly: true,
                                 hintText:
-                                controller.merchantProfileOb.value.phone ?? "",
+                                controller.profileOb.value.phone ?? "",
                               ),
                             ),
                           ),

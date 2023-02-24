@@ -25,9 +25,8 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
   }
 
   BaseApiResponse<BannerResponse> _parseBannerListResponse(Response response) {
-    return BaseApiResponse<BannerResponse>.fromListJson(
-      response.data,createList: (data) => BannerResponse.fromJson(data)
-    );
+    return BaseApiResponse<BannerResponse>.fromListJson(response.data,
+        createList: (data) => BannerResponse.fromJson(data));
   }
 
   @override
@@ -35,7 +34,7 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
     var dioCall = dioClient.get("$endpoint/api/category-list");
     try {
       return callApiWithErrorParser(dioCall).then(
-            (response) => _parseCategoryListResponse(response),
+        (response) => _parseCategoryListResponse(response),
       );
     } catch (e) {
       rethrow;
@@ -43,40 +42,25 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
   }
 
   BaseApiResponse<SetUpVo> _parseCategoryListResponse(Response response) {
-    return BaseApiResponse<SetUpVo>.fromListJson(
-        response.data,createList: (data) => SetUpVo.fromJson(data)
-    );
+    return BaseApiResponse<SetUpVo>.fromListJson(response.data,
+        createList: (data) => SetUpVo.fromJson(data));
   }
 
-  @override
-  Future<BaseApiResponse<ShopDataResponse>> getNearByShopList(double lat, double long, double distance) {
-    var dioCall = dioClient.get("$endpoint/api/near-by?latitude=$lat&longitude=$long&distance=$distance&category_id=&state_id");
-    try {
-      return callApiWithErrorParser(dioCall).then(
-            (response) => _parseNearByListResponse(response),
-      );
-    } catch (e) {
-      rethrow;
-    }
-  }
 
-  BaseApiResponse<ShopDataResponse> _parseNearByListResponse(Response response) {
-    return BaseApiResponse<ShopDataResponse>.fromListJson(
-        response.data,createList: (data) => ShopDataResponse.fromJson(data)
-    );
-  }
 
   @override
   Future<BaseApiResponse<SetUpVo>> getStateList() {
     var dioCall = dioClient.get("$endpoint/api/state-list");
     try {
       return callApiWithErrorParser(dioCall).then(
-            (response) => _parseCategoryListResponse(response),
+        (response) => _parseCategoryListResponse(response),
       );
     } catch (e) {
       rethrow;
     }
   }
+
+
 }
 
 /// https://api.yalla.cheap/storage/banner/261676964567.jpeg

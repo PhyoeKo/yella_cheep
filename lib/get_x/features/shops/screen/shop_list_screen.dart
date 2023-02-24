@@ -14,57 +14,37 @@ class ShopListScreen extends BaseView<ShopController> {
   }
 
   final RefreshController _refreshController =
-  RefreshController(initialRefresh: false);
+      RefreshController(initialRefresh: false);
 
   @override
   Widget body(BuildContext context) {
     return Obx(() => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SmartRefresherParentView(
-        refreshController: _refreshController,
-        enablePullUp: true,
-        onRefresh: () => controller.homeController.resetNearNearByShopList(
-            refreshController: _refreshController),
-        onLoading: () => controller.homeController.getNearByShop(),
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
+          padding: const EdgeInsets.all(8.0),
+          child: SmartRefresherParentView(
+            refreshController: _refreshController,
+            enablePullUp: true,
+            onRefresh: () => controller.resetNearNearByShopList(
+                refreshController: _refreshController),
+            onLoading: () => controller.getNearByShop(),
+            child: CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                  return SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top:8.0),
-                        child: ShopItemWidget(shopItem: controller.homeController.nearByShopList[index]),
-                      ));
-                },
-                childCount: controller.homeController.nearByShopList.length,
-              ),
+                      return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: ShopItemWidget(
+                                shopItem: controller.nearByShopList[index]),
+                          ));
+                    },
+                    childCount: controller.nearByShopList.length,
+                  ),
+                ),
+              ],
             ),
-           // SliverL
-           //  SliverToBoxAdapter(
-           //    child: controller.nearByShopList.isNotEmpty
-           //        ? Container(
-           //      margin: const EdgeInsets.symmetric(
-           //          vertical: AppDimens.MARGIN_MEDIUM),
-           //      child: CarouselSlider(
-           //        options: CarouselOptions(
-           //          autoPlay: false,
-           //          enlargeCenterPage: true,
-           //          height: MediaQuery.of(context).size.height * 0.4,
-           //          enlargeStrategy: CenterPageEnlargeStrategy.scale,
-           //        ),
-           //        items: controller.nearByShopList
-           //            .map(
-           //              (shopItem) => ShopItemWidget(shopItem: shopItem),
-           //        )
-           //            .toList(),
-           //      ),
-           //    )
-           //        : const SizedBox(),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }

@@ -9,6 +9,7 @@ import 'dart:io' as Io;
 
 class AppUtils {
   static bool isLogout = false;
+  static int? selectedID ;
 
   static void showSnackBar({required String message, required String title}) {
     Get.snackbar(title, message, snackPosition: SnackPosition.BOTTOM);

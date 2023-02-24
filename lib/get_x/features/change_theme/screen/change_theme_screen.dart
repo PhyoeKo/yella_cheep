@@ -11,21 +11,6 @@ class ChangeThemeScreen extends BaseView<ChangeThemeController> {
     return const DefaultAppBar(title: "Change Theme");
   }
 
-  @override
-  Widget? bottomNavigationBar() {
-    return BottomNavigationBar(items: [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.health_and_safety,color: Colors.white,size: 35),
-        label: 'School',
-        // backgroundColor: Colors.purple,
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.settings,color: Colors.white,size: 35),
-        label: 'Settings',
-        //   backgroundColor: Colors.pink,
-      ),
-    ]);
-  }
 
   @override
   Widget body(BuildContext context) {

@@ -123,7 +123,7 @@ extension Context on BuildContext {
               dense: true,
               //  leading: Icon(Icons.person),
               title: TextViewWidget(
-                "Customer: ${orderHistoryResponse.name}",
+                "Shop Name: ${orderHistoryResponse.name}",
               ),
               subtitle: TextViewWidget(
                 "Phone: ${orderHistoryResponse.phone}",

@@ -37,11 +37,7 @@ class OrderHistoryController extends BaseController {
     setRefreshController(refreshController);
     if (_orderPagination.isPageAvailable()) {
       final repoService = _repository.getOrderList(
-        shopId: getShopId()!,
-        orderStatus: "pending",
-        categoryId: 0,
-        fromDate: "",
-        toDate: "",
+       offset: 100
       );
       await callAPIService(
         repoService,

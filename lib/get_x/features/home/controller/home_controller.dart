@@ -16,6 +16,7 @@ import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:explore_places/get_x/data_sources/network/home/home_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/shop/shop_repository.dart';
+import 'package:explore_places/get_x/features/shops/controller/shop_controller.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -27,6 +28,8 @@ class HomeController extends BaseController {
     _repository = repository;
   }
 
+  final ShopController shopController =
+      ShopController(findInject(ShopRepository));
   final RxList<BannerResponse> _bannerList = RxList.empty();
 
   List<BannerResponse> get bannerList => _bannerList.obs.value;
@@ -34,10 +37,6 @@ class HomeController extends BaseController {
   final RxList<SetUpVo> _categoryList = RxList.empty();
 
   List<SetUpVo> get categoryList => _categoryList.obs.value;
-
-  final RxList<ShopDataResponse> _nearByShopList = RxList.empty();
-
-  List<ShopDataResponse> get nearByShopList => _nearByShopList.obs.value;
 
   final RxList<SetUpVo> _stateList = RxList.empty();
 
@@ -51,7 +50,6 @@ class HomeController extends BaseController {
     getBannerList();
     getCategoryList();
     getCurrentPosition();
-    getStateList();
     super.onInit();
   }
 
@@ -65,34 +63,13 @@ class HomeController extends BaseController {
         .then((Position position) {
       currentLat.value = position.latitude;
       currentLong.value = position.longitude;
-      getNearByShop();
+      shopController.getNearByShop();
       logger.i(
           "Current location is ${position.latitude} and ${position.longitude}");
     }).catchError((e) {
       logger.i('${e.toString()}');
       //  appStore.currentPosition = null;
     });
-  }
-
-  void getNearByShop({RefreshController? refreshController}) async {
-    setRefreshController(refreshController);
-    final _repoService = _repository.getNearByShopList(
-        16.823355172423504, 96.15423770061818, 200);
-    await callAPIService(
-      _repoService,
-      onStart: showPartialLoading,
-      onSuccess: _handleNearByShopListResponseSuccess,
-      onError: (BaseException exception) {},
-    );
-  }
-
-  void _handleNearByShopListResponseSuccess(response) async {
-    resetRefreshController(_nearByShopList);
-    if (response != null) {
-      BaseApiResponse<ShopDataResponse> _responseData = response;
-      List<ShopDataResponse> data = _responseData.listResult;
-      _nearByShopList.addAll(data.toList());
-    }
   }
 
   void getCategoryList() async {
@@ -121,7 +98,6 @@ class HomeController extends BaseController {
       List<SetUpVo> data = _responseData.listResult;
       _stateList.addAll(data.toList());
       logger.i('State list length ${_stateList.length}');
-
     }
   }
 
@@ -176,9 +152,5 @@ class HomeController extends BaseController {
     // getBannerList(refreshController: refreshController);
   }
 
-  Future<void> resetNearNearByShopList(
-      {RefreshController? refreshController}) async {
-    _nearByShopList.clear();
-    getNearByShop(refreshController: refreshController);
-  }
+
 }

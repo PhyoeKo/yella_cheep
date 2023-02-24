@@ -2,6 +2,7 @@
 class OrderHistoryResponse {
   int? id;
   String? name;
+  String? shopName;
   String? phone;
   int? price;
   int? discountPrice;
@@ -13,7 +14,8 @@ class OrderHistoryResponse {
       this.id, 
       this.name, 
       this.phone, 
-      this.price, 
+      this.shopName,
+      this.price,
       this.discountPrice, 
       this.discount, 
       this.status, 
@@ -22,6 +24,7 @@ class OrderHistoryResponse {
   OrderHistoryResponse.fromJson(dynamic json) {
     id = json["id"];
     name = json["name"];
+    name = json["shopName"];
     phone = json["phone"];
     price = json["price"];
     discountPrice = json["discountPrice"];

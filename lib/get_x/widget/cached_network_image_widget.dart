@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/core/services/dio_provider.dart';
 import 'package:explore_places/get_x/widget/loading_circle_indicator_widget.dart';
+import 'package:explore_places/utils/Common.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,12 +50,7 @@ class _CachedNetworkImageWidgetState extends State<CachedNetworkImageWidget> {
       errorWidget: (context, url, error) {
         print("Image Error**** $url");
         return LayoutBuilder(
-          builder: ((context, constraints) => Container(
-                color: AppColors.orderVerticalDividerColor,
-                child: const Center(
-                  child: Icon(Icons.error_outline),
-                ),
-              )),
+          builder: ((context, constraints) => placeHolderWidget()),
         );
       },
     );
