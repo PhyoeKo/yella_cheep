@@ -66,7 +66,7 @@ class ZoomImageScreenState extends State<ZoomImageScreen> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 ratingWidget((widget.place.rating ?? 0).toDouble()),
+                // ratingWidget((widget.place.rating ?? 0).toDouble()),
                   12.height,
                   Text(
                     widget.place.name.toString().toUpperCase(),

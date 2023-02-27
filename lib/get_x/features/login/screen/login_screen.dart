@@ -27,7 +27,7 @@ class LoginScreen extends BaseView<LoginController> {
   Widget body(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        controller.onExit();
+        controller.onScreenExit();
         return false;
       },
       child: Scaffold(

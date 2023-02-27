@@ -80,7 +80,7 @@ abstract class BaseView<Controller extends BaseController>
     switch (pageState.viewState) {
       case ViewState.EMPTYLIST:
         return  TextViewWidget(
-          "${pageState.message}",
+          "${pageState.message??""}",
           textSize: 18,
           textColor: AppColors.appBarColor,
         );

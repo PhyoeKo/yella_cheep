@@ -3,12 +3,12 @@ import 'package:explore_places/get_x/constant/routing/app_pages.dart';
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/constant/translation/app_translation.dart';
 import 'package:explore_places/get_x/core/binding/initial_binding.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:explore_places/get_x/features/change_theme/binding/change_theme_binding.dart';
+import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-
 
 void main() async {
   await Get.putAsync<CacheManager>(() async => CacheManager().init());
@@ -28,17 +28,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  bool isLogin = false;
   @override
   void initState() {
-    var data =
-        Get.find<CacheManager>().getString(CacheManagerKey.loginResponseData) ??
-            "";
-    if (data.isNotEmpty) {
-      isLogin = true;
-    }
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -47,10 +41,10 @@ class _MyAppState extends State<MyApp> {
       translationsKeys: AppTranslation.translationsKeys,
       locale: Get.find<CacheManager>().getLocale(),
       getPages: AppPages.routes,
-      theme:  AppThemes.lightTheme,
-      darkTheme:  AppThemes.darkTheme,
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
       themeMode: ThemeMode.system,
-      initialRoute: isLogin?  Routes.mainHomeScreen: Routes.login,
+      initialRoute: Routes.splashScreen,
       initialBinding: InitialBinding(),
     );
   }

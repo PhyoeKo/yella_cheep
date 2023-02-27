@@ -6,6 +6,7 @@ import 'package:explore_places/get_x/data_models/responses/shop_data_response.da
 import 'package:explore_places/get_x/widget/cached_network_image_widget.dart';
 import 'package:explore_places/get_x/widget/custom_chip_widget.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
+import 'package:explore_places/utils/Common.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,6 +34,21 @@ class ShopItemWidget extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.36,
                   width: MediaQuery.of(context).size.width * 0.4,
                 ),
+              ),
+            ),
+            Positioned(
+              left: 10,
+              right: 10,
+              top: 10,
+              child: Row(
+                crossAxisAlignment:
+                CrossAxisAlignment.start,
+                mainAxisAlignment:
+                MainAxisAlignment.spaceBetween,
+                children: [
+                  ratingWidget((shopItem.discount ??
+                      "")),
+                ],
               ),
             ),
             shopItem.distance != null

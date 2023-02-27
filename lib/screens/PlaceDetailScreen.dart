@@ -123,9 +123,6 @@ class PlaceDetailScreenState extends State<PlaceDetailScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ratingWidget(
-                                          (placeModel!.rating ?? 0).toDouble())
-                                      .visible(!widget.isRequestPlace),
                                   12.height,
                                   Text(
                                     placeModel!.name.toString().toUpperCase(),

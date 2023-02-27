@@ -193,7 +193,7 @@ class ReviewComponentState extends State<ReviewComponent> {
                                             ],
                                           ),
                                           Spacer(),
-                                          ratingWidget(mData.rating.validate()),
+                                          ratingWidget("mData.rating"),
                                         ],
                                       ),
                                       8.height,

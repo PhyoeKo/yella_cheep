@@ -1,5 +1,6 @@
-class Routes{
+class Routes {
   static const sampleScreen = '/sample-screen';
+  static const splashScreen = '/splash-screen';
   static const mainHomeScreen = '/mainHomeScreen';
   static const changeLanguageScreen = '/language-screen';
   static const login = '/loginScreen';
@@ -12,5 +13,5 @@ class Routes{
   static const shopDetail = '/shop-detail-screen';
   static const changeTheme = '/change-theme-screen';
   static const orderHistory = '/order-history-screen';
-
+  static const searchScreen = '/search-screen';
 }

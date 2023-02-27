@@ -31,6 +31,7 @@ class RepositoryBinding implements Bindings {
     Get.lazyPut<FavouriteRepository>(
       () => FavouriteRepositoryImpl(),
       tag: (FavouriteRepository).toString(),
+      fenix: true,
     );
     Get.lazyPut<OrderRepository>(
       () => OrderRepositoryImpl(),

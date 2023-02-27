@@ -39,6 +39,7 @@ dependencies:
   firebase_messaging: ^14.1.0
   google_sign_in: ^5.4.2
   the_apple_sign_in: ^1.1.1
+  syncfusion_flutter_sliders: ^20.4.51
 
 
   #ICON

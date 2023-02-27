@@ -10,14 +10,13 @@ import 'package:explore_places/get_x/data_models/request_ob/profile_update_reque
 import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_profile_response.dart';
 import 'package:explore_places/get_x/data_sources/network/profile/profile_repository.dart';
+import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class ProfileController extends BaseController {
   final ProfileRepository _repository =
       Get.find(tag: (ProfileRepository).toString());
-
 
   var profileOb = ProfileResponse().obs;
   final TextEditingController nameController = TextEditingController();
@@ -25,16 +24,30 @@ class ProfileController extends BaseController {
   Rx<CustomImagePhaserOb?> profileImage = CustomImagePhaserOb().obs;
   Rx<String> image = "".obs;
 
-
   final TextEditingController oldPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
   final TextEditingController confirmNewController = TextEditingController();
+  RxBool didLogin = false.obs;
+  final MainHomeController mainHomeController = Get.find();
 
   @override
   void onInit() {
     super.onInit();
-    fetchProfile();
+
+    if (mainHomeController.isLogin.value) {
+      didLogin.value = true;
+      fetchProfile();
+    } else {
+      redirectToLogin();
+    }
+
     //shopProfileResponse = getShopProfile();
+  }
+
+  void redirectToLogin() {
+    Future.delayed(Duration(seconds: 1), () async {
+      Get.toNamed(Routes.login, arguments: "login");
+    });
   }
 
   void fetchProfile() async {
@@ -52,8 +65,8 @@ class ProfileController extends BaseController {
       BaseApiResponse<ProfileResponse?> _merchantProfileData = response;
       ProfileResponse data = _merchantProfileData.objectResult;
       profileOb.value = data;
-      nameController.text = profileOb.value.name??"";
-      image.value = profileOb.value.image??"";
+      nameController.text = profileOb.value.name ?? "";
+      image.value = profileOb.value.image ?? "";
     }
   }
 
@@ -90,7 +103,7 @@ class ProfileController extends BaseController {
       profileUpdateRequestOb.image = "";
     }
     profileUpdateRequestOb.type =
-    profileUpdateRequestOb.image != "" ? "image" : "data";
+        profileUpdateRequestOb.image != "" ? "image" : "data";
     logger.i("Update Profile Req Ob ${profileUpdateRequestOb.toJson()}");
     late Future<BaseApiResponse<ProfileResponse?>> repoService;
     AppUtils.showLoaderDialog(title: "Updating");
@@ -110,8 +123,8 @@ class ProfileController extends BaseController {
       AppUtils.showToast("Something went wrong please try again!");
       logger.e(exception.toString());
     });
-
   }
+
   void logout() {
     Get.back();
     AppUtils.showLoaderDialog(title: "Logging out");
@@ -146,17 +159,16 @@ class ProfileController extends BaseController {
     callAPIService(repoService, onSuccess: (dynamic response) {
       if (response != null) {
         BaseApiResponse<dynamic> baseResp = response;
-        if( baseResp.statusCode!){
+        if (baseResp.statusCode!) {
           AppUtils.showToast("Password change successfully");
           Future.delayed(const Duration(milliseconds: 500), () {
             Get.back();
             Get.back();
           });
-        }else{
+        } else {
           Get.back();
-          AppUtils.showToast(baseResp.message??"msg");
+          AppUtils.showToast(baseResp.message ?? "msg");
         }
-
       }
     }, onError: (Exception exception) {
       Get.back();

@@ -10,6 +10,7 @@ class ProfileBinding extends Bindings{
     Get.lazyPut<ProfileRepository>(
           () => ProfileRepositoryImpl(),
       tag: (ProfileRepository).toString(),
+      fenix: true,
     );
   }
 

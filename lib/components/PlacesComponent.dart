@@ -84,7 +84,7 @@ Widget placesComponent(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ratingWidget((place.rating ?? 0).toDouble()),
+              ratingWidget(""),
               favouriteItemWidget(placeId: place.id.validate()).onTap(() {
                 appStore.setSelectedPlaceId(place.id.validate());
                 onTap.call();

@@ -25,7 +25,7 @@ class ShopDataResponse {
     id = json['id'];
     category = json['category'];
     state = json['state'];
-    isFavourite = json['isFavourite']??false;
+    isFavourite = json['favourite']??false;
     name = json['name'];
     phone = json['phone'];
     distance = json['distance'] != null
@@ -57,8 +57,8 @@ class ShopDataResponse {
   String? description;
   String? price;
   String? discount;
-  String? latitude;
-  String? longitude;
+  dynamic latitude;
+  dynamic longitude;
   bool? isFavourite;
   num? status;
   double? distance;

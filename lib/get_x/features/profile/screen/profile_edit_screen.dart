@@ -74,7 +74,7 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                                     ),
                                     child: ShowRoundedImageWidget(
                                       imagePath:
-                                      controller.profileOb.value.image!,
+                                      controller.profileOb.value.image??"",
                                       width: 80,
                                       height: 80,
                                     ),

@@ -103,17 +103,17 @@ Widget loaderWidget() {
   return Center(child: Lottie.asset(loader, height: 60, width: 60));
 }
 
-Widget ratingWidget(double rating) {
-  return rating != 0
+Widget ratingWidget(String rating) {
+  return rating.isNotEmpty
       ? Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-          decoration: boxDecorationWithRoundedCornersWidget(backgroundColor: primaryColor.withOpacity(0.4), borderRadius: radius(defaultRadius)),
+          decoration: boxDecorationWithRoundedCornersWidget(backgroundColor: primaryColor.withOpacity(0.8), borderRadius: radius(defaultRadius)),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(rating.toStringAsFixed(2), style: secondaryTextStyle(color: whiteColor)),
+              Text("$rating % ", style: secondaryTextStyle(color: whiteColor)),
               4.width,
-              Icon(Icons.star_rate_sharp, size: 14, color: Colors.amber),
+              Icon(Icons.discount, size: 14, color: Colors.amber),
             ],
           ),
         )

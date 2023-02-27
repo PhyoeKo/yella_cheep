@@ -1,9 +1,16 @@
 import 'package:explore_places/get_x/constant/enum/view_state.dart';
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_controller.dart';
+import 'package:explore_places/get_x/core/binding/view_controller_binding.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
+import 'package:explore_places/get_x/data_models/responses/favourite_shop_list.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
 import 'package:explore_places/get_x/data_sources/network/favourite/favourite_repository.dart';
+import 'package:explore_places/get_x/data_sources/network/home/home_repository.dart';
+import 'package:explore_places/get_x/features/home/controller/home_controller.dart';
+import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -14,14 +21,27 @@ class FavouriteController extends BaseController {
     _repository = repository;
   }
 
-  final RxList<ShopDataResponse> _nearByShopList = RxList.empty();
+  final HomeController homeController =
+      HomeController(findInject(HomeRepository));
 
-  List<ShopDataResponse> get nearByShopList => _nearByShopList.obs.value;
+  final RxList<FavouriteShopData> _nearByShopList = RxList.empty();
+
+  List<FavouriteShopData> get nearByShopList => _nearByShopList.obs.value;
+
+  final MainHomeController mainHomeController = Get.find();
 
   @override
   void onInit() {
     super.onInit();
-    getFavShopList();
+    if (mainHomeController.isLogin.value) {
+      getFavShopList();
+    } else {
+      Future.delayed(
+          Duration(seconds: 1),
+          () => Get.toNamed(
+                Routes.login,
+              ));
+    }
   }
 
   void getFavShopList({RefreshController? refreshController}) async {
@@ -31,27 +51,23 @@ class FavouriteController extends BaseController {
       _repoService,
       onStart: showFullScreenLoading,
       onSuccess: _handleFavShopListResponseSuccess,
-      onError: (BaseException exception) {
-
-
-      },
+      onError: (BaseException exception) {},
     );
   }
 
   void _handleFavShopListResponseSuccess(response) async {
     resetRefreshController(_nearByShopList);
     if (response != null) {
-      BaseApiResponse<ShopDataResponse> _responseData = response;
-      List<ShopDataResponse> data = _responseData.listResult;
+      BaseApiResponse<FavouriteShopData> _responseData = response;
+      List<FavouriteShopData> data = _responseData.listResult;
       _nearByShopList.addAll(data.toList());
 
       if (data.isEmpty) {
         Future.delayed(
           const Duration(seconds: 1),
-              () => updatePageState(ViewState.EMPTYLIST,message: 'No data',
-              onClickTryAgain: () => {
-                resetNearNearByShopList()
-              }),
+          () => updatePageState(ViewState.EMPTYLIST,
+              message: 'No data',
+              onClickTryAgain: () => {resetNearNearByShopList()}),
         );
       }
     }

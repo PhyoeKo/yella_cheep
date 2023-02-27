@@ -86,30 +86,28 @@ class ExploreScreen extends BaseView<ExploreController> {
               );
             },
           ),
-        ):  Expanded(
-      child: Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
-        enabled: true,
-        child: GridView.builder(
-          padding: EdgeInsets.all(16),
-          itemCount: 10,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16),
-          itemBuilder: (context, index) {
-            return  Container(
-                width: 200,
-                height: 250,
-                decoration: BoxDecoration(color: AppColors.whiteColor,
-                borderRadius: radius(defaultRadius),
-            ),);
+        ):  Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          enabled: true,
+          child: GridView.builder(
+            padding: EdgeInsets.all(16),
+            itemCount: 10,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16),
+            itemBuilder: (context, index) {
+              return  Container(
+                  width: 200,
+                  height: 250,
+                  decoration: BoxDecoration(color: AppColors.whiteColor,
+                  borderRadius: radius(defaultRadius),
+              ),);
 
-          },
-        ),
-      ),
-    ),);
+            },
+          ),
+        ),);
   }
 }

@@ -1,14 +1,11 @@
 import 'package:explore_places/get_x/constant/enum/shop_type_enum.dart';
 import 'package:explore_places/get_x/constant/enum/view_state.dart';
 import 'package:explore_places/get_x/core/base/base_controller.dart';
-import 'package:explore_places/get_x/core/binding/view_controller_binding.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
 import 'package:explore_places/get_x/data_sources/network/shop/shop_repository.dart';
-import 'package:explore_places/get_x/features/explore_screen/controller/explore_controller.dart';
-import 'package:explore_places/utils/Extensions/string_extensions.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -23,6 +20,7 @@ class ShopController extends BaseController {
   final RxList<ShopDataResponse> _nearByShopList = RxList.empty();
 
   List<ShopDataResponse> get nearByShopList => _nearByShopList.obs.value;
+
   late ShopType shopType;
   @override
   void onInit() {

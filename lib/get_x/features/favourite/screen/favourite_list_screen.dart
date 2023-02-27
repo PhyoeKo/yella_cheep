@@ -1,8 +1,10 @@
 import 'package:explore_places/components/PlacesComponent.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/services/dio_provider.dart';
 import 'package:explore_places/get_x/features/favourite/controller/favourite_controller.dart';
+import 'package:explore_places/get_x/widget/custom_chip_widget.dart';
 import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
 import 'package:explore_places/get_x/widget/shop/shop_item_widget.dart';
 import 'package:explore_places/get_x/widget/view_handling/smart_refresher_parent_view.dart';
@@ -14,6 +16,7 @@ import 'package:explore_places/utils/Extensions/Constants.dart';
 import 'package:explore_places/utils/Extensions/Widget_extensions.dart';
 import 'package:explore_places/utils/Extensions/decorations.dart';
 import 'package:explore_places/utils/Extensions/int_extensions.dart';
+import 'package:explore_places/utils/Extensions/string_extensions.dart';
 import 'package:explore_places/utils/Extensions/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,76 +59,127 @@ class FavouriteListScreen extends BaseView<FavouriteController> {
                           horizontalOffset: 50.0,
                           verticalOffset: 20.0,
                           child: FadeInAnimation(
+                              child: InkWell(
+                            onTap: () => Get.toNamed(Routes.shopDetail,
+                                arguments:
+                                    controller.nearByShopList[index].shop),
                             child: Stack(
                               alignment: Alignment.center,
                               clipBehavior: Clip.none,
                               children: [
                                 cachedImage(
-                                  DioProvider.baseUrl+"/storage/shop/91676351357.jpeg",
+                                  DioProvider.baseUrl +
+                                      "${controller.nearByShopList[index].shop?.image1 ?? ""}",
                                   height: 200,
-                                  width:  Get.width * 0.9,
+                                  width: Get.width * 0.9,
                                   fit: BoxFit.cover,
                                 ).cornerRadiusWithClipRRect(defaultRadius),
                                 Container(
                                   height: 200,
-                                  width:  Get.width * 0.75,
+                                  width: Get.width * 0.75,
                                   decoration: BoxDecoration(
                                       borderRadius: radius(defaultRadius),
-                                      border: Border.all(color:Colors.transparent),
-                                      gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
-                                        Colors.black.withOpacity(0.1),
-                                        Colors.black.withOpacity(0.3),
-                                        Colors.black.withOpacity(0.5),
-                                        Colors.black.withOpacity(0.7),
-                                      ])),
+                                      border:
+                                          Border.all(color: Colors.transparent),
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            Colors.black.withOpacity(0.1),
+                                            Colors.black.withOpacity(0.3),
+                                            Colors.black.withOpacity(0.5),
+                                            Colors.black.withOpacity(0.7),
+                                          ])),
                                 ),
                                 Positioned(
                                   left: 10,
                                   right: 10,
                                   top: 10,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      ratingWidget(( 4).toDouble()),
-
+                                      ratingWidget((controller
+                                              .nearByShopList[index]
+                                              .shop
+                                              ?.discount ??
+                                          "")),
                                     ],
                                   ),
                                 ).visible(true),
-
                                 Positioned(
-                                  left: 10,
+                                  right: 10,
+                                  top: 10,
+                                  child: CustomChipWidget(
+                                      text: "${calculateDistanceKm(
+                                    controller.homeController.currentLat.value,
+                                    controller.homeController.currentLong.value,
+                                         double.parse( controller.nearByShopList[index].shop
+                                             ?.latitude),
+                                       double.parse( controller.nearByShopList[index].shop
+                                           ?.longitude),
+
+                                  ).toStringAsFixed(2)} Km away"),
+                                ).visible(true),
+                                Positioned(
+                                  left: 20,
                                   right: 10,
                                   bottom: 10,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text(controller.nearByShopList[index].name??"", style: boldTextStyle(color: AppColors.whiteColor, size: 18), maxLines: 2),
+                                      Text(
+                                          controller.nearByShopList[index].shop
+                                                  ?.name ??
+                                              "",
+                                          style: boldTextStyle(
+                                              color: AppColors.whiteColor,
+                                              size: 18),
+                                          maxLines: 2),
                                       6.height,
                                       Row(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
                                         children: [
                                           Column(
                                             children: [
                                               Row(
                                                 children: [
-                                                  Icon(Icons.location_on_outlined, color: whiteColor, size: 20),
+                                                  Icon(
+                                                      Icons
+                                                          .location_on_outlined,
+                                                      color: whiteColor,
+                                                      size: 20),
                                                   4.width,
                                                   Text(
-                                                    controller.nearByShopList[index].attractions??"Addres",
-                                                    style: secondaryTextStyle(color: whiteColor),
+                                                    controller
+                                                            .nearByShopList[
+                                                                index]
+                                                            .shop
+                                                            ?.attractions ??
+                                                        "Addres",
+                                                    style: secondaryTextStyle(
+                                                        color: whiteColor),
                                                     maxLines: 2,
                                                   ).expand(),
                                                 ],
                                               ),
-                                              if (appStore.currentPosition != null)
+                                              if (appStore.currentPosition !=
+                                                  null)
                                                 Row(
                                                   children: [
-                                                    ImageIcon(AssetImage(ic_distance), color: whiteColor, size: 20),
+                                                    ImageIcon(
+                                                        AssetImage(ic_distance),
+                                                        color: whiteColor,
+                                                        size: 20),
                                                     4.width,
                                                     Text(
                                                       '${calculateDistanceKm(appStore.currentPosition!.latitude, appStore.currentPosition!.longitude, 16.233, 96.2323).toStringAsFixed(2)} Km',
-                                                      style: secondaryTextStyle(color: whiteColor),
+                                                      style: secondaryTextStyle(
+                                                          color: whiteColor),
                                                     ),
                                                   ],
                                                 ).paddingTop(8),
@@ -138,10 +192,10 @@ class FavouriteListScreen extends BaseView<FavouriteController> {
                                   ),
                                 ),
                               ],
-                            ))
-                                .paddingBottom(16),
-                          ),
-                        );
+                            ),
+                          )).paddingBottom(16),
+                        ),
+                      );
                     },
                     childCount: controller.nearByShopList.length,
                   ),

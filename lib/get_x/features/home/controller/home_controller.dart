@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:explore_places/get_x/constant/enum/view_state.dart';
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_controller.dart';
 import 'package:explore_places/get_x/core/binding/view_controller_binding.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
@@ -16,6 +17,7 @@ import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:explore_places/get_x/data_sources/network/home/home_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/orders/order_repository.dart';
 import 'package:explore_places/get_x/data_sources/network/shop/shop_repository.dart';
+import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:explore_places/get_x/features/shops/controller/shop_controller.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -45,14 +47,31 @@ class HomeController extends BaseController {
   RxDouble currentLat = 0.0.obs;
   RxDouble currentLong = 0.0.obs;
 
+  final MainHomeController mainHomeController = Get.find();
+
+
   @override
   void onInit() {
+    getLoginData();
+   if(_bannerList.isEmpty){
+     loadInitialData();
+   }
+    super.onInit();
+  }
+  getLoginData(){
+    var data =
+        Get.find<CacheManager>().getString(CacheManagerKey.loginResponseData) ??
+            "";
+    if (data.isNotEmpty) {
+      mainHomeController.isLogin.value = true;
+    }
+  }
+
+  void loadInitialData(){
     getBannerList();
     getCategoryList();
     getCurrentPosition();
-    super.onInit();
   }
-
   Future<void> getCurrentPosition() async {
     final hasPermission = await AppUtils.handleLocationPermission();
     if (!hasPermission) {
@@ -72,7 +91,7 @@ class HomeController extends BaseController {
     });
   }
 
-  void getCategoryList() async {
+  Future<void> getCategoryList() async {
     final _repoService = _repository.getCategoryList();
     await callAPIService(
       _repoService,
@@ -97,7 +116,6 @@ class HomeController extends BaseController {
       BaseApiResponse<SetUpVo> _responseData = response;
       List<SetUpVo> data = _responseData.listResult;
       _stateList.addAll(data.toList());
-      logger.i('State list length ${_stateList.length}');
     }
   }
 

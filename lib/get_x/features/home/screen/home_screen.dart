@@ -28,7 +28,9 @@ class HomeScreen extends BaseView<HomeController> {
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return const DefaultAppBar(title: "Home");
+    return  DefaultAppBar(title: "Home",trillingIcon: Icons.search,trillingIconOnClick: (){
+      Get.toNamed(Routes.searchScreen);
+    },);
   }
 
   @override
@@ -104,6 +106,17 @@ class HomeScreen extends BaseView<HomeController> {
                         ),
                       ),
               ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(left:8.0),
+                  child: TextViewWidget(
+                    "Category",
+                    fontWeight: FontWeight.bold,
+                    textSize: 16,
+                    textColor: AppColors.primaryColor,
+                  ),
+                ),
+              ),
               controller.categoryList.isNotEmpty
                   ? SliverToBoxAdapter(
                       child: Wrap(
@@ -116,8 +129,10 @@ class HomeScreen extends BaseView<HomeController> {
                                   child: GestureDetector(
                                     onTap: () {
                                       AppUtils.selectedID = category.id;
-                                      Get.toNamed(Routes.shopList,
-                                        arguments: ShopType.categoryBy,);
+                                      Get.toNamed(
+                                        Routes.shopList,
+                                        arguments: ShopType.categoryBy,
+                                      );
                                     },
                                     child: CategoryImageWidget(
                                       image: category.image ?? "",
@@ -216,7 +231,8 @@ class HomeScreen extends BaseView<HomeController> {
                         enabled: true,
                         child: Container(
                             margin: const EdgeInsets.symmetric(
-                                vertical: AppDimens.MARGIN_MEDIUM,horizontal: AppDimens.MARGIN_MEDIUM),
+                                vertical: AppDimens.MARGIN_MEDIUM,
+                                horizontal: AppDimens.MARGIN_MEDIUM),
                             height: Get.height * 0.4,
                             width: Get.width * 0.8,
                             decoration: BoxDecoration(

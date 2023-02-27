@@ -8,6 +8,7 @@ import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_review_response.dart';
 import 'package:explore_places/get_x/data_sources/network/shop/shop_repository.dart';
+import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -26,13 +27,17 @@ class ShopDetailController extends BaseController {
   final RxList<ShopReviewResponse> _reviewList = RxList.empty();
 
   List<ShopReviewResponse> get reviewList => _reviewList.obs.value;
+  final MainHomeController mainHomeController = Get.find();
 
   @override
   void onInit() {
     super.onInit();
 
     if (Get.arguments != null) shopItem = Get.arguments;
-    fetchShopReview();
+
+    if(mainHomeController.isLogin.value){
+      fetchShopReview();
+    }
     isFavourite.value = shopItem?.isFavourite ?? false;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await initShopLocation().then(

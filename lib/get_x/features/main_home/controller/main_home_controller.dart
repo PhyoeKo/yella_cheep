@@ -11,6 +11,7 @@ import '../../home/screen/home_screen.dart';
 
 class MainHomeController extends BaseController {
   Rx<int> currentPageIndex = 0.obs;
+  RxBool isLogin = false.obs;
 
   final List<Widget> widgetPages = [
     HomeScreen(),

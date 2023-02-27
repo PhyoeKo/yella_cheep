@@ -315,10 +315,10 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
               ShopGalleryWidget(
                 gallery: controller.shopItem?.gallery,
               ),
-              RatingAndReviewWidget(shopReviewList: controller.reviewList)
+              controller.mainHomeController.isLogin.value?    RatingAndReviewWidget(shopReviewList: controller.reviewList): Center(child: TextViewWidget("Please login to continue"))
             ]),
           ),
-          floatingActionButton: FloatingActionButton.extended(
+          floatingActionButton: controller.mainHomeController.isLogin.value? FloatingActionButton.extended(
               onPressed: () => showDialog(
                     context: context,
                     builder: (_) {
@@ -341,7 +341,9 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                     size: 18,
                   ),
                 ],
-              ))),
+              )
+          ):null
+      ),
     );
   }
 }
