@@ -25,7 +25,7 @@ class ShopListScreen extends BaseView<ShopController> {
             enablePullUp: true,
             onRefresh: () => controller.resetNearNearByShopList(
                 refreshController: _refreshController),
-            onLoading: () => controller.getNearByShop(),
+            onLoading: () => controller.getNearByShop(refreshController: _refreshController),
             child: CustomScrollView(
               slivers: [
                 SliverList(

@@ -2,7 +2,7 @@ import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class TextViewWidget extends StatelessWidget {
   final String text;
@@ -35,15 +35,14 @@ class TextViewWidget extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      style: TextStyle(
-          fontSize: textSize,
-          color: textColor,
-          fontWeight: fontWeight,
-          letterSpacing: letterSpacing,
-          decoration: textDecoration,
-          height: lineHeight,
+      style: GoogleFonts.ubuntu(
+        fontSize: textSize,
+        color: textColor,
+        fontWeight: fontWeight,
+        letterSpacing: letterSpacing,
+        decoration: textDecoration,
+        height: lineHeight,
       ),
-
       maxLines: maxLine,
       overflow: textOverflow,
     );

@@ -11,7 +11,6 @@ import 'package:flutter/src/widgets/preferred_size.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-
 class OrderHistoryScreen extends BaseView<OrderHistoryController> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
@@ -20,7 +19,7 @@ class OrderHistoryScreen extends BaseView<OrderHistoryController> {
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return const DefaultAppBar(title: "Order History");
+    return const DefaultAppBar(title: "Invoice History");
   }
 
   @override
@@ -30,8 +29,8 @@ class OrderHistoryScreen extends BaseView<OrderHistoryController> {
           enablePullUp: true,
           onRefresh: () => controller.resetAndGetPendingOrderList(
               refreshController: _refreshController),
-          onLoading: () => controller.getOrderList(
-              refreshController: _refreshController),
+          onLoading: () =>
+              controller.getOrderList(refreshController: _refreshController),
           child: CustomScrollView(
             slivers: [
               // SliverToBoxAdapter(

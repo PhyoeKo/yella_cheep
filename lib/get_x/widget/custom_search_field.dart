@@ -4,7 +4,6 @@ import 'package:explore_places/get_x/widget/widget_rounded_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class CustomSearchField extends StatelessWidget {
   const CustomSearchField(
       {Key? key,
@@ -37,15 +36,13 @@ class CustomSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(minHeight: 50, minWidth: width),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(AppDimens.MARGIN_MEDIUM)),
-      ),
-      child: TextField(
+      child: TextFormField(
+        autofocus: true,
         controller: controller,
         textInputAction: textInputAction,
         keyboardType: textInputType,
         maxLines: maxLine,
-        onSubmitted: (value) {
+        onFieldSubmitted: (value) {
           onSubmitted != null ? onSubmitted!(value) : null;
         },
         inputFormatters: textInputFormatter ?? [],
@@ -71,23 +68,21 @@ class CustomSearchField extends StatelessWidget {
             fillColor: Colors.white,
             filled: true,
             contentPadding: const EdgeInsets.symmetric(
-                horizontal: AppDimens.MARGIN_CARD_MEDIUM, vertical: AppDimens.MARGIN_CARD_MEDIUM),
+                horizontal: AppDimens.MARGIN_CARD_MEDIUM,
+                vertical: AppDimens.MARGIN_CARD_MEDIUM),
             hintText: hint,
             hintStyle: TextStyle(
               fontFamily: 'Karla',
               color: AppColors.textColorTag.withOpacity(0.7),
             ),
             enabledBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(AppDimens.MARGIN_MEDIUM)),
               borderSide: BorderSide(color: AppColors.textColorTag, width: 0.2),
             ),
             focusedBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(AppDimens.MARGIN_MEDIUM)),
-              borderSide: BorderSide(color:  AppColors.textColorTag, width: 0.3),
+              borderSide: BorderSide(color: AppColors.textColorTag, width: 0.3),
             ),
             disabledBorder: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(AppDimens.MARGIN_MEDIUM)),
-              borderSide: BorderSide(color:  AppColors.textColorTag, width: 0.2),
+              borderSide: BorderSide(color: AppColors.textColorTag, width: 0.2),
             )),
       ),
     );

@@ -35,12 +35,6 @@ class FavouriteController extends BaseController {
     super.onInit();
     if (mainHomeController.isLogin.value) {
       getFavShopList();
-    } else {
-      Future.delayed(
-          Duration(seconds: 1),
-          () => Get.toNamed(
-                Routes.login,
-              ));
     }
   }
 
@@ -57,6 +51,9 @@ class FavouriteController extends BaseController {
 
   void _handleFavShopListResponseSuccess(response) async {
     resetRefreshController(_nearByShopList);
+    if(_nearByShopList.isNotEmpty){
+    _nearByShopList.clear();
+    }
     if (response != null) {
       BaseApiResponse<FavouriteShopData> _responseData = response;
       List<FavouriteShopData> data = _responseData.listResult;

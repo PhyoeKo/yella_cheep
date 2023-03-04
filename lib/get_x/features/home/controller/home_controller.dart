@@ -46,7 +46,7 @@ class HomeController extends BaseController {
 
   RxDouble currentLat = 0.0.obs;
   RxDouble currentLong = 0.0.obs;
-
+  RxBool hasFocus = false.obs;
   final MainHomeController mainHomeController = Get.find();
 
 
@@ -112,6 +112,9 @@ class HomeController extends BaseController {
   }
 
   void _handleStateListResponseSuccess(response) async {
+    if(_stateList.isEmpty){
+      _stateList.clear();
+    }
     if (response != null) {
       BaseApiResponse<SetUpVo> _responseData = response;
       List<SetUpVo> data = _responseData.listResult;

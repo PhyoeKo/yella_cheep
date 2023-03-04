@@ -37,8 +37,6 @@ class ProfileController extends BaseController {
     if (mainHomeController.isLogin.value) {
       didLogin.value = true;
       fetchProfile();
-    } else {
-      redirectToLogin();
     }
 
     //shopProfileResponse = getShopProfile();

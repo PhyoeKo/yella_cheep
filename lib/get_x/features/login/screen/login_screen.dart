@@ -33,7 +33,7 @@ class LoginScreen extends BaseView<LoginController> {
       child: Scaffold(
         body: Stack(
           children: [
-            const GradientBackground(),
+            // const GradientBackground(),
             CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
@@ -58,9 +58,9 @@ class LoginScreen extends BaseView<LoginController> {
                                 children: [
                                   RequestOTPSection(
                                     loginPhNoController:
-                                    controller.phNoController,
+                                        controller.phNoController,
                                     animationController:
-                                    controller.animationController,
+                                        controller.animationController,
                                     loginController: controller,
                                     onPressLogin: () =>
                                         controller.requestOtp(context),
@@ -68,26 +68,27 @@ class LoginScreen extends BaseView<LoginController> {
                                   OTPVerifySection(
                                     phNo: controller.phNoController.text,
                                     pinController:
-                                    controller.referCodeController,
+                                        controller.referCodeController,
                                     animationController:
-                                    controller.animationController,
+                                        controller.animationController,
                                     isRegisteredAccount:
-                                    controller.isRegisteredAccount,
+                                        controller.isRegisteredAccount.value,
+                                    loginController: controller,
                                   ),
                                   RegisterOrLoginSection(
                                     nickNameController:
-                                    controller.registerNickNameController,
+                                        controller.registerNickNameController,
                                     phNoController: controller.phNoController,
                                     passwordController:
-                                    controller.loginPasswordController,
+                                        controller.loginPasswordController,
                                     animationController:
-                                    controller.animationController,
+                                        controller.animationController,
                                     controller: controller,
                                   ),
                                 ],
                               ),
                               AuthButtonSection(
-                                btnText: controller.isRegisteredAccount
+                                btnText: controller.isRegisteredAccount.value
                                     ? "Login"
                                     : "Register",
                                 animationController:

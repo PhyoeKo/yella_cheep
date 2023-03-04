@@ -6,6 +6,7 @@ import 'package:explore_places/get_x/core/base/base_controller.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/request_ob/login_request_ob.dart';
+import 'package:explore_places/get_x/data_models/request_ob/register_request_ob.dart';
 import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
 import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:explore_places/get_x/data_sources/network/authentication/auth_repository.dart';
@@ -21,7 +22,7 @@ class LoginController extends BaseController {
   final phNoController = TextEditingController();
   final registerNickNameController = TextEditingController();
   final loginPasswordController = TextEditingController();
-  bool isRegisteredAccount = true;
+  RxBool isRegisteredAccount = true.obs;
 
   @override
   void onInit() {
@@ -152,6 +153,19 @@ class LoginController extends BaseController {
     //   setNotifyMessage("$_");
     //   Navigator.pop(context);
     // }
+    var requestOb = RegisterRequestOb(
+      phone: phNoController.text,
+      password: loginPasswordController.text,
+      name: registerNickNameController.text,
+      email: "",
+    );
+    final repoService = _repository.registerUser(requestOb);
+    AppUtils.showLoaderDialog();
+    callAPIService(repoService, onSuccess: onSuccessLogin,
+        onError: (exception) {
+          AppUtils.showToast("Something went wrong,try again");
+          Get.back();
+        });
   }
 
   Future<void> login() async {
@@ -225,7 +239,7 @@ class LoginController extends BaseController {
       checkOtp(Get.context!);
     } else if (animationController.value >= 0.6 &&
         animationController.value < 0.8) {
-      if (isRegisteredAccount) {
+      if (isRegisteredAccount.value) {
         login();
       } else {
         register(Get.context!);

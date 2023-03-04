@@ -56,6 +56,9 @@ dependencies:
   fluttertoast: ^8.1.1
   loading_indicator: ^3.1.0
 
+  searchbar_animation: ^0.0.4
+  #animation_search_bar: ^0.0.10
+
   # GOOGLE MAP
   maps_launcher: ^2.0.1
   geolocator: ^9.0.2

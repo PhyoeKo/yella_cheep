@@ -5,6 +5,7 @@ import 'package:explore_places/get_x/widget/based_designed_card.dart';
 import 'package:explore_places/get_x/widget/custom_text_field.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../constant/resources/app_colors.dart';
 import '../../../../widget/custom_password_field.dart';
@@ -78,38 +79,43 @@ class RegisterOrLoginSection extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppDimens.MARGIN_LARGE),
-            BasedDesignedCard(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                   TextViewWidget(
-                    controller.isRegisteredAccount? "Phone number": "User name",
-                    textColor: AppColors.primaryColor,
+            Obx(() => BasedDesignedCard(
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextViewWidget(
+                        controller.isRegisteredAccount.value
+                            ? "Phone number"
+                            : "User name",
+                        textColor: AppColors.primaryColor,
+                      ),
+                      const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM),
+                      CustomTextField(
+                        controller: controller.isRegisteredAccount.value
+                            ? phNoController
+                            : nickNameController,
+                        onChanged: (value) {},
+                        isEnabled: !controller.isRegisteredAccount.value,
+                        hint: controller.isRegisteredAccount.value
+                            ? "Enter Ph No."
+                            : "Enter User name",
+                      ),
+                      const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM_2),
+                      TextViewWidget(
+                        "Password",
+                        textColor: AppColors.primaryColor,
+                      ),
+                      const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM),
+                      CustomPasswordField(
+                        controller: passwordController,
+                        onChanged: (value) {},
+                        hint: "Enter password",
+                      ),
+                      const SizedBox(height: AppDimens.MARGIN_MEDIUM),
+                    ],
                   ),
-                  const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM),
-                  CustomTextField(
-                    controller: controller.isRegisteredAccount? phNoController : nickNameController,
-                    onChanged: (value) {},
-                    isEnabled: !controller.isRegisteredAccount,
-                    hint: controller.isRegisteredAccount? "Enter Ph No.": "Enter User name",
-                  ),
-                  const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM_2),
-                  TextViewWidget(
-                    "Password",
-                    textColor: AppColors.primaryColor,
-                  ),
-                  const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM),
-                  CustomPasswordField(
-                    controller: passwordController,
-                    onChanged: (value) {},
-                    hint: "Enter password",
-                  ),
-                  const SizedBox(height: AppDimens.MARGIN_MEDIUM),
-                ],
-              ),
-            ),
+                )),
           ],
         ),
       ),

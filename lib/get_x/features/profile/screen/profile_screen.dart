@@ -7,6 +7,7 @@ import 'package:explore_places/get_x/core/utils/dialog_utils.dart';
 import 'package:explore_places/get_x/features/profile/controller/profile_controller.dart';
 import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
 import 'package:explore_places/get_x/widget/dialog/dialog_qr_view.dart';
+import 'package:explore_places/get_x/widget/goLogin/go_login_widget.dart';
 import 'package:explore_places/get_x/widget/show_image_widget.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:explore_places/get_x/widget/widget_rounded_icon.dart';
@@ -32,6 +33,7 @@ class ProfileScreen extends BaseView<ProfileController> {
   @override
   Widget body(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
           child: Obx(() => controller.didLogin.value
@@ -45,8 +47,8 @@ class ProfileScreen extends BaseView<ProfileController> {
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               colors: [
-                                Color(0xFF38686A),
-                                Color(0xFF38686A),
+                                AppColors.primaryColor,
+                                AppColors.secondaryColor,
                               ],
                               begin: FractionalOffset(0.0, 0.0),
                               end: FractionalOffset(1.0, 0.0),
@@ -133,10 +135,15 @@ class ProfileScreen extends BaseView<ProfileController> {
                     ),
                   ],
                 )
-              : SizedBox()),
+              : Padding(
+                  padding: const EdgeInsets.only(top: 12.0,left: 12.0),
+                  child: GoLoginWidget(
+                      desc: "Login to find your exclusive activities",
+                      title: "Your profile"),
+                )),
         ),
         const SizedBox(
-          height: AppDimens.MARGIN_CARD_MEDIUM_2,
+          height: AppDimens.MARGIN_CARD_MEDIUM,
         ),
         profileMenuItemWidget(
                 title: "Invoice History",
@@ -217,38 +224,7 @@ class ProfileScreen extends BaseView<ProfileController> {
                   ),
                 ),
               )
-            : Padding(
-                padding: const EdgeInsets.all(AppDimens.MARGIN_CARD_MEDIUM),
-                child: GestureDetector(
-                  onTap: () => controller.redirectToLogin(),
-                  child: Material(
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(AppDimens.MARGIN_MEDIUM_2),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          TextViewWidget(
-                            "Login",
-                            textColor: AppColors.primaryColor,
-                          ),
-                          SizedBox(
-                            width: AppDimens.MARGIN_MEDIUM_2,
-                          ),
-                          Icon(
-                            Icons.login,
-                            color: AppColors.primaryColor,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              )),
+            : SizedBox())
       ],
     );
   }
