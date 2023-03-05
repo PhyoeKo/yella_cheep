@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:explore_places/get_x/constant/resources/app_images.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/features/login/controller/login_controller.dart';
 import 'package:explore_places/get_x/widget/based_designed_card.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPVerifySection extends StatefulWidget {
@@ -48,8 +50,8 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
   @override
   Widget build(BuildContext context) {
     final _enterAnimation =
-    Tween<Offset>(begin: const Offset(1, 0), end: const Offset(0, 0))
-        .animate(CurvedAnimation(
+        Tween<Offset>(begin: const Offset(1, 0), end: const Offset(0, 0))
+            .animate(CurvedAnimation(
       parent: widget.animationController,
       curve: const Interval(
         0.2,
@@ -59,8 +61,8 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
     ));
 
     final _exitAnimation =
-    Tween<Offset>(begin: const Offset(0, 0), end: const Offset(-1, 0))
-        .animate(CurvedAnimation(
+        Tween<Offset>(begin: const Offset(0, 0), end: const Offset(-1, 0))
+            .animate(CurvedAnimation(
       parent: widget.animationController,
       curve: const Interval(
         0.4,
@@ -70,7 +72,7 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
     ));
 
     final _enterScaleAnimation =
-    Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+        Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
       parent: widget.animationController,
       curve: const Interval(
         0.0,
@@ -119,13 +121,13 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextViewWidget(
-                    "OTP verification",
+                    AppString.otpVerification.tr,
                     textSize: AppDimens.TEXT_REGULAR,
                     fontWeight: FontWeight.bold,
                   ),
                   const SizedBox(height: AppDimens.MARGIN_MEDIUM),
                   TextViewWidget(
-                    "We will send 6 digit code to ${widget.phNo}",
+                    AppString.sendOTPCode.trParams({'phNo': widget.phNo}),
                     textSize: AppDimens.TEXT_REGULAR,
                     fontWeight: FontWeight.w400,
                   ),
@@ -141,15 +143,9 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
                       shape: PinCodeFieldShape.box,
                       borderWidth: 0.2,
                       borderRadius:
-                      BorderRadius.circular(AppDimens.MARGIN_MEDIUM),
-                      fieldHeight: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.11,
-                      fieldWidth: MediaQuery
-                          .of(context)
-                          .size
-                          .width * 0.11,
+                          BorderRadius.circular(AppDimens.MARGIN_MEDIUM),
+                      fieldHeight: MediaQuery.of(context).size.width * 0.11,
+                      fieldWidth: MediaQuery.of(context).size.width * 0.11,
                       activeColor: AppColors.whiteColor,
                       activeFillColor: Colors.white,
                       inactiveColor: AppColors.whiteColor,
@@ -189,13 +185,14 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                           widget.loginController.isRegisteredAccount.value = false;
+                            widget.loginController.isRegisteredAccount.value =
+                                false;
                             widget.animationController.animateTo(0.6);
-                           widget.loginController.update();
+                            widget.loginController.update();
                           },
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: TextViewWidget("Sign up?",
+                            child: TextViewWidget(AppString.signUp.tr,
                                 textDecoration: TextDecoration.underline,
                                 textColor: AppColors.primaryColor,
                                 fontWeight: FontWeight.w300),
@@ -207,7 +204,7 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
                               widget.animationController.animateTo(0.2),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: TextViewWidget("Edit phone number?",
+                            child: TextViewWidget(AppString.editPhNo.tr,
                                 textDecoration: TextDecoration.underline,
                                 textColor: AppColors.primaryColor,
                                 fontWeight: FontWeight.w300),
@@ -225,18 +222,17 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
             ),
             !widget.isRegisteredAccount
                 ? GestureDetector(
-              onTap: () async =>
-              {
-                FocusScope.of(context).requestFocus(new FocusNode()),
-                await Future.delayed(const Duration(milliseconds: 500)),
-                widget.animationController.animateTo(0.6),
-              },
-              child: TextViewWidget(
-                "Try with password?",
-                textColor: Colors.white,
-                fontWeight: FontWeight.w600,
-              ),
-            )
+                    onTap: () async => {
+                      FocusScope.of(context).requestFocus(new FocusNode()),
+                      await Future.delayed(const Duration(milliseconds: 500)),
+                      widget.animationController.animateTo(0.6),
+                    },
+                    child: TextViewWidget(
+                      AppString.tryWithPassword.tr,
+                      textColor: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
                 : const SizedBox(),
           ],
         ),
@@ -255,7 +251,7 @@ class RegisterText extends StatelessWidget {
     return Text.rich(
       TextSpan(children: [
         TextSpan(
-            text: "Edit phone",
+            text: AppString.editPhone.tr,
             style: TextStyle(
               decoration: TextDecoration.underline,
               color: AppColors.primaryColor,

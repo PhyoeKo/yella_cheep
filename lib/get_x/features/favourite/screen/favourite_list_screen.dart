@@ -1,24 +1,20 @@
-import 'package:explore_places/components/PlacesComponent.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/services/dio_provider.dart';
 import 'package:explore_places/get_x/features/favourite/controller/favourite_controller.dart';
 import 'package:explore_places/get_x/widget/app_bar/cupertino_sliver_app_bar.dart';
 import 'package:explore_places/get_x/widget/custom_chip_widget.dart';
-import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
 import 'package:explore_places/get_x/widget/goLogin/go_login_widget.dart';
-import 'package:explore_places/get_x/widget/shop/shop_item_widget.dart';
 import 'package:explore_places/get_x/widget/view_handling/smart_refresher_parent_view.dart';
 import 'package:explore_places/main_temp.dart';
-import 'package:explore_places/utils/AppColor.dart';
 import 'package:explore_places/utils/Common.dart';
 import 'package:explore_places/utils/Extensions/Colors.dart';
 import 'package:explore_places/utils/Extensions/Constants.dart';
 import 'package:explore_places/utils/Extensions/Widget_extensions.dart';
 import 'package:explore_places/utils/Extensions/decorations.dart';
 import 'package:explore_places/utils/Extensions/int_extensions.dart';
-import 'package:explore_places/utils/Extensions/string_extensions.dart';
 import 'package:explore_places/utils/Extensions/text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +41,7 @@ class FavouriteListScreen extends BaseView<FavouriteController> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             CupertinoSliverAppBar(
-              title: 'Favourite'.tr,
+              title: AppString.favourite.tr,
             ),
           ];
         },
@@ -230,7 +226,7 @@ class FavouriteListScreen extends BaseView<FavouriteController> {
                 padding: const EdgeInsets.all(8.0),
                 child: GoLoginWidget(
                     desc:
-                        "You can see your favourite data once you've logged in",
+                        AppString.seeFavouriteDataAfterLogin.tr,
                     title: "Login to view your favourite."),
               )));
   }

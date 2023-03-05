@@ -1,5 +1,6 @@
 import 'package:explore_places/get_x/constant/enum/shop_type_enum.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/services/dio_provider.dart';
@@ -29,7 +30,7 @@ class ExploreScreen extends BaseView<ExploreController> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             CupertinoSliverAppBar(
-              title: 'Explore'.tr,
+              title: AppString.explore.tr,
             ),
           ];
         },

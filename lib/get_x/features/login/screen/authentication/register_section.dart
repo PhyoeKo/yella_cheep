@@ -1,5 +1,6 @@
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:explore_places/get_x/constant/resources/app_images.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/features/login/controller/login_controller.dart';
 import 'package:explore_places/get_x/widget/based_designed_card.dart';
 import 'package:explore_places/get_x/widget/custom_text_field.dart';
@@ -71,7 +72,7 @@ class RegisterOrLoginSection extends StatelessWidget {
               width: double.infinity,
               child: Center(
                 child: TextViewWidget(
-                  "Welcome from Yella Cheap",
+                  AppString.welcomeFromYella.tr,
                   textColor: Colors.white,
                   fontWeight: FontWeight.bold,
                   textSize: AppDimens.TEXT_HEADING_1X,
@@ -86,8 +87,8 @@ class RegisterOrLoginSection extends StatelessWidget {
                     children: [
                       TextViewWidget(
                         controller.isRegisteredAccount.value
-                            ? "Phone number"
-                            : "User name",
+                            ? AppString.phoneNumber.tr
+                            : AppString.userName.tr,
                         textColor: AppColors.primaryColor,
                       ),
                       const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM),
@@ -98,19 +99,19 @@ class RegisterOrLoginSection extends StatelessWidget {
                         onChanged: (value) {},
                         isEnabled: !controller.isRegisteredAccount.value,
                         hint: controller.isRegisteredAccount.value
-                            ? "Enter Ph No."
-                            : "Enter User name",
+                            ? AppString.enterPhoneNumber.tr
+                            : AppString.enterUserName.tr,
                       ),
                       const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM_2),
                       TextViewWidget(
-                        "Password",
+                        AppString.password.tr,
                         textColor: AppColors.primaryColor,
                       ),
                       const SizedBox(height: AppDimens.MARGIN_CARD_MEDIUM),
                       CustomPasswordField(
                         controller: passwordController,
                         onChanged: (value) {},
-                        hint: "Enter password",
+                        hint: AppString.enterPassword.tr,
                       ),
                       const SizedBox(height: AppDimens.MARGIN_MEDIUM),
                     ],

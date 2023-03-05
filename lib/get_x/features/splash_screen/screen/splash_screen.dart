@@ -1,6 +1,6 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
-import 'package:explore_places/get_x/features/home/controller/home_controller.dart';
 import 'package:explore_places/get_x/features/splash_screen/controller/splash_screen_controller.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:explore_places/utils/AppImages.dart';
@@ -51,7 +51,7 @@ class SplashScreen extends BaseView<SplashScreenController> {
 
                     /// Optional, the stroke backgroundColor
                     ),
-                TextViewWidget("Getting ready!",textSize: 18,fontWeight: FontWeight.bold,)
+                TextViewWidget(AppString.gettingReady.tr,textSize: 18,fontWeight: FontWeight.bold,)
               ],
             ),
           ),

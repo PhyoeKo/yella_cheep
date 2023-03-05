@@ -1,4 +1,5 @@
 import 'package:explore_places/get_x/core/base/base_controller.dart';
+import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:explore_places/get_x/features/explore_screen/screen/explore_screen.dart';
 import 'package:explore_places/get_x/features/favourite/screen/favourite_list_screen.dart';
 import 'package:explore_places/get_x/features/order_history/screen/order_history_screen.dart';

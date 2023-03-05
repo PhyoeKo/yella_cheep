@@ -1,4 +1,5 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/features/order_history/controller/order_history_controller.dart';
 import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
@@ -19,7 +20,7 @@ class OrderHistoryScreen extends BaseView<OrderHistoryController> {
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return const DefaultAppBar(title: "Invoice History");
+    return DefaultAppBar(title: AppString.invoiceHistory.tr);
   }
 
   @override

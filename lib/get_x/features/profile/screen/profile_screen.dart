@@ -1,5 +1,6 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
@@ -26,7 +27,7 @@ class ProfileScreen extends BaseView<ProfileController> {
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
     return DefaultAppBar(
-      title: "More",
+      title: AppString.more.tr,
     );
   }
 
@@ -138,15 +139,15 @@ class ProfileScreen extends BaseView<ProfileController> {
               : Padding(
                   padding: const EdgeInsets.only(top: 12.0,left: 12.0),
                   child: GoLoginWidget(
-                      desc: "Login to find your exclusive activities",
-                      title: "Your profile"),
+                      desc: AppString.loginToFindActivities.tr,
+                      title: AppString.yourProfile.tr),
                 )),
         ),
         const SizedBox(
           height: AppDimens.MARGIN_CARD_MEDIUM,
         ),
         profileMenuItemWidget(
-                title: "Invoice History",
+                title: AppString.invoiceHistory.tr,
                 color: AppColors.appBarColor,
                 icon: const Icon(
                   Icons.inventory_outlined,
@@ -158,13 +159,13 @@ class ProfileScreen extends BaseView<ProfileController> {
           height: AppDimens.MARGIN_MEDIUM,
         ),
         profileMenuItemWidget(
-            title: "App Language",
+            title: AppString.appLanguage.tr,
             color: AppColors.appBarColor,
             icon: const Icon(
               Icons.language,
               color: AppColors.whiteColor,
             ),
-            onClick: () => Get.toNamed(Routes.changePassword)),
+            onClick: () => Get.toNamed(Routes.changeLanguageScreen)),
         const SizedBox(
           height: AppDimens.MARGIN_MEDIUM,
         ),
@@ -180,7 +181,7 @@ class ProfileScreen extends BaseView<ProfileController> {
           height: AppDimens.MARGIN_MEDIUM,
         ),
         profileMenuItemWidget(
-            title: "About us",
+            title: AppString.aboutUs.tr,
             color: AppColors.appBarColor,
             icon: const Icon(
               Icons.info_sharp,
@@ -193,8 +194,8 @@ class ProfileScreen extends BaseView<ProfileController> {
                 padding: const EdgeInsets.all(AppDimens.MARGIN_CARD_MEDIUM),
                 child: GestureDetector(
                   onTap: () => context.showPromptDialog(
-                      title: "Logout",
-                      content: "Are you sure want to logout",
+                      title: AppString.logout.tr,
+                      content: AppString.areYouSureToLogout.tr,
                       okBtnFunction: () => controller.logout()),
                   child: Material(
                     elevation: 2,
@@ -206,9 +207,9 @@ class ProfileScreen extends BaseView<ProfileController> {
                       padding: const EdgeInsets.all(12),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children:  [
                           TextViewWidget(
-                            "Logout",
+                            AppString.logout.tr,
                             textColor: AppColors.primaryColor,
                           ),
                           SizedBox(

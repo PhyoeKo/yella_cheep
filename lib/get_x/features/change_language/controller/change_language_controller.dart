@@ -7,16 +7,15 @@ import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class ChangeLanguageController extends BaseController {
   RxInt changeLanguageGroupLanguage = 0.obs;
 
   Locale? currentLocale;
 
   List<SetUpVo> languageList = [
+    LanguageEnums.CHINESE.languageData,
     LanguageEnums.ENGLISH.languageData,
-    LanguageEnums.MYANMAR.languageData,
-    LanguageEnums.CHINESE.languageData
+    LanguageEnums.Thailand.languageData,
   ];
 
   changeLanguage(Locale locale) {
@@ -31,15 +30,16 @@ class ChangeLanguageController extends BaseController {
   @override
   void onInit() {
     currentLocale = getLocale();
+    print("Current Locale is ${getLocale()}");
     changeLanguageGroupLanguage = checkLocale().obs;
     super.onInit();
   }
 
   int checkLocale() {
-    if (currentLocale?.languageCode == LanguageEnums.ENGLISH.languageCode) {
+    if (currentLocale?.languageCode == LanguageEnums.CHINESE.languageCode) {
       return 0;
     } else if (currentLocale?.languageCode ==
-        LanguageEnums.MYANMAR.languageCode) {
+        LanguageEnums.ENGLISH.languageCode) {
       return 1;
     } else {
       return 2;

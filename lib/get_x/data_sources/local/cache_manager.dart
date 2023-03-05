@@ -43,11 +43,9 @@ class CacheManager {
   ///Specific Preferences
   Locale? getLocale() => Locale(
       getString(CacheManagerKey.langCode) ??
-          Get.deviceLocale?.languageCode ??
-          "en",
+          "zh",
       getString(CacheManagerKey.countryCode) ??
-          Get.deviceLocale?.countryCode ??
-          "US");
+          "CH");
 
   Future<bool> saveToken(String? token) async {
     final box = GetStorage();

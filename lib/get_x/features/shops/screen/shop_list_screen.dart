@@ -1,3 +1,4 @@
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/features/shops/controller/shop_controller.dart';
 import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
@@ -10,7 +11,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class ShopListScreen extends BaseView<ShopController> {
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return DefaultAppBar(title: "Shops");
+    return DefaultAppBar(title: AppString.shop.tr);
   }
 
   final RefreshController _refreshController =

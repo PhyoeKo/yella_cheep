@@ -1,5 +1,6 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/utils/sliver_app_delegete.dart';
 import 'package:explore_places/get_x/features/search/controller/search_controller.dart';
@@ -22,7 +23,7 @@ class SearchScreen extends BaseView<SearchController> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               CupertinoSliverAppBar(
-                title: "Search Here",
+                title: AppString.searchHere.tr,
               ),
               SliverPersistentHeader(
                 delegate: SliverAppBarDelegate(
@@ -36,7 +37,7 @@ class SearchScreen extends BaseView<SearchController> {
                         // if (query == "") provider.resetAndGetProductList();
                         // provider.setIsClearEnable();
                       },
-                      hint: "Enter shop name",
+                      hint: AppString.enter_shop_name.tr,
                       controller: controller.textEditingController,
                       textInputAction: TextInputAction.search,
                       onSubmitted: (query) {

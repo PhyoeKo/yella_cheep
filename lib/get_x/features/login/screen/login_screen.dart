@@ -1,12 +1,12 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/features/login/controller/login_controller.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/button_section.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/otp_verify_section.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/register_section.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/request_otp_section.dart';
-import 'package:explore_places/get_x/widget/gradient_background.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -89,8 +89,8 @@ class LoginScreen extends BaseView<LoginController> {
                               ),
                               AuthButtonSection(
                                 btnText: controller.isRegisteredAccount.value
-                                    ? "Login"
-                                    : "Register",
+                                    ? AppString.login.tr
+                                    : AppString.register.tr,
                                 animationController:
                                     controller.animationController,
                                 onPressed: () {

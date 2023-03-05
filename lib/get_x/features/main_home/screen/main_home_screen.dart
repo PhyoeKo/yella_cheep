@@ -1,5 +1,6 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/features/main_home/controller/main_home_controller.dart';
 import 'package:flutter/material.dart';
@@ -37,26 +38,26 @@ class MainHomeScreen extends BaseView<MainHomeController> {
         showUnselectedLabels: true,
         backgroundColor: AppColors.whiteColor,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             activeIcon: Icon(Icons.home),
-            label: "Home",
+            label: AppString.home.tr,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore_rounded),
             activeIcon: Icon(Icons.travel_explore),
-            label: "Explore",
+            label: AppString.explore.tr,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
             activeIcon: Icon(Icons.favorite),
-            label: "Favourite",
+            label: AppString.favourite.tr,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
             activeIcon: Icon(Icons.menu),
-            label: "More",
+            label: AppString.menu.tr,
           ),
         ],
       ),

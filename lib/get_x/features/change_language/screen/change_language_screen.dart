@@ -1,5 +1,6 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/constant/translation/app_translation.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/features/change_language/controller/change_language_controller.dart';
@@ -15,7 +16,7 @@ class ChangeLanguageScreen extends BaseView<ChangeLanguageController> {
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return const DefaultAppBar(title: "Change Language");
+    return DefaultAppBar(title: AppString.changeLanguage.tr);
   }
 
   @override
@@ -34,8 +35,8 @@ class ChangeLanguageScreen extends BaseView<ChangeLanguageController> {
           vertical: AppDimens.MARGIN_SMALL,
           horizontal: AppDimens.MARGIN_MEDIUM),
       child: SecondaryButtonWidget(
-          child: const TextViewWidget(
-            "Change",
+          child: TextViewWidget(
+            AppString.change.tr,
             textColor: Colors.white,
           ),
           onPress: () {
@@ -71,7 +72,7 @@ class ChangeLanguageScreen extends BaseView<ChangeLanguageController> {
               activeColor: AppColors.primaryColor,
             ),
             trailing:
-                Image.asset(controller.languageList[radioValue].image ?? ""),
+                Image.asset(controller.languageList[radioValue].image ?? "",width: 40,height: 40,),
           ),
         ),
       ),

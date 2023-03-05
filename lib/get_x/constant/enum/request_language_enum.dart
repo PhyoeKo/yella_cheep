@@ -9,8 +9,8 @@ class LanguageEnums<String> {
   const LanguageEnums(this.languageType, this.languageCode);
 
   static const LanguageEnums ENGLISH = LanguageEnums('English', "en");
-  static const LanguageEnums MYANMAR = LanguageEnums("Myanmar", "my");
-  static const LanguageEnums CHINESE = LanguageEnums("Chinese", "ch");
+  static const LanguageEnums Thailand = LanguageEnums("Myanmar", "th");
+  static const LanguageEnums CHINESE = LanguageEnums("Chinese", "zh");
 }
 
 extension LanguageNameExtension on LanguageEnums {
@@ -18,8 +18,8 @@ extension LanguageNameExtension on LanguageEnums {
     switch (this) {
       case LanguageEnums.ENGLISH:
         return SetUpVo(name: "English", image: AppImages.icEnglishFlag);
-      case LanguageEnums.MYANMAR:
-        return SetUpVo(name: "Myanmar", image: AppImages.icMyanmarFlag);
+      case LanguageEnums.Thailand:
+        return SetUpVo(name: "Thai", image: AppImages.icThaiFlag);
       case LanguageEnums.CHINESE:
         return SetUpVo(name: "Chinese", image: AppImages.icChineseFlag);
       default:

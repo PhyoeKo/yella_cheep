@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/utils/custom_tab_indicator.dart';
 import 'package:explore_places/get_x/core/utils/sliver_app_delegete.dart';
@@ -174,10 +175,10 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                           tabs: [
                             Tab(
                               height: 52,
-                              text: "About",
+                              text: AppString.about.tr,
                             ),
-                            Tab(height: 52, text: "Gallery"),
-                            Tab(height: 52, text: "Review&Rating")
+                            Tab(height: 52, text: AppString.gallery.tr,),
+                            Tab(height: 52, text: AppString.reviewAndRating.tr,)
                           ]),
                       height: 54),
                   pinned: true,
@@ -192,7 +193,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                         ListTile(
                           dense: true,
                           title: TextViewWidget(
-                            "Description",
+                            AppString.description.tr,
                             textSize: 16,
                             fontWeight: FontWeight.bold,
                             textColor: AppColors.primaryColor,
@@ -203,7 +204,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                         ListTile(
                           dense: true,
                           title: TextViewWidget(
-                            "Website",
+                            AppString.website.tr,
                             textSize: 16,
                             fontWeight: FontWeight.bold,
                             textColor: AppColors.primaryColor,
@@ -214,7 +215,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                         ListTile(
                           dense: true,
                           title: TextViewWidget(
-                            "Contacts",
+                            AppString.contact.tr,
                             textSize: 16,
                             fontWeight: FontWeight.bold,
                             textColor: AppColors.primaryColor,
@@ -323,7 +324,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                     context: context,
                     builder: (_) {
                       return WriteReviewDialog(
-                        title: 'Leave a review',
+                        title: AppString.leaveAReview.tr,
                         productId: controller.shopItem?.id?.toInt(),
                         shopDetailController: controller,
                       );
@@ -332,7 +333,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
               backgroundColor: AppColors.primaryColor,
               label: Row(
                 children: [
-                  Text("Write a review"),
+                  Text(AppString.writeAReview.tr),
                   SizedBox(
                     width: 4,
                   ),

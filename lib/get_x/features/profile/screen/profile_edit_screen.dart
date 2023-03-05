@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:explore_places/get_x/constant/enum/enum_image_type.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/core/utils/image_crop_utils.dart';
@@ -26,8 +27,8 @@ class ProfileEditScreen extends BaseView<ProfileController> {
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return const DefaultAppBar(
-      title: "Account Edit",
+    return  DefaultAppBar(
+      title: AppString.accountEdit.tr
     );
   }
 
@@ -211,7 +212,7 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                       widget: Column(
                         children: [
                           Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.circle,
                                 size: 8,
@@ -220,7 +221,7 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                               SizedBox(
                                 width: AppDimens.MARGIN_SMALL,
                               ),
-                              TextViewWidget("User Name")
+                              TextViewWidget(AppString.userName.tr)
                             ],
                           ),
                           Padding(
@@ -236,7 +237,7 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                             height: AppDimens.MARGIN_CARD_MEDIUM,
                           ),
                           Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.circle,
                                 size: 8,
@@ -245,7 +246,7 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                               SizedBox(
                                 width: AppDimens.MARGIN_SMALL,
                               ),
-                              TextViewWidget("Phone Number (Can't Edit)")
+                              TextViewWidget(AppString.cannotEditPhone.tr)
                             ],
                           ),
                           GestureDetector(
@@ -275,8 +276,8 @@ class ProfileEditScreen extends BaseView<ProfileController> {
                       child: SecondaryButtonWidget(
                         onPress: () => controller.updateProfile(),
                         bgColor: AppColors.primaryColor,
-                        child: const TextViewWidget(
-                          "Update Profile",
+                        child: TextViewWidget(
+                          AppString.updateProfile.tr,
                           textColor: AppColors.whiteColor,
                           fontWeight: FontWeight.w700,
                         ),

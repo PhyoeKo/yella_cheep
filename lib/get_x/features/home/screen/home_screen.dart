@@ -4,14 +4,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:explore_places/get_x/constant/enum/shop_type_enum.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/core/utils/sliver_app_delegete.dart';
 import 'package:explore_places/get_x/features/home/controller/home_controller.dart';
 import 'package:explore_places/get_x/widget/cached_network_image_widget.dart';
-import 'package:explore_places/get_x/widget/custom_chip_widget.dart';
-import 'package:explore_places/get_x/widget/default_app_bar_widget.dart';
 import 'package:explore_places/get_x/widget/shop/shop_item_widget.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:explore_places/get_x/widget/view_handling/smart_refresher_parent_view.dart';
@@ -57,7 +56,7 @@ class HomeScreen extends BaseView<HomeController> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             SizedBox(),
-                            TextViewWidget("YELLA CHEAP",textSize: 18,textColor: AppColors.appBarColor,fontWeight: FontWeight.bold,),
+                            TextViewWidget(AppString.home.tr,textSize: 18,textColor: AppColors.appBarColor,fontWeight: FontWeight.bold,),
                             GestureDetector(
                                 onTap: () => Get.toNamed(Routes.searchScreen),
                                 child: Padding(
@@ -134,7 +133,7 @@ class HomeScreen extends BaseView<HomeController> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                     child: TextViewWidget(
-                      "Categories",
+                      AppString.category.tr,
                       fontWeight: FontWeight.bold,
                       textSize: 16,
                     ),
@@ -208,7 +207,7 @@ class HomeScreen extends BaseView<HomeController> {
                       children: [
                         TextViewWidget(
                           controller.shopController.nearByShopList.isNotEmpty
-                              ? "Near by places"
+                              ? AppString.nearByPlace.tr
                               : "",
                           fontWeight: FontWeight.bold,
                           textSize: 16,
@@ -220,7 +219,7 @@ class HomeScreen extends BaseView<HomeController> {
                                   arguments: ShopType.nearBy),
                           child: TextViewWidget(
                             controller.shopController.nearByShopList.isNotEmpty
-                                ? "See all"
+                                ? AppString.see_all.tr
                                 : "",
                             fontWeight: FontWeight.bold,
                           ),
