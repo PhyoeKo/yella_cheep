@@ -170,7 +170,7 @@ class ProfileScreen extends BaseView<ProfileController> {
           height: AppDimens.MARGIN_MEDIUM,
         ),
         profileMenuItemWidget(
-            title: "Contacts to Admin",
+            title: AppString.contactToAdmin.tr,
             color: AppColors.appBarColor,
             icon: const Icon(
               Icons.headset_mic_rounded,
