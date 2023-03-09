@@ -8,6 +8,7 @@ import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/core/utils/date_utils.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
 import 'package:explore_places/get_x/data_models/exception/base_exception.dart';
+import 'package:explore_places/get_x/data_models/responses/HomeListResponse.dart';
 import 'package:explore_places/get_x/data_models/responses/banner_response.dart';
 import 'package:explore_places/get_x/data_models/responses/order_history_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
@@ -37,6 +38,12 @@ class HomeController extends BaseController {
   List<BannerResponse> get bannerList => _bannerList.obs.value;
 
   final RxList<SetUpVo> _categoryList = RxList.empty();
+
+  final RxList<HomeListResponse> _homeList = RxList.empty();
+
+
+  List<HomeListResponse> get homeList => _homeList.obs.value;
+
 
   List<SetUpVo> get categoryList => _categoryList.obs.value;
 
@@ -71,6 +78,7 @@ class HomeController extends BaseController {
     getBannerList();
     getCategoryList();
     getCurrentPosition();
+    getHomeList();
   }
   Future<void> getCurrentPosition() async {
     final hasPermission = await AppUtils.handleLocationPermission();
@@ -100,6 +108,28 @@ class HomeController extends BaseController {
       onError: (BaseException exception) {},
     );
   }
+
+
+
+  Future<void> getHomeList() async {
+    final _repoService = _repository.getHomeList();
+    await callAPIService(
+      _repoService,
+      onStart: null,
+      onSuccess: _handHomeListResponseSuccess,
+      onError: (BaseException exception) {},
+    );
+  }
+
+  void _handHomeListResponseSuccess(response) async {
+    resetRefreshController(_bannerList);
+    if (response != null) {
+      BaseApiResponse<HomeListResponse> _responseData = response;
+      List<HomeListResponse> data = _responseData.listResult;
+      _homeList.addAll(data.toList());
+    }
+  }
+
 
   void getStateList() async {
     final _repoService = _repository.getStateList();
@@ -169,8 +199,8 @@ class HomeController extends BaseController {
 
   Future<void> resetAndGetCancelOrderList(
       {RefreshController? refreshController}) async {
-    // _bannerList.clear();
-    // getBannerList(refreshController: refreshController);
+    _bannerList.clear();
+    getBannerList(refreshController: refreshController);
   }
 
 

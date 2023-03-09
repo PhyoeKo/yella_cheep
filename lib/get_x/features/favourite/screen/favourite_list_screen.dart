@@ -227,7 +227,7 @@ class FavouriteListScreen extends BaseView<FavouriteController> {
                 child: GoLoginWidget(
                     desc:
                         AppString.seeFavouriteDataAfterLogin.tr,
-                    title: "Login to view your favourite."),
+                    title: AppString.loginToViewYourFavourite.tr),
               )));
   }
 }

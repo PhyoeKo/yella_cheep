@@ -23,10 +23,9 @@ class ShopListScreen extends BaseView<ShopController> {
           padding: const EdgeInsets.all(8.0),
           child: SmartRefresherParentView(
             refreshController: _refreshController,
-            enablePullUp: true,
-            onRefresh: () => controller.resetNearNearByShopList(
-                refreshController: _refreshController),
-            onLoading: () => controller.getNearByShop(refreshController: _refreshController),
+            enablePullUp: false,
+            onRefresh: () => controller.loadShopList(refreshController: _refreshController),
+            onLoading: () => controller.loadShopList(refreshController: _refreshController),
             child: CustomScrollView(
               slivers: [
                 SliverList(
@@ -37,10 +36,10 @@ class ShopListScreen extends BaseView<ShopController> {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: ShopItemWidget(
-                                shopItem: controller.nearByShopList[index]),
+                                shopItem: controller.shopList[index]),
                           ));
                     },
-                    childCount: controller.nearByShopList.length,
+                    childCount: controller.shopList.length,
                   ),
                 ),
               ],

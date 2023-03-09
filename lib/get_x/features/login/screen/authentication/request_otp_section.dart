@@ -1,13 +1,14 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:explore_places/get_x/constant/resources/app_images.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/features/login/controller/login_controller.dart';
 import 'package:explore_places/get_x/widget/based_designed_card.dart';
 import 'package:explore_places/get_x/widget/custom_text_field.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:get/get.dart';
 
 class RequestOTPSection extends StatelessWidget {
   final AnimationController animationController;
@@ -50,6 +51,7 @@ class RequestOTPSection extends StatelessWidget {
       position: _exitAnimation,
       child: Column(
         children: [
+
           ScaleTransition(
             scale: _enterAnimation,
             child: SizedBox(
@@ -70,7 +72,7 @@ class RequestOTPSection extends StatelessWidget {
               width: double.infinity,
               child: Center(
                 child: TextViewWidget(
-                  "Welcome from Yella Cheap",
+                  AppString.welcomeFromYella.tr,
                   textColor: Colors.white,
                   fontWeight: FontWeight.bold,
                   textSize: AppDimens.TEXT_HEADING_1X,
@@ -85,14 +87,14 @@ class RequestOTPSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextViewWidget(
-                  "Enter your phone number",
+                  AppString.enterPhoneNumber.tr,
                   textSize: AppDimens.TEXT_REGULAR_2X,
                   fontWeight: FontWeight.w600,
                   textColor: AppColors.primaryColor,
                 ),
                 const SizedBox(height: AppDimens.MARGIN_MEDIUM),
                 TextViewWidget(
-                  "We will send 6 digit verification code",
+                  AppString.sendOTPCode.tr,
                   textSize: AppDimens.TEXT_REGULAR,
                   fontWeight: FontWeight.w400,
                 ),
@@ -100,7 +102,7 @@ class RequestOTPSection extends StatelessWidget {
                 CustomTextField(
                     controller: loginPhNoController,
                     onChanged: (value) {},
-                    hint: "Enter your phone ",
+                    hint: AppString.phoneNumber.tr,
                     textInputType: TextInputType.number,
                     textInputFormatter: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -148,7 +150,7 @@ class LoginButton extends StatelessWidget {
               BorderRadius.all(Radius.circular(AppDimens.MARGIN_MEDIUM))),
       child: Center(
         child: TextViewWidget(
-          "Request OTP",
+          AppString.requestOTP.tr,
           textColor: AppColors.primaryColor,
           fontWeight: FontWeight.w500,
         ),

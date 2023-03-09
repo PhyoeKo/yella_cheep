@@ -26,7 +26,7 @@ class RoundedIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      onPressed: ()=> onClickIcon(),
+      onPressed:  ()=>onClickIcon(),
       elevation: elevation,
       constraints: const BoxConstraints(), //removes empty spaces around of icon
       shape: const CircleBorder(), //circular button

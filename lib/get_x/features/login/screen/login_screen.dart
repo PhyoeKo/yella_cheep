@@ -1,12 +1,14 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:explore_places/get_x/constant/resources/app_string.dart';
+import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/features/login/controller/login_controller.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/button_section.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/otp_verify_section.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/register_section.dart';
 import 'package:explore_places/get_x/features/login/screen/authentication/request_otp_section.dart';
+import 'package:explore_places/get_x/widget/rounded_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +35,6 @@ class LoginScreen extends BaseView<LoginController> {
       child: Scaffold(
         body: Stack(
           children: [
-            // const GradientBackground(),
             CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
@@ -106,6 +107,14 @@ class LoginScreen extends BaseView<LoginController> {
                 )
               ],
             ),
+            Positioned(
+                top: Get.height * 0.06,
+                left: AppDimens.MARGIN_CARD_MEDIUM_2,
+                child: RoundedIconWidget(
+                  backgroundColor: AppColors.pageBackground.withOpacity(0.5),
+                  icon: Icon(Icons.home),
+                  onClickIcon: () => Get.offAllNamed(Routes.mainHomeScreen),
+                )),
           ],
         ),
       ),

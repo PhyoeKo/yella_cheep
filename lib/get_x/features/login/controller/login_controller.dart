@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:another_flushbar/flushbar.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_controller.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
@@ -35,124 +36,26 @@ class LoginController extends BaseController {
 
   Future<void> requestOtp(BuildContext context) async {
     if (phNoController.text == "") {
-      AppUtils.showToast("Invalid phone number");
+      AppUtils.showToast(AppString.invalidNumber.tr);
       return;
     }
     FocusScope.of(context).requestFocus(new FocusNode());
     await Future.delayed(const Duration(milliseconds: 500));
     animationController.animateTo(0.4);
     update();
-    //print("Firebase Token is ${getString(CacheManagerKey.firebaseToken)}");
-    // var requestOb = LoginRequestOb(
-    //   phone: phNoController.text,
-    //   password: "",
-    // );
-    // final repoService = _repository.loginUser(requestOb);
-    // AppUtils.showLoaderDialog();
-    // callAPIService(repoService, onSuccess: onSuccessLogin,
-    //     onError: (exception) {
-    //   AppUtils.showToast("Something went wrong,try again");
-    //   Get.back();
-    // });
-    // try {
-    //   var otpRequest = SentOtpRequest(type: "register", phone: phNo);
-    //   BaseModel<SentOtpResponse> response =
-    //   await _repository.sentOtp(otpRequest);
-    //
-    //   if (response.result != null) {
-    //     if (response.result!.status == true) {
-    //       _isRegisteredAccount = response.result!.data!.isRegister;
-    //       FocusScope.of(context).requestFocus(new FocusNode());
-    //       await Future.delayed(const Duration(milliseconds: 500));
-    //       animationController.animateTo(0.4);
-    //       notifyListeners();
-    //     } else {
-    //       setNotifyMessage(response.result?.error?[0] ?? "Fail to sent OTP");
-    //     }
-    //   } else {
-    //     setNotifyMessage(response.exception?.errorMessage??"Something went wrong");
-    //   }
-    // } catch (_) {
-    //   setNotifyMessage("$_");
-    // }
-
-    // Get.back();
   }
 
   Future<void> checkOtp(BuildContext context) async {
-    AppUtils.showToast("Logging in..");
+    AppUtils.showToast(AppString.loggingIn.tr);
     FocusScope.of(context).requestFocus(new FocusNode());
     animationController.animateTo(0.6);
     update();
-    // try {
-    //   FocusScope.of(context).requestFocus(new FocusNode());
-    //
-    //   var otpRequest = CheckOtpRequest(code: otpCode, phone: phNo);
-    //   BaseModel<LoginResponse> response =
-    //   await _repository.checkOTP(otpRequest);
-    //
-    //   if (response.result != null) {
-    //     Navigator.pop(context);
-    //     if (response.result!.status == true) {
-    //       if (_isRegisteredAccount == true) {
-    //         saveUserData(
-    //           response.result!.data!.token!,
-    //           response.result!.data!.name!,
-    //           response.result!.data!.phone!,
-    //           response.result!.data!.address!,
-    //         );
-    //         Navigator.pop(context, true);
-    //         _repository.updateFirebaseToken(token: firebaseMessagingToken);
-    //       } else {
-    //         animationController.animateTo(0.6);
-    //       }
-    //     } else {
-    //       print("${response.result!.message}");
-    //       setNotifyMessage("Something went wrong");
-    //     }
-    //   } else {
-    //     setNotifyMessage(response.exception?.errorMessage??"Something went wrong");
-    //   }
-    // } catch (_) {
-    //   print("$_");
-    //   setNotifyMessage("$_");
-    // }
   }
 
   Future<void> register(BuildContext context) async {
-    AppUtils.showToast("Registering ...");
+    AppUtils.showToast(AppString.registering);
     FocusScope.of(context).requestFocus(new FocusNode());
     update();
-    // try {
-    //   FocusScope.of(context).requestFocus(new FocusNode());
-    //
-    //   var otpRequest =
-    //   RegisterRequest(name: name, phone: phNo, password: password);
-    //   BaseModel<RegisterResponse> response =
-    //   await _repository.register(otpRequest);
-    //
-    //   if (response.result != null) {
-    //     Navigator.pop(context);
-    //     if (response.result!.status == true) {
-    //       saveUserData(
-    //         response.result!.data!.token!,
-    //         response.result!.data!.name!,
-    //         response.result!.data!.phone!,
-    //         response.result!.data!.address!,
-    //       );
-    //       Navigator.pop(context, true);
-    //
-    //       _repository.updateFirebaseToken(token: firebaseMessagingToken);
-    //     } else {
-    //       setNotifyMessage(response.result!.message ?? "Something went wrong");
-    //     }
-    //   } else {
-    //     setNotifyMessage(response.exception?.errorMessage??"Something went wrong");
-    //   }
-    // } catch (_) {
-    //   setNotifyMessage("$_");
-    //   Navigator.pop(context);
-    // }
     var requestOb = RegisterRequestOb(
       phone: phNoController.text,
       password: loginPasswordController.text,
@@ -163,13 +66,13 @@ class LoginController extends BaseController {
     AppUtils.showLoaderDialog();
     callAPIService(repoService, onSuccess: onSuccessLogin,
         onError: (exception) {
-          AppUtils.showToast("Something went wrong,try again");
-          Get.back();
-        });
+      AppUtils.showToast(AppString.somethingWrong.tr);
+      Get.back();
+    });
   }
 
   Future<void> login() async {
-    AppUtils.showToast("Logging in ...");
+    AppUtils.showToast(AppString.loggingIn.tr);
     update();
     var requestOb = LoginRequestOb(
       phone: phNoController.text,
@@ -179,35 +82,9 @@ class LoginController extends BaseController {
     AppUtils.showLoaderDialog();
     callAPIService(repoService, onSuccess: onSuccessLogin,
         onError: (exception) {
-      AppUtils.showToast("Something went wrong,try again");
+      AppUtils.showToast(AppString.somethingWrong.tr);
       Get.back();
     });
-    // try {
-    //   LoginRequest loginRequest = LoginRequest(phone: phNo, password: password);
-    //
-    //   BaseModel<LoginResponse> response = await _repository.login(loginRequest);
-    //
-    //   if (response.result != null) {
-    //     Navigator.pop(context);
-    //     if (response.result!.status == true) {
-    //       saveUserData(
-    //         response.result!.data!.token!,
-    //         response.result!.data!.name!,
-    //         response.result!.data!.phone!,
-    //         response.result!.data!.address!,
-    //       );
-    //       Navigator.pop(context, true);
-    //       _repository.updateFirebaseToken(token: firebaseMessagingToken);
-    //     } else {
-    //       setNotifyMessage(response.result!.message!);
-    //     }
-    //   } else {
-    //     Navigator.pop(context);
-    //     setNotifyMessage(response.exception?.errorMessage??"Something went wrong");
-    //   }
-    // } catch (_) {
-    //   setNotifyMessage("$_");
-    // }
   }
 
   void onSuccessLogin(response) {
@@ -218,11 +95,11 @@ class LoginController extends BaseController {
         savingData(loginResponse!);
         Get.offAllNamed(Routes.mainHomeScreen);
       } else {
-        AppUtils.showToast(loginData.message ?? "Invalid credentials");
+        AppUtils.showToast(loginData.message ?? AppString.invalidCredential.tr);
         Get.back();
       }
     } else {
-      AppUtils.showToast("Something went wrong. Try again!");
+      AppUtils.showToast(AppString.somethingWrong.tr);
       Get.back();
     }
   } //
@@ -263,40 +140,4 @@ class LoginController extends BaseController {
     }
     update();
   }
-
-// void doLogin() {
-//   //print("Firebase Token is ${getString(CacheManagerKey.firebaseToken)}");
-//   var requestOb = LoginRequestOb(
-//     phone: userNameController.text,
-//     password: passwordController.text,
-//   );
-//   final repoService = _repository.loginUser(requestOb);
-//   AppUtils.showLoaderDialog();
-//   callAPIService(repoService, onSuccess: onSuccessLogin,
-//       onError: (exception) {
-//     AppUtils.showToast("Something went wrong,try again");
-//     Get.back();
-//   });
-// }
-
-// void onSuccessLogin(response) {
-//   print("response is $response");
-//   if (response != null) {
-//     BaseApiResponse<LoginResponse> loginData = response;
-//
-//     if (loginData.statusCode!) {
-//       LoginResponse? loginResponse = loginData.objectResult;
-//       savingData(loginResponse!);
-//       //updateFirebaseToken();
-//       Get.offAllNamed(Routes.mainHomeScreen);
-//     } else {
-//
-//       AppUtils.showToast(loginData.message ?? "Invalid credentials");
-//       Get.back();
-//     }
-//   } else {
-//     AppUtils.showToast("Something went wrong. Try again!");
-//     Get.back();
-//   }
-// } //
 }

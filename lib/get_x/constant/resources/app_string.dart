@@ -6,7 +6,7 @@ class AppString {
   static const String explore = "explore";
   static const String favourite = "favourite";
   static const String menu = "menu";
-  static const String category = "category";
+  static const String category = "Categories";
   static const String nearByPlace = "nearByPlace";
   static const String searchHere = "searchHere";
   static const String enter_shop_name = "enter_shop_name";
@@ -41,16 +41,24 @@ class AppString {
   static const String areYouSureToLogout = "sure_logout";
   static const String accountEdit = "account_edit";
   static const String updateProfile = "update_profile";
-  static const String about = "about";
-  static const String gallery = "gallery";
-  static const String reviewAndRating = "review_Rating";
-  static const String description = "description";
-  static const String website = "website";
-  static const String contact = "contact";
+  static const String aboutTxt = "about";
+  static const String galleryTxt = "gallery";
+  static const String reviewAndRatingTxt = "review_Rating";
+  static const String descriptionText = "description";
+  static const String websiteText = "website";
+  static const String contactText = "contact";
   static const String leaveAReview = "leave_review";
   static const String writeAReview = "write_review";
-  static const String gettingReady = "getting_ready";
-  static const String changeLanguage = "change_language";
-  static const String change = "change";
-
+  static const String gettingReadyTxt = "getting_ready";
+  static const String changeLanguageTxt = "change_language";
+  static const String changeTxt = "change";
+  static const String phoneNumberCannotEdit = "phone_cannot_edit";
+  static const String scanMe = "scan_me";
+  static const String qrDescription = "qr_description";
+  static const String requestOTP = "req_otp";
+  static const String invalidNumber = "invalidNumber";
+  static const String registering = "registering";
+  static const String loggingIn = "logging_in";
+  static const String somethingWrong = "somethingWrong";
+  static const String invalidCredential = "invalid_credential";
 }

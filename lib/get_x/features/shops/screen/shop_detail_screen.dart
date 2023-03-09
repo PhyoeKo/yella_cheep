@@ -167,7 +167,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                   delegate: SliverAppBarDelegate(
                       TabBar(
                           onTap: (index) {
-                            print("LLEEL $index");
+
                           },
                           labelColor: AppColors.blackColor,
                           indicator: const CustomTabIndicator(),
@@ -175,10 +175,10 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                           tabs: [
                             Tab(
                               height: 52,
-                              text: AppString.about.tr,
+                              text: AppString.aboutTxt.tr,
                             ),
-                            Tab(height: 52, text: AppString.gallery.tr,),
-                            Tab(height: 52, text: AppString.reviewAndRating.tr,)
+                            Tab(height: 52, text: AppString.galleryTxt.tr,),
+                            Tab(height: 52, text: AppString.reviewAndRatingTxt.tr,)
                           ]),
                       height: 54),
                   pinned: true,
@@ -193,7 +193,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                         ListTile(
                           dense: true,
                           title: TextViewWidget(
-                            AppString.description.tr,
+                            AppString.descriptionText.tr,
                             textSize: 16,
                             fontWeight: FontWeight.bold,
                             textColor: AppColors.primaryColor,
@@ -204,7 +204,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                         ListTile(
                           dense: true,
                           title: TextViewWidget(
-                            AppString.website.tr,
+                            AppString.websiteText.tr,
                             textSize: 16,
                             fontWeight: FontWeight.bold,
                             textColor: AppColors.primaryColor,
@@ -215,7 +215,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                         ListTile(
                           dense: true,
                           title: TextViewWidget(
-                            AppString.contact.tr,
+                            AppString.contactText.tr,
                             textSize: 16,
                             fontWeight: FontWeight.bold,
                             textColor: AppColors.primaryColor,

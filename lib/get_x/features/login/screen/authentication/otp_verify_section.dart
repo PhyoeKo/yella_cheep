@@ -106,7 +106,7 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
                 width: double.infinity,
                 child: Center(
                   child: TextViewWidget(
-                    "Welcome from Yella Cheap",
+                    AppString.welcomeFromYella.tr,
                     textColor: Colors.white,
                     fontWeight: FontWeight.bold,
                     textSize: AppDimens.TEXT_HEADING_1X,

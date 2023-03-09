@@ -51,7 +51,7 @@ class SplashScreen extends BaseView<SplashScreenController> {
 
                     /// Optional, the stroke backgroundColor
                     ),
-                TextViewWidget(AppString.gettingReady.tr,textSize: 18,fontWeight: FontWeight.bold,)
+                TextViewWidget(AppString.gettingReadyTxt.tr,textSize: 18,fontWeight: FontWeight.bold,)
               ],
             ),
           ),

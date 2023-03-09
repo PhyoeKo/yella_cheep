@@ -1,6 +1,8 @@
 import 'package:explore_places/get_x/constant/enum/view_state.dart';
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_images.dart';
 import 'package:explore_places/get_x/core/base/base_controller.dart';
+import 'package:explore_places/get_x/widget/placeholder/place_holder_widget.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:explore_places/get_x/widget/view_handling/full_loading_widget.dart';
 import 'package:explore_places/get_x/widget/view_handling/partial_loading_widget.dart';
@@ -9,7 +11,6 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import '../../widget/loading.dart';
 import '../../widget/view_handling/error_handling_widget.dart';
-
 
 abstract class BaseView<Controller extends BaseController>
     extends GetView<Controller> {
@@ -35,7 +36,7 @@ abstract class BaseView<Controller extends BaseController>
           body(context),
           Center(
             child: Obx(
-                  () => getErrorHandlingView(controller.pageState),
+              () => getErrorHandlingView(controller.pageState),
             ),
           ),
         ],
@@ -68,8 +69,7 @@ abstract class BaseView<Controller extends BaseController>
   }
 
   Widget _showPartialLoading(Widget? shimmerEffect) {
-    return PartialLoadingWidget(
-    );
+    return PartialLoadingWidget();
   }
 
   Widget _showFullScreenLoading() {
@@ -79,11 +79,15 @@ abstract class BaseView<Controller extends BaseController>
   Widget getErrorHandlingView(PageStateHandler pageState) {
     switch (pageState.viewState) {
       case ViewState.EMPTYLIST:
-        return  TextViewWidget(
-          "${pageState.message??""}",
-          textSize: 18,
-          textColor: AppColors.appBarColor,
+        return PlaceHolderWidget(
+          image: AppImages.noDataImage,
+          title: "No data yet",
         );
+      // return  TextViewWidget(
+      //   "${pageState.message??""}",
+      //   textSize: 18,
+      //   textColor: AppColors.appBarColor,
+      // );
       case ViewState.FAILED:
         return TextViewWidget(controller.errorMessage);
       case ViewState.DEFAULT:
@@ -113,4 +117,3 @@ abstract class BaseView<Controller extends BaseController>
     }
   }
 }
-

@@ -24,13 +24,12 @@ class ChangeLanguageController extends BaseController {
     setData(CacheManagerKey.countryCode, locale.countryCode);
     //Future.delayed(Duration(seconds: 2), () => Get.back());
     Get.back();
-    AppUtils.showToast(AppString.changeTo.tr);
+  //  AppUtils.showToast(AppString.changeTo.tr);
   }
 
   @override
   void onInit() {
     currentLocale = getLocale();
-    print("Current Locale is ${getLocale()}");
     changeLanguageGroupLanguage = checkLocale().obs;
     super.onInit();
   }

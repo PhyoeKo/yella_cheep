@@ -126,7 +126,7 @@ class ProfileScreen extends BaseView<ProfileController> {
                                         },
                                       )),
                               TextViewWidget(
-                                "Scan me",
+                                AppString.scanMe.tr,
                                 textColor: AppColors.whiteColor,
                               )
                             ],

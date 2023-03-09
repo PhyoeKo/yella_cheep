@@ -1,7 +1,9 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 
@@ -72,8 +74,8 @@ class _QrViewDialogState extends State<QrViewDialog> {
                       const SizedBox(
                         height: AppDimens.MARGIN_MEDIUM,
                       ),
-                      const TextViewWidget(
-                        "Show this QR to merchant to get promotion",
+                       TextViewWidget(
+                        AppString.qrDescription.tr,
                         textColor: AppColors.appBarColor,
                         textAlign: TextAlign.left,
                         textSize: AppDimens.TEXT_REGULAR,

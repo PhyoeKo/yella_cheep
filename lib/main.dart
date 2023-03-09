@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Yella',
+      title: 'Yalla',
       translationsKeys: AppTranslation.translationsKeys,
       locale: Get.find<CacheManager>().getLocale() ?? Locale('zh','CH'),
       fallbackLocale: const  Locale('zh','CH'),

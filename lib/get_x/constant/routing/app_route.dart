@@ -14,4 +14,5 @@ class Routes {
   static const changeTheme = '/change-theme-screen';
   static const orderHistory = '/order-history-screen';
   static const searchScreen = '/search-screen';
+  static const categoryScreen = '/category-screen';
 }

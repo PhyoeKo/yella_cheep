@@ -1,4 +1,5 @@
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
+import 'package:explore_places/get_x/data_models/responses/HomeListResponse.dart';
 import 'package:explore_places/get_x/data_models/responses/banner_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
 import 'package:explore_places/get_x/data_models/view_object/setup_vo.dart';
@@ -9,6 +10,9 @@ abstract class HomeRepository {
   Future<BaseApiResponse<SetUpVo>> getCategoryList();
 
   Future<BaseApiResponse<SetUpVo>> getStateList();
+
+
+  Future<BaseApiResponse<HomeListResponse>> getHomeList();
 
 
 }

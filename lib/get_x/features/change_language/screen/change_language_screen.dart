@@ -16,7 +16,7 @@ class ChangeLanguageScreen extends BaseView<ChangeLanguageController> {
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
-    return DefaultAppBar(title: AppString.changeLanguage.tr);
+    return DefaultAppBar(title: AppString.changeLanguageTxt.tr);
   }
 
   @override
@@ -36,7 +36,7 @@ class ChangeLanguageScreen extends BaseView<ChangeLanguageController> {
           horizontal: AppDimens.MARGIN_MEDIUM),
       child: SecondaryButtonWidget(
           child: TextViewWidget(
-            AppString.change.tr,
+            AppString.changeTxt.tr,
             textColor: Colors.white,
           ),
           onPress: () {

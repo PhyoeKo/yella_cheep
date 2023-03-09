@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:explore_places/get_x/core/base/base_remote_source.dart';
 import 'package:explore_places/get_x/core/services/dio_provider.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
+import 'package:explore_places/get_x/data_models/responses/HomeListResponse.dart';
 import 'package:explore_places/get_x/data_models/responses/banner_response.dart';
 import 'package:explore_places/get_x/data_models/responses/dummy_list_response.dart';
 import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
@@ -46,8 +47,6 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
         createList: (data) => SetUpVo.fromJson(data));
   }
 
-
-
   @override
   Future<BaseApiResponse<SetUpVo>> getStateList() {
     var dioCall = dioClient.get("$endpoint/api/state-list");
@@ -60,7 +59,22 @@ class HomeRepositoryImpl extends BaseRemoteSource implements HomeRepository {
     }
   }
 
+  @override
+  Future<BaseApiResponse<HomeListResponse>> getHomeList() {
+    var dioCall = dioClient.get("$endpoint/api/home-list");
+    try {
+      return callApiWithErrorParser(dioCall).then(
+        (response) => _parseHomeListResponse(response),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 
+  BaseApiResponse<HomeListResponse> _parseHomeListResponse(Response response) {
+    return BaseApiResponse<HomeListResponse>.fromListJson(response.data,
+        createList: (data) => HomeListResponse.fromJson(data));
+  }
 }
 
 /// https://api.yalla.cheap/storage/banner/261676964567.jpeg

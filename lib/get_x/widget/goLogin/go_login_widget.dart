@@ -1,4 +1,5 @@
 import 'package:explore_places/get_x/constant/resources/app_colors.dart';
+import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/widget/secondary_button_widget.dart';
 import 'package:explore_places/get_x/widget/text_view_widget.dart';
@@ -35,7 +36,7 @@ class GoLoginWidget extends StatelessWidget {
         ),
         MaterialButton(
           onPressed: () => Get.toNamed(Routes.login),
-          child: TextViewWidget("Login"),
+          child: TextViewWidget(AppString.login.tr),
           color: AppColors.whiteColor,
           highlightElevation: 5,
           highlightColor: AppColors.primaryColor.withOpacity(0.1),

@@ -4,4 +4,5 @@ abstract class AppImages {
   static const icChineseFlag = "assets/flag/ic_zh.png";
   static const icThaiFlag = "assets/flag/ic_thai.png";
   static const appLogo = "assets/icon/app_logo.png";
+  static const noDataImage = "assets/no_data.png";
 }

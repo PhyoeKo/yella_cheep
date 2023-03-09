@@ -1,5 +1,7 @@
 import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/binding/initial_binding.dart';
+import 'package:explore_places/get_x/features/category/binding/category_binding.dart';
+import 'package:explore_places/get_x/features/category/controller/category_controller.dart';
 import 'package:explore_places/get_x/features/change_language/binding/change_language_binding.dart';
 import 'package:explore_places/get_x/features/change_language/screen/change_language_screen.dart';
 import 'package:explore_places/get_x/features/change_theme/binding/change_theme_binding.dart';
@@ -25,6 +27,8 @@ import 'package:explore_places/get_x/features/shops/screen/shop_list_screen.dart
 import 'package:explore_places/get_x/features/splash_screen/binding/splash_screen_binding.dart';
 import 'package:explore_places/get_x/features/splash_screen/screen/splash_screen.dart';
 import 'package:get/get.dart';
+
+import '../../features/category/screen/category_screen.dart';
 
 class AppPages {
   AppPages._();
@@ -98,6 +102,11 @@ class AppPages {
       name: Routes.searchScreen,
       page: () => SearchScreen(),
       bindings: [SearchBindings(), ShopBinding()],
+    ),
+    GetPage(
+      name: Routes.categoryScreen,
+      page: () => CategoryScreen(),
+      bindings: [CategoryBinding(),],
     ),
   ];
 }
