@@ -51,12 +51,23 @@ class HomeController extends BaseController {
 
   List<SetUpVo> get stateList => _stateList.obs.value;
 
+
+  RxInt _selectedCategory = 0.obs;
+
+  int  get selectedCategory => _selectedCategory.value;
+
+
   RxDouble currentLat = 0.0.obs;
   RxDouble currentLong = 0.0.obs;
   RxBool hasFocus = false.obs;
   final MainHomeController mainHomeController = Get.find();
 
 
+
+  void setCurrentSelectCategory(int index){
+    _selectedCategory = index.obs;
+    update();
+  }
   @override
   void onInit() {
     getLoginData();

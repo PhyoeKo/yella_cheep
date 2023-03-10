@@ -77,4 +77,6 @@ enum CacheManagerKey {
   loginResponseData,
   shopProfileData,
   firebaseToken,
+  notificationTitle,
+  notificationDescription,
 }

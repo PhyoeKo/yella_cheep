@@ -55,10 +55,8 @@ class ShopController extends BaseController {
       RefreshController? refreshController}) async {
     if (refreshController != null) {
       setRefreshController(refreshController);
-      logger.i('Set referesher');
     }
-    final _repoService = _repository.getShopList(
-        categoryId: AppUtils.selectedID, stateId: selectedStateId);
+    final _repoService = _repository.getShopList(stateId: selectedStateId);
     await callAPIService(
       _repoService,
       onStart: showPartialLoading,

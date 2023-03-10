@@ -1,3 +1,4 @@
+import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
@@ -23,12 +24,14 @@ class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
       elevation: 2,
       child: Container(
         decoration:  const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.white,
-                blurRadius: 15,
-              ),
-            ]),
+          color: AppColors.appBarIconColor
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Colors.white,
+            //     blurRadius: 15,
+            //   ),
+            // ]
+        ),
         child: tabBar,
       ),
     );

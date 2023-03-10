@@ -148,7 +148,7 @@ class Shop {
   dynamic deletedAt;
   String? createdAt;
   String? updatedAt;
-  String? rating;
+  dynamic rating;
   num? reviewCount;
   List<String>? gallery;
   Category? category;

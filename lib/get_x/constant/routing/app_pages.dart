@@ -90,7 +90,7 @@ class AppPages {
         HomeBinding(),
         ExploreBinding(),
         FavouriteBinding(),
-        ProfileBinding()
+        ProfileBinding(),
       ],
     ),
     GetPage(

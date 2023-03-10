@@ -66,7 +66,7 @@ class HomeCategoryWidget extends StatelessWidget {
               imageUrl: image,
               boxFit: BoxFit.cover,
               width: Get.width * 0.5,
-              height: Get.height * 0.24,
+              height: Get.height * 0.23,
             ),
           ),
         ),

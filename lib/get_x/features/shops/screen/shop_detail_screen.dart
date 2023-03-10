@@ -3,6 +3,7 @@ import 'package:explore_places/get_x/constant/resources/app_colors.dart';
 import 'package:explore_places/get_x/constant/resources/app_dimens.dart';
 import 'package:explore_places/get_x/constant/resources/app_string.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
+import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/core/utils/custom_tab_indicator.dart';
 import 'package:explore_places/get_x/core/utils/sliver_app_delegete.dart';
 import 'package:explore_places/get_x/features/shops/controller/shop_controller.dart';
@@ -157,7 +158,7 @@ class ShopDetailScreen extends BaseView<ShopDetailController> {
                       child: RoundedIconWidget(
                         icon: controller.isFavourite.value ? Icon(Icons.favorite):Icon(Icons.favorite_border),
                         contentPadding: 8,
-                        onClickIcon: () => controller.setFavourite(),
+                        onClickIcon: () => controller.mainHomeController.isLogin.value? controller.setFavourite(): AppUtils.showToast("Please login to continue"),
                         backgroundColor: AppColors.primaryColor.withOpacity(0.4),
                       ),
                     ))

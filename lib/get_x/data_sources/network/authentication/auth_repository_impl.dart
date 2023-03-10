@@ -35,7 +35,7 @@ class AuthRepositoryImpl extends BaseRemoteSource implements AuthRepository {
       FirebaseTokenRequestOb firebaseTokenRequestOb) {
     try {
       return callApiWithErrorParser(dioClient.post(
-              "${DioProvider.baseUrl}/merchant/firebase-token-update",
+              "${DioProvider.baseUrl}/api/firebase-token-update",
               data: firebaseTokenRequestOb.toJson()))
           .then((response) => BaseApiResponse<String?>.fromStringJson(
                 response.data,

@@ -6,6 +6,7 @@ import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_controller.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/data_models/base_response/base_api_response.dart';
+import 'package:explore_places/get_x/data_models/request_ob/firebase_token_request_ob.dart';
 import 'package:explore_places/get_x/data_models/request_ob/login_request_ob.dart';
 import 'package:explore_places/get_x/data_models/request_ob/register_request_ob.dart';
 import 'package:explore_places/get_x/data_models/responses/profile/profile_response.dart';
@@ -93,6 +94,7 @@ class LoginController extends BaseController {
       if (loginData.statusCode!) {
         ProfileResponse? loginResponse = loginData.objectResult;
         savingData(loginResponse!);
+        updateFirebaseToken();
         Get.offAllNamed(Routes.mainHomeScreen);
       } else {
         AppUtils.showToast(loginData.message ?? AppString.invalidCredential.tr);
@@ -107,6 +109,29 @@ class LoginController extends BaseController {
   void savingData(ProfileResponse loginResponse) {
     setData(CacheManagerKey.loginResponseData, jsonEncode(loginResponse));
   }
+
+
+  void updateFirebaseToken(){
+    var firebaseTokenRequestOb = FirebaseTokenRequestOb(token: getString(CacheManagerKey.firebaseToken));
+    logger.i("FirebaseToken is ${getString(CacheManagerKey.firebaseToken)}");
+    logger.i("FirebaseTokenRequestOb is ${firebaseTokenRequestOb.toJson()}");
+    final repoService = _repository.updateFirebaseToken(firebaseTokenRequestOb);
+    callAPIService(repoService, onSuccess: onSuccessUpdateFirebaseToken,
+        onError: (exception) {
+          AppUtils.showToast("Something went wrong,try again");
+          Get.back();
+        });
+  }
+
+  void onSuccessUpdateFirebaseToken(response) {
+    if (response != null) {
+      BaseApiResponse<String?> _baseApiResponse = response;
+      print("Token Update is ${_baseApiResponse.statusCode}");
+    } else {
+      AppUtils.showToast("Something went wrong. Try again");
+    }
+  }
+
 
   onNext() {
     if (animationController.value >= 0.0 && animationController.value < 0.4) {

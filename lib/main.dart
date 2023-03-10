@@ -5,6 +5,7 @@ import 'package:explore_places/get_x/constant/translation/app_translation.dart';
 import 'package:explore_places/get_x/core/binding/initial_binding.dart';
 import 'package:explore_places/get_x/data_sources/local/cache_manager.dart';
 import 'package:explore_places/get_x/features/change_theme/binding/change_theme_binding.dart';
+import 'package:explore_places/get_x/services/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,7 @@ void main() async {
   // cacheManager.setData(CacheManagerKey.langCode, "zh");
   // cacheManager.setData(CacheManagerKey.countryCode, "CH");
   ChangeThemeBindings().dependencies();
+  FirebaseService.initFirebase();
   runApp(
     const MyApp(),
   );

@@ -9,6 +9,8 @@ import 'package:explore_places/get_x/constant/routing/app_route.dart';
 import 'package:explore_places/get_x/core/base/base_view.dart';
 import 'package:explore_places/get_x/core/utils/app_utils.dart';
 import 'package:explore_places/get_x/core/utils/sliver_app_delegete.dart';
+import 'package:explore_places/get_x/data_models/responses/shop_data_response.dart';
+import 'package:explore_places/get_x/features/category/controller/category_controller.dart';
 import 'package:explore_places/get_x/features/home/controller/home_controller.dart';
 import 'package:explore_places/get_x/widget/cached_network_image_widget.dart';
 import 'package:explore_places/get_x/widget/shop/shop_item_widget.dart';
@@ -130,30 +132,65 @@ class HomeScreen extends BaseView<HomeController> {
               ),
               controller.categoryList.isNotEmpty
                   ? SliverToBoxAdapter(
-                      child: Wrap(
-                        alignment: WrapAlignment.spaceAround,
-                        children: controller.categoryList
-                            .map((category) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: AppDimens.MARGIN_SMALL,
-                                      vertical: AppDimens.MARGIN_MEDIUM),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      AppUtils.selectedID = category.id;
-                                      Get.toNamed(
-                                        Routes.categoryScreen,
-                                        arguments: controller.categoryList,
-                                      );
-                                    },
-                                    child: CategoryImageWidget(
-                                      image: category.image ?? "",
-                                      name: category.name ?? "",
-                                    ),
+                      child: SizedBox(
+                        height: Get.height * 0.18,
+                        width: Get.width,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            physics: ClampingScrollPhysics(),
+                            itemCount: controller.categoryList.length,
+                            itemBuilder: (BuildContext context, int i) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: AppDimens.MARGIN_MEDIUM,
+                                    vertical: AppDimens.MARGIN_MEDIUM),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.setCurrentSelectCategory(i);
+                                    Get.toNamed(
+                                      Routes.categoryScreen,
+                                      arguments: [controller.categoryList,i,controller.categoryList[i].id],
+                                    );
+                                  },
+                                  child: CategoryImageWidget(
+                                    image:
+                                        controller.categoryList[i].image ?? "",
+                                    name: controller.categoryList[i].name ?? "",
                                   ),
-                                ))
-                            .toList(),
+                                ),
+                              );
+                            }),
                       ),
                     )
+                  // ? SliverToBoxAdapter(
+                  //     child: Wrap(
+                  //       alignment: WrapAlignment.spaceAround,
+                  //       children: controller.categoryList
+                  //           .map((category) =>
+                  //           Padding(
+                  //                 padding: const EdgeInsets.symmetric(
+                  //                     horizontal: AppDimens.MARGIN_SMALL,
+                  //                     vertical: AppDimens.MARGIN_MEDIUM),
+                  //                 child: GestureDetector(
+                  //                   onTap: () {
+                  //                  //   AppUtils.selectedID = category.id;
+                  //
+                  //
+                  //                     Get.toNamed(
+                  //                       Routes.categoryScreen,
+                  //                       arguments: controller.categoryList,
+                  //                     );
+                  //                   },
+                  //                   child: CategoryImageWidget(
+                  //                     image: category.image ?? "",
+                  //                     name: category.name ?? "",
+                  //                   ),
+                  //                 ),
+                  //               ))
+                  //           .toList(),
+                  //     ),
+                  //   )toList
                   : SliverToBoxAdapter(
                       child: Shimmer.fromColors(
                         baseColor: Colors.grey[300]!,
@@ -290,48 +327,96 @@ class HomeScreen extends BaseView<HomeController> {
                                             (BuildContext context, int i) =>
                                                 Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: HomeCategoryWidget(
-                                              image: controller.homeList[index]
-                                                      .shop?[i].image1 ??
-                                                  "",
-                                              name: controller.homeList[index]
-                                                      .shop?[i].name ??
-                                                  "",
-                                              discount: controller
-                                                      .homeList[index]
-                                                      .shop?[i]
-                                                      .discount ??
-                                                  "",
-                                              state: controller.homeList[index]
-                                                      .shop?[i].state?.name ??
-                                                  ""),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              ShopDataResponse? shopItem =
+                                                  ShopDataResponse();
+                                              shopItem.id = controller
+                                                  .homeList[index].shop?[i].id;
+                                              shopItem.name = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .name;
+                                              shopItem.state = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .state
+                                                  ?.name;
+                                              shopItem.discount = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .discount;
+                                              shopItem.image1 = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .image1;
+                                              shopItem.phone = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .phone;
+                                              shopItem.email = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .email;
+                                              shopItem.attractions = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .attractions;
+                                              shopItem.isFavourite = false;
+                                              shopItem.longitude = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .longitude;
+                                              shopItem.latitude = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .latitude;
+                                              shopItem.distance = 0.0;
+                                              shopItem.gallery = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .gallery;
+                                              shopItem.reviewCount = controller
+                                                  .homeList[index]
+                                                  .shop?[i]
+                                                  .reviewCount;
+                                              shopItem.rating = 4;
+                                              shopItem.email =  controller
+                                                  .homeList[index]
+                                                  .shop?[i].email;
+
+                                              shopItem.website =  controller
+                                                  .homeList[index]
+                                                  .shop?[i].website;
+
+                                              Get.toNamed(Routes.shopDetail,
+                                                  arguments: shopItem);
+                                            },
+                                            child: HomeCategoryWidget(
+                                                image: controller
+                                                        .homeList[index]
+                                                        .shop?[i]
+                                                        .image1 ??
+                                                    "",
+                                                name: controller.homeList[index]
+                                                        .shop?[i].name ??
+                                                    "",
+                                                discount: controller
+                                                        .homeList[index]
+                                                        .shop?[i]
+                                                        .discount ??
+                                                    "",
+                                                state: controller
+                                                        .homeList[index]
+                                                        .shop?[i]
+                                                        .state
+                                                        ?.name ??
+                                                    ""),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                  // CarouselSlider(
-                                  //   options: CarouselOptions(
-                                  //     autoPlay: true,
-                                  //     enlargeCenterPage: true,
-                                  //     viewportFraction: 1,
-                                  //     aspectRatio: 1.8,
-                                  //   ),
-                                  //   items: controller.homeList[index].shop
-                                  //       ?.map(
-                                  //         (shopItem) => Column(
-                                  //           crossAxisAlignment:
-                                  //               CrossAxisAlignment.start,
-                                  //           children: [
-                                  //             CategoryImageWidget(
-                                  //               image: shopItem.image1 ?? "",
-                                  //               name: shopItem.name ?? "",
-                                  //             )
-                                  //           ],
-                                  //         ),
-                                  //       )
-                                  //       .toList(),
-                                  // )
-                                  // controller.homeList[index].shop.map((e) => TextViewWidget(text)).toList();
                                 ],
                               );
                             }),

@@ -65,8 +65,8 @@ class ShopItemWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: AppColors.appBarColor,
                     borderRadius: BorderRadius.all(Radius.circular(12))),
-                height: 60,
-                width: 230,
+                height: 65,
+                width: Get.width*0.7,
                 child: Column(
                   children: [
                     TextViewWidget(
