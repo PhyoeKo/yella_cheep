@@ -73,7 +73,7 @@ class RequestOTPSection extends StatelessWidget {
               child: Center(
                 child: TextViewWidget(
                   AppString.welcomeFromYella.tr,
-                  textColor: Colors.white,
+                  textColor: Colors.black45,
                   fontWeight: FontWeight.bold,
                   textSize: AppDimens.TEXT_HEADING_1X,
                 ),

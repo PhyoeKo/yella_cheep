@@ -65,12 +65,12 @@ class ShopController extends BaseController {
     );
   }
 
-  void getNearByShop({RefreshController? refreshController}) async {
+  void getNearByShop({RefreshController? refreshController,double? lat,double? long}) async {
     setRefreshController(refreshController);
     final _repoService = _repository.getNearByShopList(
-      16.823355172423504,
-      96.15423770061818,
-      200,
+      lat?? 16.823355172423504,
+     long ?? 96.15423770061818,
+      1000000,
     );
     await callAPIService(
       _repoService,

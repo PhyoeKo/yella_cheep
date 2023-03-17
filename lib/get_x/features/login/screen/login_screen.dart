@@ -22,7 +22,7 @@ class LoginScreen extends BaseView<LoginController> {
 
   @override
   Color pageBackgroundColor() {
-    return AppColors.appBarColor;
+    return AppColors.whiteColor.withOpacity(0.6);
   }
 
   @override

@@ -101,9 +101,10 @@ class HomeController extends BaseController {
         .then((Position position) {
       currentLat.value = position.latitude;
       currentLong.value = position.longitude;
-      shopController.getNearByShop();
-      logger.i(
-          "Current location is ${position.latitude} and ${position.longitude}");
+     shopController.getNearByShop(lat:position.latitude,long: position.longitude );
+     // shopController.getNearByShop( );
+      // logger.i(
+      //     "Current location is ${position.latitude} and ${position.longitude}");
     }).catchError((e) {
       logger.i('${e.toString()}');
       //  appStore.currentPosition = null;

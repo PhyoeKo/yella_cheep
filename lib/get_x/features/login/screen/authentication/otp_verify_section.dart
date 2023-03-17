@@ -107,7 +107,7 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
                 child: Center(
                   child: TextViewWidget(
                     AppString.welcomeFromYella.tr,
-                    textColor: Colors.white,
+                    textColor: Colors.black45,
                     fontWeight: FontWeight.bold,
                     textSize: AppDimens.TEXT_HEADING_1X,
                   ),
@@ -141,16 +141,16 @@ class _OTPVerifySectionState extends State<OTPVerifySection> {
                     animationType: AnimationType.fade,
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
-                      borderWidth: 0.2,
+                      borderWidth: 0.3,
                       borderRadius:
                           BorderRadius.circular(AppDimens.MARGIN_MEDIUM),
                       fieldHeight: MediaQuery.of(context).size.width * 0.11,
                       fieldWidth: MediaQuery.of(context).size.width * 0.11,
-                      activeColor: AppColors.whiteColor,
-                      activeFillColor: Colors.white,
-                      inactiveColor: AppColors.whiteColor,
+                      activeColor: AppColors.brownRedColor,
+                      activeFillColor: Colors.white10,
+                      inactiveColor: AppColors.brownRedColor,
                       inactiveFillColor: Colors.white,
-                      selectedColor: AppColors.whiteColor,
+                      selectedColor: AppColors.appBarColor,
                       selectedFillColor: Colors.white,
                     ),
                     keyboardType: TextInputType.number,

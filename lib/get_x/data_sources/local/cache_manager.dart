@@ -59,7 +59,6 @@ class CacheManager {
     final MainHomeController mainHomeController = Get.find();
     mainHomeController.isLogin.value =false;
     clearAllData();
-    print("Removed dada");
   }
 
   Future<void> removeToken() async {
